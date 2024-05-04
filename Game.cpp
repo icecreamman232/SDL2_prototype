@@ -1,5 +1,8 @@
 #include "Game.h"
+#include "SDL_image.h"
+#include "GameObject.h"
 
+GameObject* player = nullptr;
 
 Game::Game()
 {
@@ -20,7 +23,7 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 		m_renderer = SDL_CreateRenderer(m_window, -1, 0);
 		if (m_renderer)
 		{
-			SDL_SetRenderDrawColor(m_renderer, 0, 255, 0, 255);
+			SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
 			std::cout << "Renderer created..." << std::endl;
 			m_isRunning = true;
 		}
@@ -28,6 +31,8 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 			m_isRunning = false;
 		}
 	}
+
+	player = new GameObject("Asset/blue-starship.png", m_renderer, 200,300);
 }
 
 void Game::HandleEvents()
@@ -44,12 +49,15 @@ void Game::HandleEvents()
 
 void Game::Update()
 {
-
+	player->Update();
 }
 
 void Game::Render()
 {
 	SDL_RenderClear(m_renderer);
+
+	player->Render();
+
 	SDL_RenderPresent(m_renderer);
 }
 
