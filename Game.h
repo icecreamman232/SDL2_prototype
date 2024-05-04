@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <iostream>
+#include "Input.h"
 using namespace std;
 
 class Game
@@ -20,6 +21,7 @@ public:
 
 private:
 	bool m_isRunning;
+	Input* m_input;
 	SDL_Window* m_window;
 	SDL_Renderer* m_renderer;
 

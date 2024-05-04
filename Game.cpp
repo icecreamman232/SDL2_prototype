@@ -6,7 +6,7 @@ GameObject* player = nullptr;
 
 Game::Game()
 {
-
+	m_input = new Input();
 }
 
 Game::~Game()
@@ -31,6 +31,7 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 			m_isRunning = false;
 		}
 	}
+	
 
 	player = new GameObject("Asset/blue-starship.png", m_renderer, 200,300);
 }
@@ -39,6 +40,8 @@ void Game::HandleEvents()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
+
+	m_input->HandleEvent(&event);
 	switch (event.type)
 	{
 		case SDL_QUIT:
@@ -52,11 +55,18 @@ void Game::Update()
 	player->Update();
 }
 
+
 void Game::Render()
 {
 	SDL_RenderClear(m_renderer);
 
 	player->Render();
+	//if (m_input->IsLeftMouseDown())
+	{
+		
+		//player->SetPosition(m_input->MouseX,m_input->MouseY);
+		player->LookAt(m_input->MouseX, m_input->MouseY);
+	}
 
 	SDL_RenderPresent(m_renderer);
 }
