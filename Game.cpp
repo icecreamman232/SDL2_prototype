@@ -35,8 +35,8 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 
-	m_enemy = new GameObject("Asset/space-slime.png", m_renderer, 200, 300);
-	m_player = new SpaceShip("Asset/blue-starship.png", m_renderer, 300,300);
+	m_enemy = new GameObject("Asset/space-slime.png", m_renderer, 0, 0, 16, 16);
+	m_player = new SpaceShip("Asset/blue-starship.png", m_renderer, 300,300,18,16);
 }
 
 void Game::HandleEvents()

@@ -2,8 +2,8 @@
 #include <iostream>
 #include "Game.h"
 
-SpaceShip::SpaceShip(const char* texturePath, SDL_Renderer* renderer, int initX, int initY)
-	:GameObject(texturePath, renderer,initX, initY)
+SpaceShip::SpaceShip(const char* texturePath, SDL_Renderer* renderer, int initX, int initY,int width, int height)
+	:GameObject(texturePath, renderer,initX, initY, width, height)
 {
 	m_direction.x = 0;
 	m_direction.y = 0;
@@ -18,18 +18,18 @@ void SpaceShip::Update(float deltaTime)
 	{
 		m_pos.x = 0;
 	}
-	else if (m_pos.x >= Game::ScreenWidth)
+	else if (m_pos.x >= Game::ScreenWidth - m_destRect.w)
 	{
-		m_pos.x = Game::ScreenWidth;
+		m_pos.x = Game::ScreenWidth - m_destRect.w;
 	}
 
 	if (m_pos.y <= 0)
 	{
 		m_pos.y = 0;
 	}
-	else if (m_pos.y >= Game::ScreenHeight)
+	else if (m_pos.y >= Game::ScreenHeight - m_destRect.h)
 	{
-		m_pos.y = Game::ScreenHeight;
+		m_pos.y = Game::ScreenHeight - m_destRect.h;
 	}
 
 	GameObject::Update(deltaTime);

@@ -1,7 +1,7 @@
 #include "GameObject.h"
 #include "Collider.h"
 
-GameObject::GameObject(const char* texturePath, SDL_Renderer* renderer,int initX, int initY)
+GameObject::GameObject(const char* texturePath, SDL_Renderer* renderer,int initX, int initY, int width, int height)
 {
 	m_renderer = renderer;
 	m_texture = TextureLoader::LoadTexture(texturePath, renderer);
@@ -9,8 +9,8 @@ GameObject::GameObject(const char* texturePath, SDL_Renderer* renderer,int initX
 	m_pos.y = initY;
 	m_angle = 0;
 
-	m_srcRect.w = 18;
-	m_srcRect.h = 16;
+	m_srcRect.w = width;
+	m_srcRect.h = height;
 	m_srcRect.x = 0;
 	m_srcRect.y = 0;
 

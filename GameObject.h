@@ -7,7 +7,7 @@ class Collider;
 class GameObject
 {
 public:
-	GameObject(const char* texturePath, SDL_Renderer* renderer, int initX, int initY);
+	GameObject(const char* texturePath, SDL_Renderer* renderer, int initX, int initY,int width, int height);
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void SetPosition(int x, int y);

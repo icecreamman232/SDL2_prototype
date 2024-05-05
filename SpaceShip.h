@@ -3,7 +3,7 @@
 class SpaceShip : public GameObject
 {
 public:
-	SpaceShip(const char* texturePath, SDL_Renderer* renderer, int initX, int initY);
+	SpaceShip(const char* texturePath, SDL_Renderer* renderer, int initX, int initY,int width, int height);
 	void Update(float deltaTime) override;
 
 	void SetDirectionX(float);
