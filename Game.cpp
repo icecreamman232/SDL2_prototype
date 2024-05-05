@@ -35,8 +35,25 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 
-	m_enemy = new GameObject("Asset/space-slime.png", m_renderer, 0, 0, 16, 16);
-	m_player = new SpaceShip("Asset/blue-starship.png", m_renderer, 300,300,18,16);
+	m_enemy = new GameObject("enemy", "Asset/space-slime.png", m_renderer, 0, 0, 16, 16);
+	m_enemy1 = new GameObject("enemy1", "Asset/space-slime.png", m_renderer, 300, 100, 16, 16);
+	m_enemy2 = new GameObject("enemy2","Asset/space-slime.png", m_renderer, 200, 300, 16, 16);
+	m_enemy3 = new GameObject("enemy3","Asset/space-slime.png", m_renderer, 500, 700, 16, 16);
+	m_enemy4 = new GameObject("enemy4","Asset/space-slime.png", m_renderer, 800, 500, 16, 16);
+	m_enemy5 = new GameObject("enemy5", "Asset/space-slime.png", m_renderer, 810, 500, 16, 16);
+
+
+	m_player = new SpaceShip("Ship","Asset/blue-starship.png", m_renderer, 300, 300, 18, 16);
+
+
+	m_quadTree = new QuadTree(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth), static_cast<float>(ScreenHeight) }
+	, 255, 0, 0);
+	m_quadTree->Insert(*m_enemy);
+	m_quadTree->Insert(*m_enemy1);
+	m_quadTree->Insert(*m_enemy2);
+	m_quadTree->Insert(*m_enemy3);
+	m_quadTree->Insert(*m_enemy4);
+	m_quadTree->Insert(*m_enemy5);
 }
 
 void Game::HandleEvents()
@@ -86,11 +103,22 @@ void Game::Update(float deltaTime)
 
 	m_player->Update(deltaTime);
 	m_enemy->Update(deltaTime);
+	m_enemy1->Update(deltaTime);
+	m_enemy2->Update(deltaTime);
+	m_enemy3->Update(deltaTime);
+	m_enemy4->Update(deltaTime);
+	m_enemy5->Update(deltaTime);
 
-	if (m_player->IsCollideWith(m_enemy))
+	m_collisionList = m_quadTree->CheckCollision(*m_player);
+	if (!m_collisionList.empty())
 	{
-		std::cout << "Collided" << std::endl;
+		std::cout << "HIT" << std::endl;
 	}
+	else 
+	{
+		std::cout << "No" << std::endl;
+	}
+
 }
 
 
@@ -98,8 +126,14 @@ void Game::Render(float deltaTime)
 {
 	SDL_RenderClear(m_renderer);
 
+	m_quadTree->Render(m_renderer);
 	m_player->Render();
 	m_enemy->Render();
+	m_enemy1->Render();
+	m_enemy2->Render();
+	m_enemy3->Render();
+	m_enemy4->Render();
+	m_enemy5->Render();
 
 	SDL_RenderPresent(m_renderer);
 }

@@ -7,7 +7,7 @@ class Collider;
 class GameObject
 {
 public:
-	GameObject(const char* texturePath, SDL_Renderer* renderer, int initX, int initY,int width, int height);
+	GameObject(const char* name, const char* texturePath, SDL_Renderer* renderer, int initX, int initY,int width, int height);
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void SetPosition(int x, int y);
@@ -16,6 +16,7 @@ public:
 	virtual bool IsCollideWith(GameObject* other);
 	const SDL_FRect Rect();
 protected:
+	const char* m_name;
 	double m_angle;
 	Vector2 m_pos;
 	Collider* m_collider;

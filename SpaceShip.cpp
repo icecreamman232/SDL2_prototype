@@ -2,8 +2,8 @@
 #include <iostream>
 #include "Game.h"
 
-SpaceShip::SpaceShip(const char* texturePath, SDL_Renderer* renderer, int initX, int initY,int width, int height)
-	:GameObject(texturePath, renderer,initX, initY, width, height)
+SpaceShip::SpaceShip(const char* name,const char* texturePath, SDL_Renderer* renderer, int initX, int initY,int width, int height)
+	:GameObject(name, texturePath, renderer,initX, initY, width, height)
 {
 	m_direction.x = 0;
 	m_direction.y = 0;

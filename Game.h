@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Input.h"
 #include "SpaceShip.h"
+#include "QuadTree.h"
 using namespace std;
 
 class Game
@@ -29,7 +30,17 @@ private:
 	SDL_Window* m_window;
 	SDL_Renderer* m_renderer;
 
+	QuadTree* m_quadTree;
+	std::vector<GameObject*> m_collisionList;
+
+
 	GameObject* m_enemy;
+	GameObject* m_enemy1;
+	GameObject* m_enemy2;
+	GameObject* m_enemy3;
+	GameObject* m_enemy4;
+	GameObject* m_enemy5;
+
 	SpaceShip* m_player;
 
 };

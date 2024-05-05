@@ -1,8 +1,10 @@
 #include "GameObject.h"
 #include "Collider.h"
 
-GameObject::GameObject(const char* texturePath, SDL_Renderer* renderer,int initX, int initY, int width, int height)
+GameObject::GameObject(const char* name,const char* texturePath, SDL_Renderer* renderer,int initX, int initY, int width, int height)
 {
+	m_name = name;
+
 	m_renderer = renderer;
 	m_texture = TextureLoader::LoadTexture(texturePath, renderer);
 	m_pos.x = initX;
