@@ -11,8 +11,7 @@ public:
 
 private:
 	float m_moveSpeed;
-	float m_directionX;
-	float m_directionY;
+	Vector2 m_direction;
 	const double LIMIT_LEFT = 0;
 	const double LIMIT_RIGHT = 1368;
 	const double LIMIT_UP = 0;

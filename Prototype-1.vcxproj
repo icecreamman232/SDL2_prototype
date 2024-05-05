@@ -138,6 +138,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Math\MathHelper.cpp" />
+    <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
   </ItemGroup>
@@ -145,11 +147,18 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Math\MathHelper.h" />
+    <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="TextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Asset\blue-starship.png" />
+    <Image Include="Asset\space-slime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SDL2.dll" />
+    <None Include="SDL2_image.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

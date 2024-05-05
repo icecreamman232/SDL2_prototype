@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include "TextureLoader.h"
+#include "Math/Vector2.h"
 
 class GameObject
 {
@@ -14,8 +15,9 @@ public:
 
 protected:
 	double m_angle;
-	float m_posX;
-	float m_posY;
+	Vector2 m_pos;
+	//float m_posX;
+	//float m_posY;
 	SDL_Renderer* m_renderer;
 	SDL_Texture* m_texture;
 	SDL_Rect m_srcRect;

@@ -33,6 +33,12 @@
     <ClCompile Include="SpaceShip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Math\MathHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -50,10 +56,23 @@
     <ClInclude Include="SpaceShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Math\MathHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Asset\blue-starship.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Asset\space-slime.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SDL2.dll" />
+    <None Include="SDL2_image.dll" />
   </ItemGroup>
 </Project>
