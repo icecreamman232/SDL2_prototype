@@ -6,19 +6,20 @@ class GameObject
 {
 public:
 	GameObject(const char* texturePath, SDL_Renderer* renderer, int initX, int initY);
-	void Update();
-	void Render();
-	void SetPosition(int x, int y);
-	void SetRotation(double angle);
-	void LookAt(int x, int y);
+	virtual void Update(float deltaTime);
+	virtual void Render();
+	virtual void SetPosition(int x, int y);
+	virtual void SetRotation(double angle);
+	virtual void LookAt(int x, int y);
 
-private:
+protected:
 	double m_angle;
-	int m_posX;
-	int m_posY;
+	float m_posX;
+	float m_posY;
 	SDL_Renderer* m_renderer;
 	SDL_Texture* m_texture;
-	SDL_Rect m_srcRect, m_destRect;
+	SDL_Rect m_srcRect;
+	SDL_FRect m_destRect;
 
 };
 

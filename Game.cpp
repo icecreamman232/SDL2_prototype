@@ -2,7 +2,8 @@
 #include "SDL_image.h"
 #include "GameObject.h"
 
-GameObject* player = nullptr;
+int Game::ScreenWidth = 0;
+int Game::ScreenHeight = 0;
 
 Game::Game()
 {
@@ -31,9 +32,11 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 			m_isRunning = false;
 		}
 	}
-	
 
-	player = new GameObject("Asset/blue-starship.png", m_renderer, 200,300);
+	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
+
+	m_enemy = new GameObject("Asset/space-slime.png", m_renderer, 220, 300);
+	m_player = new SpaceShip("Asset/blue-starship.png", m_renderer, 200,300);
 }
 
 void Game::HandleEvents()
@@ -50,23 +53,48 @@ void Game::HandleEvents()
 	}
 }
 
-void Game::Update()
+void Game::Update(float deltaTime)
 {
-	player->Update();
+	m_player->LookAt(m_input->MouseX, m_input->MouseY);
+
+	if (m_input->GetKeyDown(SDL_SCANCODE_A))
+	{
+		m_player->SetDirectionX(-1.0);
+	}
+	else if (m_input->GetKeyDown(SDL_SCANCODE_D))
+	{
+		m_player->SetDirectionX(1.0);
+	}
+	else 
+	{
+		m_player->SetDirectionX(0.0);
+	}
+
+
+	if (m_input->GetKeyDown(SDL_SCANCODE_W))
+	{
+		m_player->SetDirectionY(-1.0);
+	}
+	else if (m_input->GetKeyDown(SDL_SCANCODE_S))
+	{
+		m_player->SetDirectionY(1.0);
+	}
+	else 
+	{
+		m_player->SetDirectionY(0.0);
+	}
+
+	m_player->Update(deltaTime);
+	m_enemy->Update(deltaTime);
 }
 
 
-void Game::Render()
+void Game::Render(float deltaTime)
 {
 	SDL_RenderClear(m_renderer);
 
-	player->Render();
-	//if (m_input->IsLeftMouseDown())
-	{
-		
-		//player->SetPosition(m_input->MouseX,m_input->MouseY);
-		player->LookAt(m_input->MouseX, m_input->MouseY);
-	}
+	m_player->Render();
+	m_enemy->Render();
 
 	SDL_RenderPresent(m_renderer);
 }

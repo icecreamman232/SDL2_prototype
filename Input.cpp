@@ -1,5 +1,10 @@
 #include "Input.h"
 
+Input::Input()
+{
+	m_keyStates = SDL_GetKeyboardState(NULL);
+}
+
 void Input::HandleEvent(SDL_Event* event)
 {
 	switch (event->type)
@@ -14,6 +19,8 @@ void Input::HandleEvent(SDL_Event* event)
 		case SDL_MOUSEMOTION:
 			SDL_GetMouseState(&MouseX, &MouseY);
 			break;
+		case SDL_SCANCODE_DOWN:
+			break;
 		case SDL_QUIT:
 			break;
 		default:
@@ -26,4 +33,9 @@ void Input::HandleEvent(SDL_Event* event)
 bool Input::IsLeftMouseDown()
 {
 	return m_isLeftMouseDown;
+}
+
+bool Input::GetKeyDown(SDL_Scancode keyCode)
+{
+	return m_keyStates[keyCode];
 }
