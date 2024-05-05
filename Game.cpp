@@ -35,8 +35,8 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 
-	m_enemy = new GameObject("Asset/space-slime.png", m_renderer, 220, 300);
-	m_player = new SpaceShip("Asset/blue-starship.png", m_renderer, 200,300);
+	m_enemy = new GameObject("Asset/space-slime.png", m_renderer, 200, 300);
+	m_player = new SpaceShip("Asset/blue-starship.png", m_renderer, 300,300);
 }
 
 void Game::HandleEvents()
@@ -86,6 +86,11 @@ void Game::Update(float deltaTime)
 
 	m_player->Update(deltaTime);
 	m_enemy->Update(deltaTime);
+
+	if (m_player->IsCollideWith(m_enemy))
+	{
+		std::cout << "Collided" << std::endl;
+	}
 }
 
 

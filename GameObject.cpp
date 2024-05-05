@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "Collider.h"
 
 GameObject::GameObject(const char* texturePath, SDL_Renderer* renderer,int initX, int initY)
 {
@@ -18,6 +19,7 @@ GameObject::GameObject(const char* texturePath, SDL_Renderer* renderer,int initX
 	m_destRect.w = m_srcRect.w * 3;
 	m_destRect.h = m_srcRect.h * 3;
 
+	m_collider = new Collider(this);
 }
 
 void GameObject::Update(float deltaTime)
@@ -52,5 +54,15 @@ void GameObject::LookAt(int x, int y)
 
 	m_angle = SDL_atan2(relativeY, relativeX) * (180.0 / M_PI ) + 90;
 	SetRotation(m_angle);
+}
+
+bool GameObject::IsCollideWith(GameObject* other)
+{
+	return m_collider->IsCollideWith(other);
+}
+
+const SDL_FRect GameObject::Rect()
+{
+	return m_destRect;
 }
 
