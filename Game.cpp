@@ -109,12 +109,14 @@ void Game::Update(float deltaTime)
 	m_enemy4->Update(deltaTime);
 	m_enemy5->Update(deltaTime);
 
-	m_quadTree->Update(*m_enemy);
+	m_quadTree->Update();
+
+	/*m_quadTree->Update(*m_enemy);
 	m_quadTree->Update(*m_enemy1);
 	m_quadTree->Update(*m_enemy2);
 	m_quadTree->Update(*m_enemy3);
 	m_quadTree->Update(*m_enemy4);
-	m_quadTree->Update(*m_enemy5);
+	m_quadTree->Update(*m_enemy5);*/
 
 
 	m_collisionList = m_quadTree->CheckCollision(*m_player);

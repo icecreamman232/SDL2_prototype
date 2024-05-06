@@ -81,20 +81,22 @@ void QuadTree::Render(SDL_Renderer* renderer)
 	}
 }
 
-void QuadTree::Update(GameObject& gameObject)
+void QuadTree::Update()
 {
-	if (!Contain(gameObject))
+	for (auto object : m_gameObjectList)
 	{
-		Remove(&gameObject);
-
-		Insert(gameObject);
-	}
-	else
-	{
-		for (auto& child : m_childNodeList)
+		if (!Contain(object))
 		{
-			child.Update(gameObject);
+			Remove(&object);
+
+			Insert(object);
 		}
+	}
+
+
+	for (auto& child : m_childNodeList)
+	{
+		child.Update();
 	}
 }
 

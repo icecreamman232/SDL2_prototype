@@ -10,7 +10,7 @@ public:
 	void Insert(GameObject& gameObject);
 	void Split();
 	void Render(SDL_Renderer* renderer);
-	void Update(GameObject& gameObject);
+	void Update();
 	void Remove(GameObject* gameObject);
 	std::vector<GameObject*> CheckCollision(GameObject& targer);
 
