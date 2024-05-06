@@ -35,12 +35,12 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 
-	m_enemy = new GameObject("enemy", "Asset/space-slime.png", m_renderer, 0, 0, 16, 16);
-	m_enemy1 = new GameObject("enemy1", "Asset/space-slime.png", m_renderer, 300, 100, 16, 16);
-	m_enemy2 = new GameObject("enemy2","Asset/space-slime.png", m_renderer, 200, 300, 16, 16);
-	m_enemy3 = new GameObject("enemy3","Asset/space-slime.png", m_renderer, 500, 700, 16, 16);
-	m_enemy4 = new GameObject("enemy4","Asset/space-slime.png", m_renderer, 800, 500, 16, 16);
-	m_enemy5 = new GameObject("enemy5", "Asset/space-slime.png", m_renderer, 1000, 300, 16, 16);
+	m_enemy = new Slime(1,"enemy", "Asset/space-slime.png", m_renderer, 0, 0, 16, 16);
+	m_enemy1 = new Slime(2,"enemy1", "Asset/space-slime.png", m_renderer, 300, 100, 16, 16);
+	m_enemy2 = new Slime(3,"enemy2","Asset/space-slime.png", m_renderer, 200, 300, 16, 16);
+	m_enemy3 = new Slime(4,"enemy3","Asset/space-slime.png", m_renderer, 500, 700, 16, 16);
+	m_enemy4 = new Slime(5,"enemy4","Asset/space-slime.png", m_renderer, 800, 500, 16, 16);
+	m_enemy5 = new Slime(6,"enemy5", "Asset/space-slime.png", m_renderer, 1000, 300, 16, 16);
 
 
 	m_player = new SpaceShip("Ship","Asset/blue-starship.png", m_renderer, 300, 300, 18, 16);

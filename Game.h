@@ -3,8 +3,10 @@
 #include <stdio.h>
 #include <iostream>
 #include "Input.h"
-#include "SpaceShip.h"
 #include "QuadTree.h"
+
+#include "SpaceShip.h"
+#include "Slime.h"
 using namespace std;
 
 class Game
@@ -34,12 +36,12 @@ private:
 	std::vector<GameObject*> m_collisionList;
 
 
-	GameObject* m_enemy;
-	GameObject* m_enemy1;
-	GameObject* m_enemy2;
-	GameObject* m_enemy3;
-	GameObject* m_enemy4;
-	GameObject* m_enemy5;
+	Slime* m_enemy;
+	Slime* m_enemy1;
+	Slime* m_enemy2;
+	Slime* m_enemy3;
+	Slime* m_enemy4;
+	Slime* m_enemy5;
 
 	SpaceShip* m_player;
 
