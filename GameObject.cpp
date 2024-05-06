@@ -68,3 +68,5 @@ const SDL_FRect GameObject::Rect()
 	return m_destRect;
 }
 
+
+

@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "TextureLoader.h"
 #include "Math/Vector2.h"
+#include <vector>
 class Collider;
 
 class GameObject
@@ -15,6 +16,10 @@ public:
 	virtual void LookAt(int x, int y);
 	virtual bool IsCollideWith(GameObject* other);
 	const SDL_FRect Rect();
+
+	inline Vector2 GetPosition() { return m_pos; };
+	inline const char* GetName() { return m_name; };
+
 protected:
 	const char* m_name;
 	double m_angle;

@@ -81,6 +81,42 @@ void QuadTree::Render(SDL_Renderer* renderer)
 	}
 }
 
+void QuadTree::Update(GameObject& gameObject)
+{
+	if (!Contain(gameObject))
+	{
+		Remove(&gameObject);
+
+		Insert(gameObject);
+	}
+	else
+	{
+		for (auto& child : m_childNodeList)
+		{
+			child.Update(gameObject);
+		}
+	}
+}
+
+void QuadTree::Remove(GameObject* gameObject)
+{
+	auto find = std::find_if(m_gameObjectList.begin(), m_gameObjectList.end(),
+		[gameObject](GameObject& obj)
+		{
+			return &obj != gameObject;
+		});
+	if (find != m_gameObjectList.end())
+	{
+		m_gameObjectList.erase(find);
+		return;
+	}
+
+	for (auto& child : m_childNodeList)
+	{
+		child.Remove(gameObject);
+	}
+}
+
 std::vector<GameObject*> QuadTree::CheckCollision(GameObject& target)
 {
 	std::vector<GameObject*> objectInRange;
