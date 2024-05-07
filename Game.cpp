@@ -48,12 +48,12 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 
 	m_quadTree = new QuadTree(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth), static_cast<float>(ScreenHeight) }
 	, 255, 0, 0);
-	m_quadTree->Insert(*m_enemy);
-	m_quadTree->Insert(*m_enemy1);
-	m_quadTree->Insert(*m_enemy2);
-	m_quadTree->Insert(*m_enemy3);
-	m_quadTree->Insert(*m_enemy4);
-	m_quadTree->Insert(*m_enemy5);
+	m_quadTree->Insert(m_enemy);
+	m_quadTree->Insert(m_enemy1);
+	m_quadTree->Insert(m_enemy2);
+	m_quadTree->Insert(m_enemy3);
+	m_quadTree->Insert(m_enemy4);
+	m_quadTree->Insert(m_enemy5);
 }
 
 void Game::HandleEvents()
@@ -119,7 +119,7 @@ void Game::Update(float deltaTime)
 	m_quadTree->Update(*m_enemy5);*/
 
 
-	m_collisionList = m_quadTree->CheckCollision(*m_player);
+	m_collisionList = m_quadTree->CheckCollision(m_player);
 	if (!m_collisionList.empty())
 	{
 		std::cout << "HIT" << std::endl;

@@ -1,4 +1,5 @@
 #include "QuadTree.h"
+#include <iostream>
 
 
 QuadTree::QuadTree(const SDL_FRect& bounds, Uint8 r, Uint8 g, Uint8 b)
@@ -14,12 +15,12 @@ QuadTree::QuadTree(const SDL_FRect& bounds, Uint8 r, Uint8 g, Uint8 b)
 /// </summary>
 /// <param name="gameObject">Game object to be checked</param>
 /// <returns>Return true if game object is in the bounds</returns>
-bool QuadTree::Contain(GameObject& gameObject)
+bool QuadTree::ContainInCurrentNode(GameObject* gameObject)
 {
-	if (gameObject.Rect().x >= m_bounds.x
-		&& gameObject.Rect().y >= m_bounds.y
-		&& gameObject.Rect().x < m_bounds.x + m_bounds.w
-		&& gameObject.Rect().y < m_bounds.y + m_bounds.h)
+	if (gameObject->Rect().x >= m_bounds.x
+		&& gameObject->Rect().y >= m_bounds.y
+		&& gameObject->Rect().x < m_bounds.x + m_bounds.w
+		&& gameObject->Rect().y < m_bounds.y + m_bounds.h)
 	{
 		return true;
 	}
@@ -27,10 +28,11 @@ bool QuadTree::Contain(GameObject& gameObject)
 	return false;
 }
 
-void QuadTree::Insert(GameObject& gameObject)
+
+void QuadTree::Insert(GameObject* gameObject)
 {
 	//If game object is not in the region, we wont insert it to the node
-	if (!Contain(gameObject))
+	if (!ContainInCurrentNode(gameObject))
 	{
 		return;
 	}
@@ -38,6 +40,7 @@ void QuadTree::Insert(GameObject& gameObject)
 	if (m_gameObjectList.size() < MAX_GAME_OBJECTS)
 	{
 		m_gameObjectList.push_back(gameObject);
+		std::cout << "Insert " << gameObject->GetName() <<" into "<< this << std::endl;
 	}
 	//If this node region has no space, 
 	//we slit the node into small node and distribute game objects to new child nodes
@@ -66,6 +69,8 @@ void QuadTree::Split()
 	m_childNodeList.emplace_back(SDL_FRect{ childX + childNodeWidth , childY , childNodeWidth, childNodeHeight }, rand() % 255, rand() % 255, rand() % 255);
 	m_childNodeList.emplace_back(SDL_FRect{ childX , childY + childNodeHeight , childNodeWidth, childNodeHeight }, rand() % 255, rand() % 255, rand() % 255);
 	m_childNodeList.emplace_back(SDL_FRect{ childX + childNodeWidth, childY + childNodeHeight, childNodeWidth, childNodeHeight },rand()%255,rand()%255, rand()%255);
+
+	std::cout << "SPLIT" << std::endl;
 }
 
 void QuadTree::Render(SDL_Renderer* renderer)
@@ -85,10 +90,10 @@ void QuadTree::Update()
 {
 	for (auto object : m_gameObjectList)
 	{
-		if (!Contain(object))
+		if (!ContainInCurrentNode(object))
 		{
-			Remove(&object);
-
+			Remove(object);
+			std::cout<<"Remove "<< object->GetName() <<std::endl;
 			Insert(object);
 		}
 	}
@@ -103,9 +108,9 @@ void QuadTree::Update()
 void QuadTree::Remove(GameObject* gameObject)
 {
 	auto find = std::find_if(m_gameObjectList.begin(), m_gameObjectList.end(),
-		[gameObject](GameObject& obj)
+		[gameObject](GameObject* obj)
 		{
-			return &obj != gameObject;
+			return obj != gameObject;
 		});
 	if (find != m_gameObjectList.end())
 	{
@@ -119,20 +124,20 @@ void QuadTree::Remove(GameObject* gameObject)
 	}
 }
 
-std::vector<GameObject*> QuadTree::CheckCollision(GameObject& target)
+std::vector<GameObject*> QuadTree::CheckCollision(GameObject* target)
 {
 	std::vector<GameObject*> objectInRange;
 
-	if (!Contain(target))
+	if (!ContainInCurrentNode(target))
 	{
 		return objectInRange;
 	}
 
 	for (auto object : m_gameObjectList)
 	{
-		if (object.IsCollideWith(&target))
+		if (object->IsCollideWith(target))
 		{
-			objectInRange.push_back(&object);
+			objectInRange.push_back(object);
 		}
 	}
 
