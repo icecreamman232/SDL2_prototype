@@ -34,18 +34,19 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	}
 
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
+	AssetManager::Instance().Initialize();
 
-	m_enemy = new Slime(1,"enemy", "Asset/space-slime.png", m_renderer, 0, 0, 16, 16);
-	m_enemy1 = new Slime(2,"enemy1", "Asset/space-slime.png", m_renderer, 0, 100, 16, 16);
-	m_enemy2 = new Slime(3,"enemy2","Asset/space-slime.png", m_renderer, 100, 0, 16, 16);
-	m_enemy3 = new Slime(4,"enemy3","Asset/space-slime.png", m_renderer, 1110, 100, 16, 16);
-	m_enemy4 = new Slime(5,"enemy4","Asset/space-slime.png", m_renderer, 800, 500, 16, 16);
-	m_enemy5 = new Slime(6,"enemy5", "Asset/space-slime.png", m_renderer, 1000, 300, 16, 16);
-	m_enemy6 = new Slime(7, "enemy6", "Asset/space-slime.png", m_renderer, 300, 600, 16, 16);
-	m_enemy7 = new Slime(8, "enemy7", "Asset/space-slime.png", m_renderer, 500, 600, 16, 16);
+	m_enemy = new Slime(1,"enemy", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 0, 0, 16, 16);
+	m_enemy1 = new Slime(2,"enemy1", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 0, 100, 16, 16);
+	m_enemy2 = new Slime(3,"enemy2", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 100, 0, 16, 16);
+	m_enemy3 = new Slime(4,"enemy3", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 1110, 100, 16, 16);
+	m_enemy4 = new Slime(5,"enemy4", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 800, 500, 16, 16);
+	m_enemy5 = new Slime(6,"enemy5", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 1000, 300, 16, 16);
+	m_enemy6 = new Slime(7,"enemy6", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 300, 600, 16, 16);
+	m_enemy7 = new Slime(8,"enemy7", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 500, 600, 16, 16);
 
 
-	m_player = new SpaceShip("Ship","Asset/blue-starship.png", m_renderer, 300, 300, 18, 16);
+	m_player = new SpaceShip("Ship",AssetManager::Instance().GetTexturePath(PLAYER_TEX), m_renderer, 300, 300, 18, 16);
 
 
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);

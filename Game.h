@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "Input.h"
+#include "AssetManager.h"
 
 #include "SpaceShip.h"
 #include "Slime.h"

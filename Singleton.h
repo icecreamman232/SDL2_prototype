@@ -1,13 +1,17 @@
 #pragma once
-template <typename T> class Singleton
-{
+template <typename T> class Singleton {
 public:
-	static T& GetInstance();
-	Singleton(const Singleton&) = delete;
-	Singleton& operator=(cosnt Singleton&) = delete;
+    static T& Instance() {
+        static T instance;
+        return instance;
+    }
+
+    Singleton(const Singleton&) = delete;
+    Singleton& operator=(const Singleton&) = delete;
+
 protected:
-	Singleton() {};
-	virtual ~Singleton() {}
+    Singleton() {}
+    virtual ~Singleton() {}
 };
 
 
