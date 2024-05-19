@@ -7,6 +7,7 @@
 
 #include "SpaceShip.h"
 #include "Slime.h"
+#include "QuadTreev2.h"
 using namespace std;
 
 class Game
@@ -34,6 +35,8 @@ private:
 
 	QuadTree* m_quadTree;
 	std::vector<GameObject*> m_collisionList;
+
+	QuadTreev2* m_quadTreev2;
 
 
 	Slime* m_enemy;

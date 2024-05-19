@@ -36,9 +36,9 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 
 	m_enemy = new Slime(1,"enemy", "Asset/space-slime.png", m_renderer, 0, 0, 16, 16);
-	m_enemy1 = new Slime(2,"enemy1", "Asset/space-slime.png", m_renderer, 300, 100, 16, 16);
-	m_enemy2 = new Slime(3,"enemy2","Asset/space-slime.png", m_renderer, 200, 300, 16, 16);
-	m_enemy3 = new Slime(4,"enemy3","Asset/space-slime.png", m_renderer, 500, 700, 16, 16);
+	m_enemy1 = new Slime(2,"enemy1", "Asset/space-slime.png", m_renderer, 0, 100, 16, 16);
+	m_enemy2 = new Slime(3,"enemy2","Asset/space-slime.png", m_renderer, 100, 0, 16, 16);
+	m_enemy3 = new Slime(4,"enemy3","Asset/space-slime.png", m_renderer, 1110, 100, 16, 16);
 	m_enemy4 = new Slime(5,"enemy4","Asset/space-slime.png", m_renderer, 800, 500, 16, 16);
 	m_enemy5 = new Slime(6,"enemy5", "Asset/space-slime.png", m_renderer, 1000, 300, 16, 16);
 
@@ -46,14 +46,17 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	m_player = new SpaceShip("Ship","Asset/blue-starship.png", m_renderer, 300, 300, 18, 16);
 
 
-	m_quadTree = new QuadTree(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth), static_cast<float>(ScreenHeight) }
-	, 255, 0, 0);
-	m_quadTree->Insert(m_enemy);
-	m_quadTree->Insert(m_enemy1);
-	m_quadTree->Insert(m_enemy2);
-	m_quadTree->Insert(m_enemy3);
-	m_quadTree->Insert(m_enemy4);
-	m_quadTree->Insert(m_enemy5);
+	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
+
+	m_quadTreev2->Insert(m_player);
+	m_quadTreev2->Insert(m_enemy);
+	m_quadTreev2->Insert(m_enemy1);
+	m_quadTreev2->Insert(m_enemy2);
+	m_quadTreev2->Insert(m_enemy3);
+	m_quadTreev2->Insert(m_enemy4);
+	m_quadTreev2->Insert(m_enemy5);
+
+
 }
 
 void Game::HandleEvents()
@@ -109,34 +112,37 @@ void Game::Update(float deltaTime)
 	m_enemy4->Update(deltaTime);
 	m_enemy5->Update(deltaTime);
 
-	m_quadTree->Update();
+	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
 
-	/*m_quadTree->Update(*m_enemy);
-	m_quadTree->Update(*m_enemy1);
-	m_quadTree->Update(*m_enemy2);
-	m_quadTree->Update(*m_enemy3);
-	m_quadTree->Update(*m_enemy4);
-	m_quadTree->Update(*m_enemy5);*/
+	m_quadTreev2->Insert(m_player);
+	m_quadTreev2->Insert(m_enemy);
+	m_quadTreev2->Insert(m_enemy1);
+	m_quadTreev2->Insert(m_enemy2);
+	m_quadTreev2->Insert(m_enemy3);
+	m_quadTreev2->Insert(m_enemy4);
+	m_quadTreev2->Insert(m_enemy5);
 
 
-	m_collisionList = m_quadTree->CheckCollision(m_player);
-	if (!m_collisionList.empty())
+	auto result = m_quadTreev2->CheckCollision(m_player);
+	if (result.size() > 0)
 	{
-		std::cout << "HIT" << std::endl;
+		for (int i = 0; i < result.size(); i++)
+		{
+			std::cout << "HIT " << result[i]->GetName() << std::endl;
+		}
 	}
-	else 
-	{
-		std::cout << "No" << std::endl;
-	}
+
 
 }
 
 
 void Game::Render(float deltaTime)
 {
+	//m_quadTree->Render(m_renderer);
+	SDL_SetRenderDrawColor(m_renderer, 31, 31, 31, 255);
 	SDL_RenderClear(m_renderer);
 
-	m_quadTree->Render(m_renderer);
+	
 	m_player->Render();
 	m_enemy->Render();
 	m_enemy1->Render();
@@ -145,6 +151,8 @@ void Game::Render(float deltaTime)
 	m_enemy4->Render();
 	m_enemy5->Render();
 
+	m_quadTreev2->Render(m_renderer);
+	
 	SDL_RenderPresent(m_renderer);
 }
 

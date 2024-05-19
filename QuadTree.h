@@ -15,6 +15,7 @@ public:
 	std::vector<GameObject*> CheckCollision(GameObject* targer);
 
 private:
+	static const int MAX_DEPTH = 5;
 	static const int MAX_GAME_OBJECTS = 4;
 
 	Uint8 red;

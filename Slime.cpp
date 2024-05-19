@@ -15,6 +15,7 @@ Slime::Slime(int id,const char* name, const char* texturePath, SDL_Renderer* ren
 
 void Slime::Update(float deltaTime)
 {
+	//return; //TEMP TO DEBUG STOP SLIME MOVING
 	m_pos += m_direction * (m_moveSpeed * deltaTime);
 
 	//Check limit
