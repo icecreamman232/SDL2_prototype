@@ -43,6 +43,8 @@ private:
 	Slime* m_enemy3;
 	Slime* m_enemy4;
 	Slime* m_enemy5;
+	Slime* m_enemy6;
+	Slime* m_enemy7;
 
 	SpaceShip* m_player;
 

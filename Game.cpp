@@ -41,6 +41,8 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	m_enemy3 = new Slime(4,"enemy3","Asset/space-slime.png", m_renderer, 1110, 100, 16, 16);
 	m_enemy4 = new Slime(5,"enemy4","Asset/space-slime.png", m_renderer, 800, 500, 16, 16);
 	m_enemy5 = new Slime(6,"enemy5", "Asset/space-slime.png", m_renderer, 1000, 300, 16, 16);
+	m_enemy6 = new Slime(7, "enemy6", "Asset/space-slime.png", m_renderer, 300, 600, 16, 16);
+	m_enemy7 = new Slime(8, "enemy7", "Asset/space-slime.png", m_renderer, 500, 600, 16, 16);
 
 
 	m_player = new SpaceShip("Ship","Asset/blue-starship.png", m_renderer, 300, 300, 18, 16);
@@ -55,6 +57,8 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	m_quadTreev2->Insert(m_enemy3);
 	m_quadTreev2->Insert(m_enemy4);
 	m_quadTreev2->Insert(m_enemy5);
+	m_quadTreev2->Insert(m_enemy6);
+	m_quadTreev2->Insert(m_enemy7);
 
 
 }
@@ -111,6 +115,8 @@ void Game::Update(float deltaTime)
 	m_enemy3->Update(deltaTime);
 	m_enemy4->Update(deltaTime);
 	m_enemy5->Update(deltaTime);
+	m_enemy6->Update(deltaTime);
+	m_enemy7->Update(deltaTime);
 
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
 
@@ -121,6 +127,8 @@ void Game::Update(float deltaTime)
 	m_quadTreev2->Insert(m_enemy3);
 	m_quadTreev2->Insert(m_enemy4);
 	m_quadTreev2->Insert(m_enemy5);
+	m_quadTreev2->Insert(m_enemy6);
+	m_quadTreev2->Insert(m_enemy7);
 
 
 	auto result = m_quadTreev2->CheckCollision(m_player);
@@ -131,8 +139,6 @@ void Game::Update(float deltaTime)
 			std::cout << "HIT " << result[i]->GetName() << std::endl;
 		}
 	}
-
-
 }
 
 
@@ -150,6 +156,8 @@ void Game::Render(float deltaTime)
 	m_enemy3->Render();
 	m_enemy4->Render();
 	m_enemy5->Render();
+	m_enemy6->Render();
+	m_enemy7->Render();
 
 	m_quadTreev2->Render(m_renderer);
 	

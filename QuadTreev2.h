@@ -27,6 +27,7 @@ public:
 	void Insert(GameObject* object);
 	bool Contains(GameObject* object);
 	void Remove(GameObject* object);
+	void Update(GameObject* object);
 	std::vector<GameObject*> CheckCollision(GameObject* object1);
 	std::vector<QuadTreev2*> GetLeaves(GameObject* object);
 	void Render(SDL_Renderer* render);

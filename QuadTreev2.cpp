@@ -133,8 +133,8 @@ void QuadTreev2::Remove(GameObject* object)
 			}
 		}
 	}
-
 }
+
 
 std::vector<GameObject*> QuadTreev2::CheckCollision(GameObject* object)
 {
