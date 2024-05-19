@@ -141,7 +141,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\MathHelper.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
-    <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="QuadTreev2.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
@@ -154,7 +153,6 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Math\MathHelper.h" />
     <ClInclude Include="Math\Vector2.h" />
-    <ClInclude Include="QuadTree.h" />
     <ClInclude Include="QuadTreev2.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SpaceShip.h" />

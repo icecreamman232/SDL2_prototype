@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <iostream>
 #include "Input.h"
-#include "QuadTree.h"
 
 #include "SpaceShip.h"
 #include "Slime.h"
@@ -33,7 +32,6 @@ private:
 	SDL_Window* m_window;
 	SDL_Renderer* m_renderer;
 
-	QuadTree* m_quadTree;
 	std::vector<GameObject*> m_collisionList;
 
 	QuadTreev2* m_quadTreev2;
