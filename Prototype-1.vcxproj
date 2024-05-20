@@ -143,6 +143,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\MathHelper.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="PlayerHealthBar.cpp" />
     <ClCompile Include="QuadTreev2.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="LayerManager.h" />
     <ClInclude Include="Math\MathHelper.h" />
     <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="PlayerHealthBar.h" />
     <ClInclude Include="QuadTreev2.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Slime.h" />

@@ -10,6 +10,7 @@ SDL_Renderer* Game::Renderer = nullptr;
 Game::Game()
 {
 	m_input = new Input();
+	m_healthBar = nullptr;
 }
 
 Game::~Game()
@@ -37,6 +38,7 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 	AssetManager::Instance().Initialize();
+	m_healthBar = new PlayerHealthBar(20, 20, 200, 20);
 
 	m_enemy = new Slime(1,"enemy", AssetManager::Instance().LoadTexture(SLIME_TEX), 0, 0, 16, 16);
 	m_enemy1 = new Slime(2,"enemy1", AssetManager::Instance().LoadTexture(SLIME_TEX), 0, 100, 16, 16);
@@ -133,6 +135,8 @@ void Game::Update(float deltaTime)
 	m_quadTreev2->Insert(m_enemy6);
 	m_quadTreev2->Insert(m_enemy7);
 
+	m_healthBar->UpdateBar();
+
 
 	auto result = m_quadTreev2->CheckCollision(m_player);
 	if (result.size() > 0)
@@ -164,6 +168,8 @@ void Game::Render(float deltaTime)
 
 	m_quadTreev2->Render(Renderer);
 	
+	m_healthBar->Render();
+
 	SDL_RenderPresent(Renderer);
 }
 

@@ -7,6 +7,7 @@ void AssetManager::Initialize()
 {
     m_texturePathList[PLAYER_TEX] = "Asset/blue-starship.png";
     m_texturePathList[SLIME_TEX] = "Asset/space-slime.png";
+    m_texturePathList[WHITE_BAR_UI] = "Asset/white-bar.png";
 
 }
 

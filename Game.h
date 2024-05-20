@@ -8,6 +8,8 @@
 #include "SpaceShip.h"
 #include "Slime.h"
 #include "QuadTreev2.h"
+#include "PlayerHealthBar.h"
+
 using namespace std;
 
 class Game
@@ -45,7 +47,8 @@ private:
 	Slime* m_enemy5;
 	Slime* m_enemy6;
 	Slime* m_enemy7;
-
+	
+	PlayerHealthBar* m_healthBar;
 	SpaceShip* m_player;
 
 };

@@ -6,8 +6,12 @@
 
 enum TEXTURE_ID
 {
+	//SPRITE
 	PLAYER_TEX,
 	SLIME_TEX,
+
+	//UI
+	WHITE_BAR_UI = 100,
 };
 
 class AssetManager : public Singleton<AssetManager>
