@@ -2,6 +2,10 @@
 #include "Collider.h"
 #include "Game.h"
 
+GameObject::GameObject()
+{
+}
+
 GameObject::GameObject(const char* name,SDL_Texture* texture,int initX, int initY, int width, int height)
 {
 	m_name = name;

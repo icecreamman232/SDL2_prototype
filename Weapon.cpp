@@ -12,7 +12,11 @@ Weapon::Weapon(float delay)
 
 void Weapon::InitializeBullet(int number, std::string generalName, SDL_Texture* texture, int width, int height)
 {
-	m_pool = new ObjectPooler(number, generalName, texture, width, height);
+	m_pool = new ObjectPooler<Bullet>(number);
+	m_generalName = generalName;
+	m_texture = texture;
+	m_width = width;
+	m_height = height;
 }
 
 
@@ -21,9 +25,8 @@ void Weapon::Shoot()
 	if (m_isDelay) return;
 	m_isDelay = true;
 
-	GameObject* object = m_pool->GetPooledGameObject();
-	Bullet* bullet = dynamic_cast<Bullet*>(object);
-
+	Bullet* bullet = m_pool->GetObject();
+	bullet->Initialize("Bullet",m_texture, 0, 0, m_width, m_height);
 	//TODO:Spawn bullet here
 
 	Timer* delayTimer = new Timer(m_delayBetween2Shot, std::bind(&Weapon::AfterDelay, this));

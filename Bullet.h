@@ -7,7 +7,8 @@
 class Bullet : public GameObject
 {
 public:
-	Bullet(int id, const char* name, SDL_Texture* texture,
+	Bullet();
+	void Initialize(const char* name, SDL_Texture* texture,
 		int initX, int initY, int width, int height);
 	void Update(float deltaTime) override;
 	void Render();
@@ -16,5 +17,6 @@ private:
 
 	float m_moveSpeed;
 	Vector2 m_direction;
+	float m_test;
 };
 

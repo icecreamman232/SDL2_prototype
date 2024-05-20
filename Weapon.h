@@ -1,5 +1,6 @@
 #pragma once
 #include "ObjectPooler.h"
+#include "Bullet.h"
 
 class Weapon
 {
@@ -11,8 +12,13 @@ public:
 private:
 	bool m_isDelay;
 	float m_delayBetween2Shot;
-	ObjectPooler* m_pool;
+	ObjectPooler<Bullet>* m_pool;
 
+
+	std::string m_generalName;
+	SDL_Texture* m_texture;
+	int m_width;
+	int m_height;
 
 	void AfterDelay();
 };

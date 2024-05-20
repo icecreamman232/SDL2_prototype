@@ -11,6 +11,7 @@ class Collider;
 class GameObject
 {
 public:
+	GameObject();
 	GameObject(const char* name, SDL_Texture* texture, int initX, int initY,int width, int height);
 	GameObject(const char* name, SDL_Texture* texture, int width, int height);
 	virtual void Update(float deltaTime);

@@ -3,23 +3,54 @@
 #include "GameObject.h"
 #include <string>
 
-
- class ObjectPooler
-{
-public:
-	ObjectPooler(int number, std::string generalName, SDL_Texture* texture, int width, int height);
-	virtual ~ObjectPooler();
-	GameObject* GetPooledGameObject();
-	void ReleasePooledGameObject(GameObject* object);
+template<typename T>
+class ObjectPooler {
 private:
-	std::vector<GameObject*> m_pool;
-	std::vector<GameObject*> m_activeList;
+    std::vector<T*> m_pool;
+    std::vector<T*> m_activeList;
 
-	//General data of pooled game object
-	std::string m_generalName;
-	SDL_Texture* m_texture;
-	int m_width;
-	int m_height;
-	int m_number;
+public:
+    ObjectPooler(int initialSize) {
+        // Create the initial objects in the pool
+        for (int i = 0; i < initialSize; ++i) {
+            T* object = new T();
+            m_pool.push_back(object);
+        }
+    }
+
+    ~ObjectPooler() {
+        // Cleanup the objects in the pool
+        for (T* object : m_pool) {
+            delete object;
+        }
+    }
+
+    T* GetObject() {
+        if (!m_pool.empty()) 
+        {
+            // Get an object from the pool
+            T* object = m_pool.back();
+            m_pool.pop_back();
+            m_activeList.push_back(object);
+            return object;
+        }
+        else 
+        {
+            // If no objects are available, create a new one
+            T* object = new T();
+            m_activeList.push_back(object);
+            return object;
+        }
+    }
+
+    void ReleaseObject(T* object) {
+        // Release the object back to the pool
+        auto it = std::find(m_activeList.begin(), m_activeList.end(), object);
+        if (it != m_activeList.end()) 
+        {
+            m_activeList.erase(it);
+            object->Reset();
+            m_pool.push_back(object);
+        }
+    }
 };
-
