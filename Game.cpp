@@ -135,7 +135,7 @@ void Game::Update(float deltaTime)
 	m_quadTreev2->Insert(m_enemy6);
 	m_quadTreev2->Insert(m_enemy7);
 
-	m_healthBar->UpdateBar();
+	m_healthBar->UpdateBar(m_player->GetPercentHealth());
 
 
 	auto result = m_quadTreev2->CheckCollision(m_player);
@@ -144,6 +144,7 @@ void Game::Update(float deltaTime)
 		for (int i = 0; i < result.size(); i++)
 		{
 			std::cout << "HIT " << result[i]->GetName() << std::endl;
+			m_player->TakeDamage();
 		}
 	}
 }

@@ -25,9 +25,9 @@ PlayerHealthBar::PlayerHealthBar(int x, int y, int width, int height)
 	m_texture = AssetManager::Instance().LoadTexture(WHITE_BAR_UI);
 }
 
-void PlayerHealthBar::UpdateBar()
+void PlayerHealthBar::UpdateBar(float fillAmount)
 {
-	//fillBarAmount = fillAmount;
+	fillBarAmount = fillAmount;
 	m_barRect.w = MathHelper::Remap(fillBarAmount, 0, 1, 0, m_barWidth);
 }
 

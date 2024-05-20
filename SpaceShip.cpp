@@ -2,6 +2,7 @@
 
 #include "SpaceShip.h"
 #include "Game.h"
+#include "Math/MathHelper.h"
 
 
 SpaceShip::SpaceShip(const char* name,SDL_Texture* texturePath, int initX, int initY,int width, int height)
@@ -10,6 +11,8 @@ SpaceShip::SpaceShip(const char* name,SDL_Texture* texturePath, int initX, int i
 	m_direction.x = 0;
 	m_direction.y = 0;
 	m_moveSpeed = 200;
+
+	m_health.Initialize(100, 0.5);
 }
 
 void SpaceShip::Update(float deltaTime)
@@ -45,4 +48,14 @@ void SpaceShip::SetDirectionX(float value)
 void SpaceShip::SetDirectionY(float value)
 {
 	m_direction.y = value;
+}
+
+void SpaceShip::TakeDamage()
+{
+	m_health.TakeDamage(10);
+}
+
+float SpaceShip::GetPercentHealth()
+{
+	return MathHelper::Remap(m_health.GetCurrentHealth(), 0, m_health.GetMaxHealth(), 0, 1);
 }

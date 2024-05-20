@@ -5,7 +5,7 @@ class PlayerHealthBar
 public:
 	float fillBarAmount;
 	PlayerHealthBar(int x,int y,int width, int height);
-	void UpdateBar();
+	void UpdateBar(float fillAmount);
 	void Render();
 private:
 	float m_barWidth;
