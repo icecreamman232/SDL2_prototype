@@ -5,7 +5,7 @@
 class Slime : public GameObject
 {
 public:
-	Slime(int id,const char* name, const char* texturePath, SDL_Renderer* renderer,
+	Slime(int id,const char* name, SDL_Texture* texture ,
 		int initX, int initY, int width, int height);
 
 	void Update(float deltaTime) override;

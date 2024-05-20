@@ -1,14 +1,15 @@
 #pragma once
-#include <SDL.h>
-#include "TextureLoader.h"
-#include "Math/Vector2.h"
 #include <vector>
+#include <SDL.h>
+
+#include "Math/Vector2.h"
+
 class Collider;
 
 class GameObject
 {
 public:
-	GameObject(const char* name, const char* texturePath, SDL_Renderer* renderer, int initX, int initY,int width, int height);
+	GameObject(const char* name, SDL_Texture* texture, int initX, int initY,int width, int height);
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void SetPosition(int x, int y);
@@ -25,7 +26,6 @@ protected:
 	double m_angle;
 	Vector2 m_pos;
 	Collider* m_collider;
-	SDL_Renderer* m_renderer;
 	SDL_Texture* m_texture;
 	SDL_Rect m_srcRect;
 	SDL_FRect m_destRect;

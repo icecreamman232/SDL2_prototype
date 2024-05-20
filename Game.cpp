@@ -5,6 +5,8 @@
 int Game::ScreenWidth = 0;
 int Game::ScreenHeight = 0;
 
+SDL_Renderer* Game::Renderer = nullptr;
+
 Game::Game()
 {
 	m_input = new Input();
@@ -21,10 +23,10 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	{
 		std::cout << "Initialized..." << std::endl;
 		m_window = SDL_CreateWindow("Prototype", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1366, 768, SDL_WINDOW_SHOWN);
-		m_renderer = SDL_CreateRenderer(m_window, -1, 0);
-		if (m_renderer)
+		Renderer = SDL_CreateRenderer(m_window, -1, 0);
+		if (Renderer)
 		{
-			SDL_SetRenderDrawColor(m_renderer, 31, 31, 31, 255);
+			SDL_SetRenderDrawColor(Renderer, 31, 31, 31, 255);
 			std::cout << "Renderer created..." << std::endl;
 			m_isRunning = true;
 		}
@@ -36,17 +38,17 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 	AssetManager::Instance().Initialize();
 
-	m_enemy = new Slime(1,"enemy", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 0, 0, 16, 16);
-	m_enemy1 = new Slime(2,"enemy1", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 0, 100, 16, 16);
-	m_enemy2 = new Slime(3,"enemy2", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 100, 0, 16, 16);
-	m_enemy3 = new Slime(4,"enemy3", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 1110, 100, 16, 16);
-	m_enemy4 = new Slime(5,"enemy4", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 800, 500, 16, 16);
-	m_enemy5 = new Slime(6,"enemy5", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 1000, 300, 16, 16);
-	m_enemy6 = new Slime(7,"enemy6", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 300, 600, 16, 16);
-	m_enemy7 = new Slime(8,"enemy7", AssetManager::Instance().GetTexturePath(SLIME_TEX), m_renderer, 500, 600, 16, 16);
+	m_enemy = new Slime(1,"enemy", AssetManager::Instance().LoadTexture(SLIME_TEX), 0, 0, 16, 16);
+	m_enemy1 = new Slime(2,"enemy1", AssetManager::Instance().LoadTexture(SLIME_TEX), 0, 100, 16, 16);
+	m_enemy2 = new Slime(3,"enemy2", AssetManager::Instance().LoadTexture(SLIME_TEX), 100, 0, 16, 16);
+	m_enemy3 = new Slime(4,"enemy3", AssetManager::Instance().LoadTexture(SLIME_TEX), 1110, 100, 16, 16);
+	m_enemy4 = new Slime(5,"enemy4", AssetManager::Instance().LoadTexture(SLIME_TEX), 800, 500, 16, 16);
+	m_enemy5 = new Slime(6,"enemy5", AssetManager::Instance().LoadTexture(SLIME_TEX), 1000, 300, 16, 16);
+	m_enemy6 = new Slime(7,"enemy6", AssetManager::Instance().LoadTexture(SLIME_TEX), 300, 600, 16, 16);
+	m_enemy7 = new Slime(8,"enemy7", AssetManager::Instance().LoadTexture(SLIME_TEX), 500, 600, 16, 16);
 
 
-	m_player = new SpaceShip("Ship",AssetManager::Instance().GetTexturePath(PLAYER_TEX), m_renderer, 300, 300, 18, 16);
+	m_player = new SpaceShip("Ship",AssetManager::Instance().LoadTexture(PLAYER_TEX), 300, 300, 18, 16);
 
 
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
@@ -146,8 +148,8 @@ void Game::Update(float deltaTime)
 void Game::Render(float deltaTime)
 {
 	//m_quadTree->Render(m_renderer);
-	SDL_SetRenderDrawColor(m_renderer, 31, 31, 31, 255);
-	SDL_RenderClear(m_renderer);
+	SDL_SetRenderDrawColor(Renderer, 31, 31, 31, 255);
+	SDL_RenderClear(Renderer);
 
 	
 	m_player->Render();
@@ -160,16 +162,16 @@ void Game::Render(float deltaTime)
 	m_enemy6->Render();
 	m_enemy7->Render();
 
-	m_quadTreev2->Render(m_renderer);
+	m_quadTreev2->Render(Renderer);
 	
-	SDL_RenderPresent(m_renderer);
+	SDL_RenderPresent(Renderer);
 }
 
 
 void Game::Clean()
 {
 	SDL_DestroyWindow(m_window);
-	SDL_DestroyRenderer(m_renderer);
+	SDL_DestroyRenderer(Renderer);
 	SDL_Quit();
 	std::cout << "Cleaned and quit..." << std::endl;
 }

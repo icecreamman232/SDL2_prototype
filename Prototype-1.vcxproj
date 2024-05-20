@@ -145,7 +145,6 @@
     <ClCompile Include="QuadTreev2.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
-    <ClCompile Include="TextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
@@ -159,7 +158,6 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SpaceShip.h" />
-    <ClInclude Include="TextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Asset\blue-starship.png" />

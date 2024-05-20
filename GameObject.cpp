@@ -1,12 +1,12 @@
 #include "GameObject.h"
 #include "Collider.h"
+#include "Game.h"
 
-GameObject::GameObject(const char* name,const char* texturePath, SDL_Renderer* renderer,int initX, int initY, int width, int height)
+GameObject::GameObject(const char* name,SDL_Texture* texture,int initX, int initY, int width, int height)
 {
 	m_name = name;
 
-	m_renderer = renderer;
-	m_texture = TextureLoader::LoadTexture(texturePath, renderer);
+	m_texture = texture;
 	m_pos.x = initX;
 	m_pos.y = initY;
 	m_angle = 0;
@@ -34,7 +34,7 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::Render()
 {
-	SDL_RenderCopyExF(m_renderer, m_texture, &m_srcRect, &m_destRect,m_angle,NULL,SDL_FLIP_NONE);
+	SDL_RenderCopyExF(Game::Renderer, m_texture, &m_srcRect, &m_destRect,m_angle,NULL,SDL_FLIP_NONE);
 
 }
 

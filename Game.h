@@ -26,17 +26,16 @@ public:
 
 	static int ScreenWidth;
 	static int ScreenHeight;
+	static SDL_Renderer* Renderer;
 
 private:
 	bool m_isRunning;
 	Input* m_input;
 	SDL_Window* m_window;
-	SDL_Renderer* m_renderer;
 
 	std::vector<GameObject*> m_collisionList;
 
 	QuadTreev2* m_quadTreev2;
-
 
 	Slime* m_enemy;
 	Slime* m_enemy1;
