@@ -2,7 +2,6 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <iostream>
-#include "Input.h"
 #include "AssetManager.h"
 
 #include "SpaceShip.h"
@@ -32,7 +31,6 @@ public:
 
 private:
 	bool m_isRunning;
-	Input* m_input;
 	SDL_Window* m_window;
 
 	std::vector<GameObject*> m_collisionList;

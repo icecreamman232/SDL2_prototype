@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "SDL_image.h"
 #include "GameObject.h"
+#include "Input.h"
 
 int Game::ScreenWidth = 0;
 int Game::ScreenHeight = 0;
@@ -9,8 +10,8 @@ SDL_Renderer* Game::Renderer = nullptr;
 
 Game::Game()
 {
-	m_input = new Input();
 	m_healthBar = nullptr;
+	Input::Instance().Initialize();
 }
 
 Game::~Game()
@@ -41,17 +42,32 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	m_healthBar = new PlayerHealthBar(20, 20, 200, 20);
 
 	m_enemy = new Slime(1,"enemy", AssetManager::Instance().LoadTexture(SLIME_TEX), 0, 0, 16, 16);
+	m_enemy->SetLayer(Layer::ENEMY);
+
 	m_enemy1 = new Slime(2,"enemy1", AssetManager::Instance().LoadTexture(SLIME_TEX), 0, 100, 16, 16);
+	m_enemy1->SetLayer(Layer::ENEMY);
+
 	m_enemy2 = new Slime(3,"enemy2", AssetManager::Instance().LoadTexture(SLIME_TEX), 100, 0, 16, 16);
+	m_enemy2->SetLayer(Layer::ENEMY);
+
 	m_enemy3 = new Slime(4,"enemy3", AssetManager::Instance().LoadTexture(SLIME_TEX), 1110, 100, 16, 16);
+	m_enemy3->SetLayer(Layer::ENEMY);
+
 	m_enemy4 = new Slime(5,"enemy4", AssetManager::Instance().LoadTexture(SLIME_TEX), 800, 500, 16, 16);
+	m_enemy4->SetLayer(Layer::ENEMY);
+
 	m_enemy5 = new Slime(6,"enemy5", AssetManager::Instance().LoadTexture(SLIME_TEX), 1000, 300, 16, 16);
+	m_enemy5->SetLayer(Layer::ENEMY);
+
 	m_enemy6 = new Slime(7,"enemy6", AssetManager::Instance().LoadTexture(SLIME_TEX), 300, 600, 16, 16);
+	m_enemy6->SetLayer(Layer::ENEMY);
+
 	m_enemy7 = new Slime(8,"enemy7", AssetManager::Instance().LoadTexture(SLIME_TEX), 500, 600, 16, 16);
+	m_enemy7->SetLayer(Layer::ENEMY);
 
 
 	m_player = new SpaceShip("Ship",AssetManager::Instance().LoadTexture(PLAYER_TEX), 300, 300, 18, 16);
-
+	m_player->SetLayer(Layer::PLAYER);
 
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
 
@@ -71,7 +87,7 @@ void Game::HandleEvents()
 	SDL_Event event;
 	SDL_PollEvent(&event);
 
-	m_input->HandleEvent(&event);
+	Input::Instance().HandleEvent(&event);
 	switch (event.type)
 	{
 		case SDL_QUIT:
@@ -82,35 +98,6 @@ void Game::HandleEvents()
 
 void Game::Update(float deltaTime)
 {
-	m_player->LookAt(m_input->MouseX, m_input->MouseY);
-
-	if (m_input->GetKeyDown(SDL_SCANCODE_A))
-	{
-		m_player->SetDirectionX(-1.0);
-	}
-	else if (m_input->GetKeyDown(SDL_SCANCODE_D))
-	{
-		m_player->SetDirectionX(1.0);
-	}
-	else 
-	{
-		m_player->SetDirectionX(0.0);
-	}
-
-
-	if (m_input->GetKeyDown(SDL_SCANCODE_W))
-	{
-		m_player->SetDirectionY(-1.0);
-	}
-	else if (m_input->GetKeyDown(SDL_SCANCODE_S))
-	{
-		m_player->SetDirectionY(1.0);
-	}
-	else 
-	{
-		m_player->SetDirectionY(0.0);
-	}
-
 	m_player->Update(deltaTime);
 	m_enemy->Update(deltaTime);
 	m_enemy1->Update(deltaTime);

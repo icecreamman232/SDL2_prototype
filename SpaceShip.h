@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "Health.h"
+#include "Input.h"
 
 class SpaceShip : public GameObject
 {
@@ -17,5 +18,8 @@ private:
 	float m_moveSpeed;
 	Vector2 m_direction;
 	Health m_health;
+
+	void UpdateInput();
+	void UpdateMovement(float deltaTime);
 };
 

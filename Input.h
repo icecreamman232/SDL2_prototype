@@ -1,9 +1,11 @@
 #pragma once
 #include <SDL.h>
-class Input
+#include "Singleton.h"
+
+class Input : public Singleton<Input>
 {
 public:
-	Input();
+	void Initialize();
 	void HandleEvent(SDL_Event* event);
 
 	int MouseX;

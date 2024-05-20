@@ -11,7 +11,6 @@ Slime::Slime(int id,const char* name, SDL_Texture* texture,
 
 	GetNextDirection(m_direction);
 	m_moveSpeed = 150;
-	SetLayer(Layer::ENEMY);
 }
 
 void Slime::Update(float deltaTime)
