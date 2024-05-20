@@ -64,8 +64,6 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	m_quadTreev2->Insert(m_enemy5);
 	m_quadTreev2->Insert(m_enemy6);
 	m_quadTreev2->Insert(m_enemy7);
-
-
 }
 
 void Game::HandleEvents()
@@ -138,14 +136,10 @@ void Game::Update(float deltaTime)
 	m_healthBar->UpdateBar(m_player->GetPercentHealth());
 
 
-	auto result = m_quadTreev2->CheckCollision(m_player);
-	if (result.size() > 0)
+	auto result = m_quadTreev2->GetCollision(m_player);
+	if (result != nullptr)
 	{
-		for (int i = 0; i < result.size(); i++)
-		{
-			std::cout << "HIT " << result[i]->GetName() << std::endl;
-			m_player->TakeDamage();
-		}
+		m_player->TakeDamage();
 	}
 }
 

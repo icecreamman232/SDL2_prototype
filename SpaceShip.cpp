@@ -12,6 +12,8 @@ SpaceShip::SpaceShip(const char* name,SDL_Texture* texturePath, int initX, int i
 	m_direction.y = 0;
 	m_moveSpeed = 200;
 
+	SetLayer(Layer::PLAYER);
+
 	m_health.Initialize(100, 0.5);
 }
 

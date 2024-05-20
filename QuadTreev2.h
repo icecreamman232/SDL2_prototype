@@ -28,9 +28,11 @@ public:
 	bool Contains(GameObject* object);
 	void Remove(GameObject* object);
 	void Update(GameObject* object);
-	std::vector<GameObject*> CheckCollision(GameObject* object1);
 	std::vector<QuadTreev2*> GetLeaves(GameObject* object);
 	void Render(SDL_Renderer* render);
+
+	std::vector<GameObject*> GetAllCollisions(GameObject* object1);
+	GameObject* GetCollision(GameObject* object);
 
 private:
 

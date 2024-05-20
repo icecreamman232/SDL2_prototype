@@ -135,8 +135,12 @@ void QuadTreev2::Remove(GameObject* object)
 	}
 }
 
-
-std::vector<GameObject*> QuadTreev2::CheckCollision(GameObject* object)
+/// <summary>
+/// Get all object has been collided
+/// </summary>
+/// <param name="object"></param>
+/// <returns></returns>
+std::vector<GameObject*> QuadTreev2::GetAllCollisions(GameObject* object)
 {
 	std::vector<GameObject*> collisionList;
 
@@ -157,6 +161,33 @@ std::vector<GameObject*> QuadTreev2::CheckCollision(GameObject* object)
 		}
 	}
 	return collisionList;
+}
+
+/// <summary>
+/// Get first object collided.
+/// </summary>
+/// <param name="object"></param>
+/// <returns></returns>
+GameObject* QuadTreev2::GetCollision(GameObject* object)
+{
+	std::vector<QuadTreev2*> leaves = GetLeaves(object);
+	for (int i = 0; i < leaves.size(); i++)
+	{
+		QuadTreev2* curLeaf = leaves[i];
+		for (int j = 0; j < curLeaf->objectList.size(); j++)
+		{
+			if (curLeaf->objectList[j]->GetName() == object->GetName())
+			{
+				continue;
+			}
+			if (curLeaf->objectList[j]->IsCollideWith(object))
+			{
+				return curLeaf->objectList[j];
+			}
+		}
+	}
+
+	return nullptr;
 }
 
 
