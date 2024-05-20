@@ -135,6 +135,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -144,14 +145,17 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\MathHelper.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="ObjectPooler.cpp" />
     <ClCompile Include="PlayerHealthBar.cpp" />
     <ClCompile Include="QuadTreev2.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -161,12 +165,14 @@
     <ClInclude Include="LayerManager.h" />
     <ClInclude Include="Math\MathHelper.h" />
     <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="ObjectPooler.h" />
     <ClInclude Include="PlayerHealthBar.h" />
     <ClInclude Include="QuadTreev2.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Asset\blue-starship.png" />

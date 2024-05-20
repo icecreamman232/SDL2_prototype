@@ -25,10 +25,38 @@ GameObject::GameObject(const char* name,SDL_Texture* texture,int initX, int init
 
 	//New game object created will be set to layer default
 	SetLayer(Layer::DEFAULT);
+	m_isActive = true;
+}
+
+GameObject::GameObject(const char* name, SDL_Texture* texture, int width, int height)
+{
+	m_name = name;
+
+	m_texture = texture;
+	m_pos.x = 0;
+	m_pos.y = 0;
+	m_angle = 0;
+
+	m_srcRect.w = width;
+	m_srcRect.h = height;
+	m_srcRect.x = 0;
+	m_srcRect.y = 0;
+
+	m_destRect.x = m_pos.x;
+	m_destRect.y = m_pos.y;
+	m_destRect.w = m_srcRect.w * 3;
+	m_destRect.h = m_srcRect.h * 3;
+
+	m_collider = new Collider(this);
+
+	//New game object created will be set to layer default
+	SetLayer(Layer::DEFAULT);
+	m_isActive = true;
 }
 
 void GameObject::Update(float deltaTime)
 {
+	if (!m_isActive) return;
 	m_destRect.x = m_pos.x;
 	m_destRect.y = m_pos.y;
 	m_destRect.w = m_srcRect.w * 3;
@@ -37,6 +65,7 @@ void GameObject::Update(float deltaTime)
 
 void GameObject::Render()
 {
+	if (!m_isActive) return;
 	SDL_RenderCopyExF(Game::Renderer, m_texture, &m_srcRect, &m_destRect,m_angle,NULL,SDL_FLIP_NONE);
 
 }
@@ -63,6 +92,9 @@ void GameObject::LookAt(int x, int y)
 
 bool GameObject::IsCollideWith(GameObject* other)
 {
+	//If game object is inactive, it should not collide with any
+	if (!m_isActive) return false;
+
 	return m_collider->IsCollideWith(other);
 }
 

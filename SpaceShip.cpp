@@ -13,6 +13,7 @@ SpaceShip::SpaceShip(const char* name,SDL_Texture* texturePath, int initX, int i
 	m_moveSpeed = 200;
 
 	m_health.Initialize(100, 0.5);
+	m_primaryWeapon = new Weapon(0.3);
 }
 
 void SpaceShip::SetDirectionX(float value)
@@ -60,6 +61,11 @@ void SpaceShip::UpdateInput()
 	else
 	{
 		SetDirectionY(0.0);
+	}
+
+	if (Input::Instance().IsLeftMouseDown())
+	{
+		m_primaryWeapon->Shoot();
 	}
 }
 

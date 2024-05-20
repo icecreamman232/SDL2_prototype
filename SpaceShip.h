@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Health.h"
 #include "Input.h"
+#include "Weapon.h"
 
 class SpaceShip : public GameObject
 {
@@ -18,6 +19,7 @@ private:
 	float m_moveSpeed;
 	Vector2 m_direction;
 	Health m_health;
+	Weapon* m_primaryWeapon;
 
 	void UpdateInput();
 	void UpdateMovement(float deltaTime);

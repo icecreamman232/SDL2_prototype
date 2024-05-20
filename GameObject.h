@@ -12,6 +12,7 @@ class GameObject
 {
 public:
 	GameObject(const char* name, SDL_Texture* texture, int initX, int initY,int width, int height);
+	GameObject(const char* name, SDL_Texture* texture, int width, int height);
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void SetPosition(int x, int y);
@@ -23,8 +24,10 @@ public:
 
 	inline Vector2 GetPosition() { return m_pos; };
 	inline const char* GetName() { return m_name; };
+	inline void SetActive(bool isActive) { m_isActive = isActive; };
 
 protected:
+	bool m_isActive;
 	const char* m_name;
 	double m_angle;
 	Vector2 m_pos;
