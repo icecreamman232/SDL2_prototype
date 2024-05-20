@@ -22,6 +22,9 @@ GameObject::GameObject(const char* name,SDL_Texture* texture,int initX, int init
 	m_destRect.h = m_srcRect.h * 3;
 
 	m_collider = new Collider(this);
+
+	//New game object created will be set to layer default
+	SetLayer(Layer::DEFAULT);
 }
 
 void GameObject::Update(float deltaTime)
@@ -61,6 +64,11 @@ void GameObject::LookAt(int x, int y)
 bool GameObject::IsCollideWith(GameObject* other)
 {
 	return m_collider->IsCollideWith(other);
+}
+
+void GameObject::SetLayer(Layer layer)
+{
+	LayerManager::Instance().SetLayer(this, layer);
 }
 
 const SDL_FRect GameObject::Rect()

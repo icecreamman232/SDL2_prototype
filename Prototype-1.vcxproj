@@ -139,6 +139,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LayerManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\MathHelper.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
@@ -151,7 +152,9 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Global.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="LayerManager.h" />
     <ClInclude Include="Math\MathHelper.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="QuadTreev2.h" />

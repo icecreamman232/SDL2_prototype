@@ -3,6 +3,8 @@
 #include <SDL.h>
 
 #include "Math/Vector2.h"
+#include "Global.h"
+#include "LayerManager.h"
 
 class Collider;
 
@@ -16,6 +18,7 @@ public:
 	virtual void SetRotation(double angle);
 	virtual void LookAt(int x, int y);
 	virtual bool IsCollideWith(GameObject* other);
+	virtual void SetLayer(Layer layer);
 	const SDL_FRect Rect();
 
 	inline Vector2 GetPosition() { return m_pos; };
