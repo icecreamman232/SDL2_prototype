@@ -3,7 +3,8 @@
 #include "GameObject.h"
 #include <string>
 
-class ObjectPooler
+
+ class ObjectPooler
 {
 public:
 	ObjectPooler(int number, std::string generalName, SDL_Texture* texture, int width, int height);

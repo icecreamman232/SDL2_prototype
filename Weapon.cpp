@@ -1,6 +1,7 @@
 #include "Weapon.h"
 #include "Timer.h"
 #include <iostream>
+#include "Bullet.h"
 
 Weapon::Weapon(float delay)
 {
@@ -20,6 +21,10 @@ void Weapon::Shoot()
 	if (m_isDelay) return;
 	m_isDelay = true;
 
+	GameObject* object = m_pool->GetPooledGameObject();
+	Bullet* bullet = dynamic_cast<Bullet*>(object);
+
+	//TODO:Spawn bullet here
 
 	Timer* delayTimer = new Timer(m_delayBetween2Shot, std::bind(&Weapon::AfterDelay, this));
 }

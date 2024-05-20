@@ -12,6 +12,7 @@ ObjectPooler::ObjectPooler(int number, std::string generalName, SDL_Texture* tex
 	{
 		std::string name = generalName + std::to_string(i);
 		GameObject* newObject = new GameObject(name.c_str(), texture, width, height);
+		newObject->SetActive(false);
 		m_pool.push_back(newObject);
 	}
 }
@@ -32,6 +33,7 @@ GameObject* ObjectPooler::GetPooledGameObject()
 		GameObject* object = m_pool.back();
 		m_pool.pop_back();
 		m_activeList.push_back(object);
+		object->SetActive(true);
 		return object;
 	}
 	else 
@@ -40,6 +42,7 @@ GameObject* ObjectPooler::GetPooledGameObject()
 		m_number++;
 		GameObject* object = new GameObject(name.c_str(), m_texture, m_width, m_height);
 		m_activeList.push_back(object);
+		object->SetActive(true);
 		return object;
 	}
 }
