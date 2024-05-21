@@ -10,6 +10,8 @@ Slime::Slime(int id,const char* name, SDL_Texture* texture,
 	std::mt19937 randomGenerator(rd() + m_id);  // Mersenne Twister random number engine
 
 	GetNextDirection(m_direction);
+	std::cout << m_direction.x << "/" << m_direction.y << std::endl;
+
 	m_moveSpeed = 150;
 }
 
@@ -24,9 +26,9 @@ void Slime::Update(float deltaTime)
 		m_pos.x = 0;
 		GetNextDirection(m_direction);
 	}
-	else if (m_pos.x >= Game::ScreenWidth - m_destRect.w)
+	else if (m_pos.x >= Game::ScreenWidth - m_sprite->GetRect().w)
 	{
-		m_pos.x = Game::ScreenWidth - m_destRect.w;
+		m_pos.x = Game::ScreenWidth - m_sprite->GetRect().w;
 		GetNextDirection(m_direction);
 	}
 
@@ -35,9 +37,9 @@ void Slime::Update(float deltaTime)
 		m_pos.y = 0;
 		GetNextDirection(m_direction);
 	}
-	else if (m_pos.y >= Game::ScreenHeight - m_destRect.h)
+	else if (m_pos.y >= Game::ScreenHeight - m_sprite->GetRect().h)
 	{
-		m_pos.y = Game::ScreenHeight - m_destRect.h;
+		m_pos.y = Game::ScreenHeight - m_sprite->GetRect().h;
 		GetNextDirection(m_direction);
 	}
 

@@ -5,6 +5,7 @@
 #include "Math/Vector2.h"
 #include "Global.h"
 #include "LayerManager.h"
+#include "Sprite.h"
 
 class Collider;
 
@@ -36,5 +37,7 @@ protected:
 	SDL_Texture* m_texture;
 	SDL_Rect m_srcRect;
 	SDL_FRect m_destRect;
+
+	Sprite* m_sprite;
 };
 

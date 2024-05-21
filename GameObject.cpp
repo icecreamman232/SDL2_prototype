@@ -15,17 +15,10 @@ GameObject::GameObject(const char* name,SDL_Texture* texture,int initX, int init
 	m_pos.y = initY;
 	m_angle = 0;
 
-	m_srcRect.w = width;
-	m_srcRect.h = height;
-	m_srcRect.x = 0;
-	m_srcRect.y = 0;
-
-	m_destRect.x = m_pos.x;
-	m_destRect.y = m_pos.y;
-	m_destRect.w = m_srcRect.w * 3;
-	m_destRect.h = m_srcRect.h * 3;
-
 	m_collider = new Collider(this);
+
+
+	m_sprite = new Sprite(texture, initX, initY, width, height);
 
 	//New game object created will be set to layer default
 	SetLayer(Layer::DEFAULT);
@@ -41,18 +34,9 @@ GameObject::GameObject(const char* name, SDL_Texture* texture, int width, int he
 	m_pos.y = 0;
 	m_angle = 0;
 
-	m_srcRect.w = width;
-	m_srcRect.h = height;
-	m_srcRect.x = 0;
-	m_srcRect.y = 0;
-
-	m_destRect.x = m_pos.x;
-	m_destRect.y = m_pos.y;
-	m_destRect.w = m_srcRect.w * 3;
-	m_destRect.h = m_srcRect.h * 3;
-
 	m_collider = new Collider(this);
 
+	m_sprite = new Sprite(texture, m_pos.x, m_pos.y, width, height);
 	//New game object created will be set to layer default
 	SetLayer(Layer::DEFAULT);
 	m_isActive = true;
@@ -61,17 +45,14 @@ GameObject::GameObject(const char* name, SDL_Texture* texture, int width, int he
 void GameObject::Update(float deltaTime)
 {
 	if (!m_isActive) return;
-	m_destRect.x = m_pos.x;
-	m_destRect.y = m_pos.y;
-	m_destRect.w = m_srcRect.w * 3;
-	m_destRect.h = m_srcRect.h * 3;
+
+	m_sprite->Update(m_pos.x, m_pos.y);
 }
 
 void GameObject::Render()
 {
 	if (!m_isActive) return;
-	SDL_RenderCopyExF(Game::Renderer, m_texture, &m_srcRect, &m_destRect,m_angle,NULL,SDL_FLIP_NONE);
-
+	m_sprite->Render(m_angle);
 }
 
 void GameObject::SetPosition(int x, int y)
@@ -109,7 +90,7 @@ void GameObject::SetLayer(Layer layer)
 
 const SDL_FRect GameObject::Rect()
 {
-	return m_destRect;
+	return m_sprite->GetRect();
 }
 
 

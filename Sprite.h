@@ -1,0 +1,19 @@
+#pragma once
+#include <SDL.h>
+#include "Math/Vector2.h"
+
+class Sprite
+{
+public:
+	Sprite(SDL_Texture* texture, int x, int y, int width, int height);
+	void Render(float angle);
+	void Update(int x, int y);
+	SDL_FRect GetRect();
+private:
+	int m_width;
+	int m_height;
+	SDL_Texture* m_texture;
+	SDL_Rect m_srcRect;
+	SDL_FRect m_destRect;
+};
+

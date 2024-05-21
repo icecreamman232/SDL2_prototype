@@ -3,6 +3,8 @@
 #include "Global.h"
 #include <map>
 
+using namespace General;
+
 class GameObject;
 
 class LayerManager : public Singleton<LayerManager>

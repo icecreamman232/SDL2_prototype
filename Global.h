@@ -1,8 +1,23 @@
 #pragma once
 
-enum Layer
+namespace General
 {
-	DEFAULT = 0,
-	PLAYER = 1,
-	ENEMY = 2,
-};
+	enum Layer
+	{
+		DEFAULT = 0,
+		PLAYER = 1,
+		ENEMY = 2,
+	};
+
+}
+
+namespace Render
+{
+	enum RenderLayer
+	{
+		DEFAULT = 0,
+		PLAYER = 1,
+		ENEMY = 2,
+		UI = 999,
+	};
+}

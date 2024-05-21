@@ -148,8 +148,10 @@
     <ClCompile Include="ObjectPooler.cpp" />
     <ClCompile Include="PlayerHealthBar.cpp" />
     <ClCompile Include="QuadTreev2.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
@@ -168,9 +170,11 @@
     <ClInclude Include="ObjectPooler.h" />
     <ClInclude Include="PlayerHealthBar.h" />
     <ClInclude Include="QuadTreev2.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SpaceShip.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
