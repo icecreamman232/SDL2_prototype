@@ -29,6 +29,7 @@ public:
 	inline const char* GetName() { return m_name; };
 	inline void SetActive(bool isActive) { m_isActive = isActive; };
 	inline Sprite* GetSprite() { return m_sprite; };
+	inline int GetRenderOrder() { return m_sprite->GetOrder(); };
 
 protected:
 	bool m_isActive;

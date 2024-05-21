@@ -33,5 +33,7 @@ namespace Render
 		PLAYER = 1,
 		ENEMY = 2,
 		UI = 999,
+
+		COUNT = 3,
 	};
 }

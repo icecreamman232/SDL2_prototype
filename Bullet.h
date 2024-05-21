@@ -13,6 +13,7 @@ public:
 	void Update(float deltaTime) override;
 	void Render();
 	void SetAngle(float angle);
+	void SetDirection(Vector2 direction);
 private:
 
 	float m_moveSpeed;

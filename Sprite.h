@@ -9,6 +9,8 @@ public:
 	void Render(float angle);
 	void Update(int x, int y);
 	SDL_FRect GetRect();
+
+	inline int GetOrder() { return m_order; };
 private:
 	//Rendering order
 	int m_order;

@@ -8,6 +8,7 @@
 #include "Slime.h"
 #include "QuadTreev2.h"
 #include "PlayerHealthBar.h"
+#include "Scene.h"
 
 using namespace std;
 
@@ -28,14 +29,16 @@ public:
 	static int ScreenWidth;
 	static int ScreenHeight;
 	static SDL_Renderer* Renderer;
+	static Scene* CurrentScene;
 
 private:
 	bool m_isRunning;
 	SDL_Window* m_window;
 
 	std::vector<GameObject*> m_collisionList;
-
 	QuadTreev2* m_quadTreev2;
+
+	
 
 	Slime* m_enemy;
 	Slime* m_enemy1;

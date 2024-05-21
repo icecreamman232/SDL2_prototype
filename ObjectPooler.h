@@ -3,11 +3,13 @@
 #include "GameObject.h"
 #include <string>
 
-template<typename T>
-class ObjectPooler {
+template<typename T> class ObjectPooler 
+{
+public:
+    std::vector<T*> m_activeList;
 private:
     std::vector<T*> m_pool;
-    std::vector<T*> m_activeList;
+    
 
 public:
     ObjectPooler(int initialSize) {

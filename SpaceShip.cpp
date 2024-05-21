@@ -33,6 +33,8 @@ void SpaceShip::Update(float deltaTime)
 	UpdateInput();
 	UpdateMovement(deltaTime);
 
+	m_primaryWeapon->Update(deltaTime);
+
 	GameObject::Update(deltaTime);
 }
 
@@ -67,7 +69,8 @@ void SpaceShip::UpdateInput()
 
 	if (Input::Instance().IsLeftMouseDown())
 	{
-		m_primaryWeapon->Shoot();
+		auto shootDirection = (Vector2(Input::Instance().MouseX, Input::Instance().MouseY) - m_pos).Normalize();
+		m_primaryWeapon->Shoot(m_pos, shootDirection,m_angle);
 	}
 }
 

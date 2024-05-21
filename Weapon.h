@@ -7,7 +7,8 @@ class Weapon
 public:
 	Weapon(float delay);
 	void InitializeBullet(int number, std::string generalName, SDL_Texture* texture, int width, int height);
-	void Shoot();
+	void Shoot(Vector2 pos, Vector2 direction, float angle);
+	void Update(float deltaTime);
 
 private:
 	bool m_isDelay;
