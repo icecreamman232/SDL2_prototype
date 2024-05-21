@@ -25,10 +25,10 @@ float Vector2::SquareMagnitude() const
 
 Vector2 Vector2::Normalize() const
 {
-    if(Magnitude()!= 0)
+    auto magnitude = Magnitude();
+    if(magnitude != 0)
     {
-        auto lengthSquare = SquareMagnitude();
-        return Vector2(x/ Magnitude(), y / Magnitude());
+        return Vector2(x/ magnitude, y / magnitude);
     }
     return Vector2(0,0);
 }
