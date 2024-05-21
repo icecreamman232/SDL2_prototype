@@ -28,7 +28,7 @@ void Weapon::Shoot(Vector2 pos,Vector2 direction, float angle)
 
 	//TODO:Implement scene system first before coming back here to continue with pooling
 	Bullet* bullet = m_pool->GetObject();
-	bullet->Initialize("Bullet",PLAYER_NORMAL_BULLET, pos.x, pos.y, m_width, m_height);
+	bullet->Initialize(this,"Bullet",PLAYER_NORMAL_BULLET, pos.x, pos.y, m_width, m_height);
 	bullet->SetDirection(direction);
 	bullet->SetAngle(angle);
 
@@ -49,6 +49,11 @@ void Weapon::Update(float deltaTime)
 void Weapon::AfterDelay()
 {
 	m_isDelay = false;
+}
+
+void Weapon::DestroyBullet(Bullet* bullet)
+{
+	m_pool->ReleaseObject(bullet);
 }
 
 

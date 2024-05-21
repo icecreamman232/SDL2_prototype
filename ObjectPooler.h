@@ -51,7 +51,7 @@ public:
         if (it != m_activeList.end()) 
         {
             m_activeList.erase(it);
-            object->Reset();
+            //object->Reset();
             m_pool.push_back(object);
         }
     }

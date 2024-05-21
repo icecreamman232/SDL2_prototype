@@ -13,7 +13,7 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY
 	m_moveSpeed = 200;
 
 	m_health.Initialize(100, 0.5);
-	m_primaryWeapon = new Weapon(0.3);
+	m_primaryWeapon = new Weapon(0.15);
 	m_primaryWeapon->InitializeBullet(20,"Bullet",
 		AssetManager::Instance().LoadTexture(PLAYER_NORMAL_BULLET),16, 16);
 }

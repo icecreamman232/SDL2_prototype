@@ -9,6 +9,7 @@ public:
 	void InitializeBullet(int number, std::string generalName, SDL_Texture* texture, int width, int height);
 	void Shoot(Vector2 pos, Vector2 direction, float angle);
 	void Update(float deltaTime);
+	void DestroyBullet(Bullet* bullet);
 
 private:
 	bool m_isDelay;
@@ -22,5 +23,6 @@ private:
 	int m_height;
 
 	void AfterDelay();
+	
 };
 
