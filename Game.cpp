@@ -41,32 +41,32 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	AssetManager::Instance().Initialize();
 	m_healthBar = new PlayerHealthBar(20, 20, 200, 20);
 
-	m_enemy = new Slime(1,"enemy", AssetManager::Instance().LoadTexture(SLIME_TEX), 0, 0, 16, 16);
+	m_enemy = new Slime(1,"enemy", SLIME_TEX, 0, 0, 16, 16);
 	m_enemy->SetLayer(Layer::ENEMY);
 
-	m_enemy1 = new Slime(2,"enemy1", AssetManager::Instance().LoadTexture(SLIME_TEX), 0, 100, 16, 16);
+	m_enemy1 = new Slime(2,"enemy1",SLIME_TEX, 0, 100, 16, 16);
 	m_enemy1->SetLayer(Layer::ENEMY);
 
-	m_enemy2 = new Slime(3,"enemy2", AssetManager::Instance().LoadTexture(SLIME_TEX), 100, 0, 16, 16);
+	m_enemy2 = new Slime(3,"enemy2", SLIME_TEX, 100, 0, 16, 16);
 	m_enemy2->SetLayer(Layer::ENEMY);
 
-	m_enemy3 = new Slime(4,"enemy3", AssetManager::Instance().LoadTexture(SLIME_TEX), 1110, 100, 16, 16);
+	m_enemy3 = new Slime(4,"enemy3",SLIME_TEX, 1110, 100, 16, 16);
 	m_enemy3->SetLayer(Layer::ENEMY);
 
-	m_enemy4 = new Slime(5,"enemy4", AssetManager::Instance().LoadTexture(SLIME_TEX), 800, 500, 16, 16);
+	m_enemy4 = new Slime(5,"enemy4",SLIME_TEX, 800, 500, 16, 16);
 	m_enemy4->SetLayer(Layer::ENEMY);
 
-	m_enemy5 = new Slime(6,"enemy5", AssetManager::Instance().LoadTexture(SLIME_TEX), 1000, 300, 16, 16);
+	m_enemy5 = new Slime(6,"enemy5",SLIME_TEX, 1000, 300, 16, 16);
 	m_enemy5->SetLayer(Layer::ENEMY);
 
-	m_enemy6 = new Slime(7,"enemy6", AssetManager::Instance().LoadTexture(SLIME_TEX), 300, 600, 16, 16);
+	m_enemy6 = new Slime(7,"enemy6",SLIME_TEX, 300, 600, 16, 16);
 	m_enemy6->SetLayer(Layer::ENEMY);
 
-	m_enemy7 = new Slime(8,"enemy7", AssetManager::Instance().LoadTexture(SLIME_TEX), 500, 600, 16, 16);
+	m_enemy7 = new Slime(8,"enemy7",SLIME_TEX, 500, 600, 16, 16);
 	m_enemy7->SetLayer(Layer::ENEMY);
 
 
-	m_player = new SpaceShip("Ship",AssetManager::Instance().LoadTexture(PLAYER_TEX), 300, 300, 18, 16);
+	m_player = new SpaceShip("Ship",PLAYER_TEX, 300, 300, 18, 16);
 	m_player->SetLayer(Layer::PLAYER);
 
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);

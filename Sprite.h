@@ -5,11 +5,13 @@
 class Sprite
 {
 public:
-	Sprite(SDL_Texture* texture, int x, int y, int width, int height);
+	Sprite(SDL_Texture* texture, int x, int y, int width, int height, int order = 0);
 	void Render(float angle);
 	void Update(int x, int y);
 	SDL_FRect GetRect();
 private:
+	//Rendering order
+	int m_order;
 	int m_width;
 	int m_height;
 	SDL_Texture* m_texture;

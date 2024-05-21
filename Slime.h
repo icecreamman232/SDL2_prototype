@@ -5,10 +5,11 @@
 class Slime : public GameObject
 {
 public:
-	Slime(int id,const char* name, SDL_Texture* texture ,
-		int initX, int initY, int width, int height);
+	Slime(int id,const char* name, TEXTURE_ID textureID ,
+		int initX, int initY, int width, int height,int order = 0);
 
 	void Update(float deltaTime) override;
+
 private:
 
 	void GetNextDirection(Vector2& direction);

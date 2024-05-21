@@ -1,9 +1,9 @@
 #include "Sprite.h"
-#include "GameObject.h"
 #include "Game.h"
 
-Sprite::Sprite(SDL_Texture* texture, int x, int y, int width, int height)
+Sprite::Sprite(SDL_Texture* texture, int x, int y, int width, int height, int order = 0)
 {
+	m_order = 0;
 	m_texture = texture;
 	m_width = width;
 	m_height = height;

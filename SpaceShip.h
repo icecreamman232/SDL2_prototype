@@ -7,7 +7,7 @@
 class SpaceShip : public GameObject
 {
 public:
-	SpaceShip(const char* name,SDL_Texture* texturePath, int initX, int initY,int width, int height);
+	SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order=0);
 	void Update(float deltaTime) override;
 
 	void SetDirectionX(float);

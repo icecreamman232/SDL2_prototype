@@ -13,8 +13,8 @@ class GameObject
 {
 public:
 	GameObject();
-	GameObject(const char* name, SDL_Texture* texture, int initX, int initY,int width, int height);
-	GameObject(const char* name, SDL_Texture* texture, int width, int height);
+	GameObject(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order = 0);
+	GameObject(const char* name, TEXTURE_ID textureID, int width, int height, int order = 0);
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void SetPosition(int x, int y);
@@ -27,6 +27,7 @@ public:
 	inline Vector2 GetPosition() { return m_pos; };
 	inline const char* GetName() { return m_name; };
 	inline void SetActive(bool isActive) { m_isActive = isActive; };
+	inline Sprite* GetSprite() { return m_sprite; };
 
 protected:
 	bool m_isActive;
@@ -34,9 +35,6 @@ protected:
 	double m_angle;
 	Vector2 m_pos;
 	Collider* m_collider;
-	SDL_Texture* m_texture;
-	SDL_Rect m_srcRect;
-	SDL_FRect m_destRect;
 
 	Sprite* m_sprite;
 };

@@ -8,7 +8,7 @@ class Bullet : public GameObject
 {
 public:
 	Bullet();
-	void Initialize(const char* name, SDL_Texture* texture,
+	void Initialize(const char* name, TEXTURE_ID textureID,
 		int initX, int initY, int width, int height);
 	void Update(float deltaTime) override;
 	void Render();

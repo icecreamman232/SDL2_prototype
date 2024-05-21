@@ -1,42 +1,37 @@
 #include "GameObject.h"
-#include "Collider.h"
 #include "Game.h"
 
-GameObject::GameObject()
-{
-}
+GameObject::GameObject(){}
 
-GameObject::GameObject(const char* name,SDL_Texture* texture,int initX, int initY, int width, int height)
+GameObject::GameObject(const char* name, TEXTURE_ID textureID, int initX, int initY, int width, int height, int order = 0)
 {
 	m_name = name;
 
-	m_texture = texture;
 	m_pos.x = initX;
 	m_pos.y = initY;
 	m_angle = 0;
 
 	m_collider = new Collider(this);
 
-
-	m_sprite = new Sprite(texture, initX, initY, width, height);
+	m_sprite = new Sprite(AssetManager::Instance().LoadTexture(textureID), initX, initY, width, height, order);
 
 	//New game object created will be set to layer default
 	SetLayer(Layer::DEFAULT);
 	m_isActive = true;
 }
 
-GameObject::GameObject(const char* name, SDL_Texture* texture, int width, int height)
+GameObject::GameObject(const char* name, TEXTURE_ID textureID, int width, int height, int order = 0)
 {
 	m_name = name;
 
-	m_texture = texture;
 	m_pos.x = 0;
 	m_pos.y = 0;
 	m_angle = 0;
 
 	m_collider = new Collider(this);
 
-	m_sprite = new Sprite(texture, m_pos.x, m_pos.y, width, height);
+	m_sprite = new Sprite(AssetManager::Instance().LoadTexture(textureID), m_pos.x, m_pos.y, width, height, order);
+
 	//New game object created will be set to layer default
 	SetLayer(Layer::DEFAULT);
 	m_isActive = true;

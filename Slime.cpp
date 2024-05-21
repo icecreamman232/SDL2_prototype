@@ -1,9 +1,9 @@
 #include "Slime.h"
 #include "Game.h"
 
-Slime::Slime(int id,const char* name, SDL_Texture* texture, 
-	int initX, int initY, int width, int height) 
-	: GameObject(name, texture,initX, initY, width, height)
+Slime::Slime(int id,const char* name, TEXTURE_ID textureID, 
+	int initX, int initY, int width, int height, int order = 0) 
+	: GameObject(name, textureID,initX, initY, width, height, order)
 {
 	m_id = id;
 	std::random_device rd;
