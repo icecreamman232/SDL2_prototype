@@ -5,7 +5,7 @@
 #include "Math/MathHelper.h"
 
 
-SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order = 0)
+SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order)
 	:GameObject(name, textureID,initX, initY, width, height, order)
 {
 	m_direction.x = 0;

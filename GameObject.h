@@ -6,6 +6,7 @@
 #include "Global.h"
 #include "LayerManager.h"
 #include "Sprite.h"
+#include "AssetManager.h"
 
 class Collider;
 

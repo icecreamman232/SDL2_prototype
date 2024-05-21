@@ -1,9 +1,10 @@
 #include "GameObject.h"
 #include "Game.h"
+#include "Collider.h"
 
 GameObject::GameObject(){}
 
-GameObject::GameObject(const char* name, TEXTURE_ID textureID, int initX, int initY, int width, int height, int order = 0)
+GameObject::GameObject(const char* name, TEXTURE_ID textureID, int initX, int initY, int width, int height, int order)
 {
 	m_name = name;
 
@@ -20,7 +21,7 @@ GameObject::GameObject(const char* name, TEXTURE_ID textureID, int initX, int in
 	m_isActive = true;
 }
 
-GameObject::GameObject(const char* name, TEXTURE_ID textureID, int width, int height, int order = 0)
+GameObject::GameObject(const char* name, TEXTURE_ID textureID, int width, int height, int order)
 {
 	m_name = name;
 

@@ -3,19 +3,9 @@
 #include <SDL.h>
 
 #include "Singleton.h"
+#include "Global.h"
 
-enum TEXTURE_ID
-{
-	//SPRITE
-	PLAYER_TEX,
-	SLIME_TEX,
-
-	//WEAPON
-	PLAYER_NORMAL_BULLET = 50,
-
-	//UI
-	WHITE_BAR_UI = 100,
-};
+using namespace Render;
 
 class AssetManager : public Singleton<AssetManager>
 {

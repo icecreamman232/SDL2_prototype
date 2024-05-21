@@ -2,7 +2,7 @@
 #include "Game.h"
 
 Slime::Slime(int id,const char* name, TEXTURE_ID textureID, 
-	int initX, int initY, int width, int height, int order = 0) 
+	int initX, int initY, int width, int height, int order) 
 	: GameObject(name, textureID,initX, initY, width, height, order)
 {
 	m_id = id;

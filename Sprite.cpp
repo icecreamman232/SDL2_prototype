@@ -1,7 +1,7 @@
 #include "Sprite.h"
 #include "Game.h"
 
-Sprite::Sprite(SDL_Texture* texture, int x, int y, int width, int height, int order = 0)
+Sprite::Sprite(SDL_Texture* texture, int x, int y, int width, int height, int order)
 {
 	m_order = 0;
 	m_texture = texture;
