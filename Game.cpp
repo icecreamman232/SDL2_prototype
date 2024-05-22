@@ -142,11 +142,15 @@ void Game::Update(float deltaTime)
 	m_healthBar->UpdateBar(m_player->GetPercentHealth());
 
 
-	/*auto result = m_quadTreev2->GetCollision(m_player, Layer::ENEMY);
+	auto result = m_quadTreev2->GetCollision(m_player, Layer::ENEMY);
 	if (result != nullptr)
 	{
-		m_player->TakeDamage();
-	}*/
+		auto slime = dynamic_cast<Slime*>(result);
+		if (slime != nullptr)
+		{
+			m_player->TakeDamage(slime->GetDamage());
+		}
+	}
 }
 
 

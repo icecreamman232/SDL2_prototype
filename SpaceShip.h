@@ -12,7 +12,7 @@ public:
 
 	void SetDirectionX(float);
 	void SetDirectionY(float);
-	void TakeDamage();
+	void TakeDamage(int damage);
 	float GetPercentHealth();
 
 private:

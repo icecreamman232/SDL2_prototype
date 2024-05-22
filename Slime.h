@@ -11,11 +11,15 @@ public:
 
 	void Update(float deltaTime) override;
 	void TakeDamage(int damage);
+	int GetDamage();
 private:
 
 	void GetNextDirection(Vector2& direction);
 
 	std::mt19937 randomGenerator;
+
+	int m_minDamage;
+	int m_maxDamage;
 
 	float m_moveSpeed;
 	Vector2 m_direction;

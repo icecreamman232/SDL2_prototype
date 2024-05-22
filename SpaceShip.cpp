@@ -124,9 +124,9 @@ void SpaceShip::UpdateMovement(float deltaTime)
 }
 
 
-void SpaceShip::TakeDamage()
+void SpaceShip::TakeDamage(int damage)
 {
-	m_health.TakeDamage(10);
+	m_health.TakeDamage(damage);
 }
 
 float SpaceShip::GetPercentHealth()
