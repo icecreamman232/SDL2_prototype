@@ -18,6 +18,7 @@ namespace Render
 		//SPRITE
 		PLAYER_TEX,
 		SLIME_TEX,
+		ENEMY_EXPLOSION,
 
 		//WEAPON
 		PLAYER_NORMAL_BULLET = 50,

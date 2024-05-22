@@ -8,6 +8,7 @@ void AssetManager::Initialize()
     m_texturePathList[PLAYER_TEX] = "Asset/blue-starship.png";
     m_texturePathList[SLIME_TEX] = "Asset/space-slime.png";
     m_texturePathList[WHITE_BAR_UI] = "Asset/white-bar.png";
+    m_texturePathList[ENEMY_EXPLOSION] = "Asset/enemy-die-explosion.png";
     m_texturePathList[PLAYER_NORMAL_BULLET] = "Asset/normal-bullet.png";
 
 }
