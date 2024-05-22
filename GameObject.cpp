@@ -38,6 +38,19 @@ GameObject::GameObject(const char* name, TEXTURE_ID textureID, int width, int he
 	m_isActive = true;
 }
 
+GameObject::~GameObject()
+{
+	m_isActive = false;
+	if (m_sprite != nullptr)
+	{
+		delete m_sprite;
+	}
+	if (m_collider != nullptr)
+	{
+		delete m_collider;
+	}
+}
+
 void GameObject::Update(float deltaTime)
 {
 	if (!m_isActive) return;
@@ -81,13 +94,14 @@ bool GameObject::IsCollideWith(GameObject* other)
 
 void GameObject::SetLayer(Layer layer)
 {
-	LayerManager::Instance().SetLayer(this, layer);
+	m_layer = layer;
 }
 
 const SDL_FRect GameObject::Rect()
 {
 	return m_sprite->GetRect();
 }
+
 
 
 

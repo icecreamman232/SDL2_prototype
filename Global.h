@@ -4,9 +4,9 @@ namespace General
 {
 	enum Layer
 	{
-		DEFAULT = 0,
-		PLAYER = 1,
-		ENEMY = 2,
+		DEFAULT = 1,
+		PLAYER = 2,
+		ENEMY = 4,
 	};
 
 }

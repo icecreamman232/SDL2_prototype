@@ -7,6 +7,9 @@ int Game::ScreenWidth = 0;
 int Game::ScreenHeight = 0;
 SDL_Renderer* Game::Renderer = nullptr;
 Scene* Game::CurrentScene = nullptr;
+QuadTreev2* Game::m_quadTreev2 = nullptr;
+
+using namespace General;
 
 Game::Game()
 {
@@ -114,16 +117,6 @@ void Game::HandleEvents()
 
 void Game::Update(float deltaTime)
 {
-	m_player->Update(deltaTime);
-	m_enemy->Update(deltaTime);
-	m_enemy1->Update(deltaTime);
-	m_enemy2->Update(deltaTime);
-	m_enemy3->Update(deltaTime);
-	m_enemy4->Update(deltaTime);
-	m_enemy5->Update(deltaTime);
-	m_enemy6->Update(deltaTime);
-	m_enemy7->Update(deltaTime);
-
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
 
 	m_quadTreev2->Insert(m_player);
@@ -136,14 +129,24 @@ void Game::Update(float deltaTime)
 	m_quadTreev2->Insert(m_enemy6);
 	m_quadTreev2->Insert(m_enemy7);
 
+	m_enemy->Update(deltaTime);
+	m_enemy1->Update(deltaTime);
+	m_enemy2->Update(deltaTime);
+	m_enemy3->Update(deltaTime);
+	m_enemy4->Update(deltaTime);
+	m_enemy5->Update(deltaTime);
+	m_enemy6->Update(deltaTime);
+	m_enemy7->Update(deltaTime);
+	m_player->Update(deltaTime);
+
 	m_healthBar->UpdateBar(m_player->GetPercentHealth());
 
 
-	auto result = m_quadTreev2->GetCollision(m_player);
+	/*auto result = m_quadTreev2->GetCollision(m_player, Layer::ENEMY);
 	if (result != nullptr)
 	{
 		m_player->TakeDamage();
-	}
+	}*/
 }
 
 

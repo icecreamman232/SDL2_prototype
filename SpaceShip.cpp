@@ -16,6 +16,11 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY
 	m_primaryWeapon = new Weapon(0.15);
 	m_primaryWeapon->InitializeBullet(20,"Bullet",
 		AssetManager::Instance().LoadTexture(PLAYER_NORMAL_BULLET),16, 16);
+
+	for (auto bullet : m_primaryWeapon->GetBulletList())
+	{
+		Game::m_quadTreev2->Insert(bullet);
+	}
 }
 
 void SpaceShip::SetDirectionX(float value)
@@ -34,6 +39,21 @@ void SpaceShip::Update(float deltaTime)
 	UpdateMovement(deltaTime);
 
 	m_primaryWeapon->Update(deltaTime);
+
+	for (auto bullet : m_primaryWeapon->GetBulletList())
+	{
+		Game::m_quadTreev2->Insert(bullet);
+	}
+
+
+	for (auto bullet : m_primaryWeapon->GetBulletList())
+	{
+		auto objectCollide = Game::m_quadTreev2->GetCollision(bullet, Layer::ENEMY);
+		if (objectCollide != nullptr)
+		{
+			std::cout << "HIT " << objectCollide->GetName() << std::endl;
+		}
+	}
 
 	GameObject::Update(deltaTime);
 }

@@ -56,5 +56,10 @@ void Weapon::DestroyBullet(Bullet* bullet)
 	m_pool->ReleaseObject(bullet);
 }
 
+std::vector<Bullet*> Weapon::GetBulletList()
+{
+	return m_pool->m_activeList;
+}
+
 
 

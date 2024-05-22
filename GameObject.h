@@ -4,11 +4,12 @@
 
 #include "Math/Vector2.h"
 #include "Global.h"
-#include "LayerManager.h"
 #include "Sprite.h"
 #include "AssetManager.h"
 
 class Collider;
+
+using namespace General;
 
 class GameObject
 {
@@ -27,18 +28,21 @@ public:
 
 	inline Vector2 GetPosition() { return m_pos; };
 	inline const char* GetName() { return m_name; };
+	inline const Layer GetLayer() { return m_layer; };
 	inline void SetActive(bool isActive) { m_isActive = isActive; };
 	inline bool IsActive() { return m_isActive; };
 	inline Sprite* GetSprite() { return m_sprite; };
 	inline int GetRenderOrder() { return m_sprite->GetOrder(); };
 
 protected:
+	virtual ~GameObject();
+
+	Layer m_layer;
 	bool m_isActive;
 	const char* m_name;
 	double m_angle;
 	Vector2 m_pos;
 	Collider* m_collider;
-
 	Sprite* m_sprite;
 };
 

@@ -1,6 +1,8 @@
 #include "QuadTreev2.h"
 #include <iostream>
 
+using namespace General;
+
 QuadTreev2::QuadTreev2(const SDL_FRect& bounds, int depth, int id)
 {
 	m_bounds = bounds;
@@ -168,7 +170,7 @@ std::vector<GameObject*> QuadTreev2::GetAllCollisions(GameObject* object)
 /// </summary>
 /// <param name="object"></param>
 /// <returns></returns>
-GameObject* QuadTreev2::GetCollision(GameObject* object)
+GameObject* QuadTreev2::GetCollision(GameObject* object, Layer targetLayer)
 {
 	std::vector<QuadTreev2*> leaves = GetLeaves(object);
 	for (int i = 0; i < leaves.size(); i++)
@@ -180,7 +182,9 @@ GameObject* QuadTreev2::GetCollision(GameObject* object)
 			{
 				continue;
 			}
-			if (curLeaf->objectList[j]->IsCollideWith(object))
+			if (curLeaf->objectList[j]->IsCollideWith(object) 
+				//check if object is in layer combination
+				&& (targetLayer & curLeaf->objectList[j]->GetLayer()) != 0)
 			{
 				return curLeaf->objectList[j];
 			}

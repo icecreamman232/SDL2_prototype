@@ -32,7 +32,7 @@ public:
 	void Render(SDL_Renderer* render);
 
 	std::vector<GameObject*> GetAllCollisions(GameObject* object1);
-	GameObject* GetCollision(GameObject* object);
+	GameObject* GetCollision(GameObject* object, Layer targetLayer = Layer::DEFAULT);
 
 private:
 

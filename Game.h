@@ -30,15 +30,14 @@ public:
 	static int ScreenHeight;
 	static SDL_Renderer* Renderer;
 	static Scene* CurrentScene;
+	static QuadTreev2* m_quadTreev2;
 
 private:
 	bool m_isRunning;
 	SDL_Window* m_window;
 
 	std::vector<GameObject*> m_collisionList;
-	QuadTreev2* m_quadTreev2;
 
-	
 
 	Slime* m_enemy;
 	Slime* m_enemy1;

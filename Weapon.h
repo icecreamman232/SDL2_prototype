@@ -10,7 +10,7 @@ public:
 	void Shoot(Vector2 pos, Vector2 direction, float angle);
 	void Update(float deltaTime);
 	void DestroyBullet(Bullet* bullet);
-
+	std::vector<Bullet*> GetBulletList();
 private:
 	bool m_isDelay;
 	float m_delayBetween2Shot;
