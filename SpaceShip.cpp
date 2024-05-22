@@ -78,22 +78,23 @@ void SpaceShip::UpdateMovement(float deltaTime)
 {
 	m_pos += m_direction * (m_moveSpeed * deltaTime);
 
-	if (m_pos.x <= 0)
+	if (m_pos.x <= -m_sprite->GetRect().w)
 	{
-		m_pos.x = 0;
+		m_pos.x = Game::ScreenWidth;
 	}
-	else if (m_pos.x >= Game::ScreenWidth - m_sprite->GetRect().w)
+	else if (m_pos.x >= Game::ScreenWidth)
 	{
-		m_pos.x = Game::ScreenWidth - m_sprite->GetRect().w;
+		m_pos.x = -m_sprite->GetRect().w;
 	}
 
-	if (m_pos.y <= 0)
+	if (m_pos.y <= -m_sprite->GetRect().h)
 	{
-		m_pos.y = 0;
+		m_pos.y = Game::ScreenHeight;
+
 	}
-	else if (m_pos.y >= Game::ScreenHeight - m_sprite->GetRect().h)
+	else if (m_pos.y >= Game::ScreenHeight)
 	{
-		m_pos.y = Game::ScreenHeight - m_sprite->GetRect().h;
+		m_pos.y = -m_sprite->GetRect().h;
 	}
 
 	LookAt(Input::Instance().MouseX, Input::Instance().MouseY);
