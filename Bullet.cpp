@@ -31,9 +31,11 @@ void Bullet::Initialize(Weapon* weaponOwner, const char* name, TEXTURE_ID textur
 		m_sprite = new Sprite(AssetManager::Instance().LoadTexture(textureID), initX, initY, width, height, 5);
 		Game::CurrentScene->Add(this, RenderLayer::PLAYER);
 		m_collider = new Collider(this);
+		m_minDamage = 10;
+		m_maxDamage = 15;
 		m_isInitialized = true;
 	}
-	m_isActive = true;
+
 }
 
 void Bullet::Update(float deltaTime)
@@ -76,6 +78,15 @@ void Bullet::SetAngle(float angle)
 void Bullet::SetDirection(Vector2 direction)
 {
 	m_direction = direction;
+}
+
+int Bullet::GetDamage()
+{
+	std::random_device rd;                          
+	std::mt19937 gen(rd());                         
+	std::uniform_int_distribution<int> distribution(m_minDamage, m_maxDamage);
+
+	return distribution(gen);
 }
 
 void Bullet::Destroy()

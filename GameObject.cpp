@@ -2,6 +2,8 @@
 #include "Game.h"
 #include "Collider.h"
 
+int GameObject::s_nextID = 0;
+
 GameObject::GameObject(){}
 
 GameObject::GameObject(const char* name, TEXTURE_ID textureID, int initX, int initY, int width, int height, int order)
@@ -18,6 +20,8 @@ GameObject::GameObject(const char* name, TEXTURE_ID textureID, int initX, int in
 
 	//New game object created will be set to layer default
 	SetLayer(Layer::DEFAULT);
+	m_id = s_nextID;
+	s_nextID++;
 	m_isActive = true;
 }
 
@@ -100,6 +104,11 @@ void GameObject::SetLayer(Layer layer)
 const SDL_FRect GameObject::Rect()
 {
 	return m_sprite->GetRect();
+}
+
+int GameObject::GetID()
+{
+	return m_id;
 }
 
 

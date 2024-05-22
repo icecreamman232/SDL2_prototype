@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "algorithm"
+#include <iostream>
 
 void Scene::Initialize()
 {
@@ -27,6 +28,20 @@ void Scene::Render()
 		{
 			m_renderingContainer[layer][j]->Render();
 		}
+	}
+}
+
+void Scene::Remove(GameObject* object, RenderLayer renderLayer)
+{
+	auto& container = m_renderingContainer[renderLayer];
+	auto it = std::find_if(container.begin(),container.end(),
+		[object](GameObject* foundObj) 
+		{
+			return (foundObj->GetID() == object->GetID());
+		});
+	if (it != container.end())
+	{
+		container.erase(it);
 	}
 }
 

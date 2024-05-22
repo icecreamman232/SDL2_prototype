@@ -45,15 +45,18 @@ void SpaceShip::Update(float deltaTime)
 		Game::m_quadTreev2->Insert(bullet);
 	}
 
-
 	for (auto bullet : m_primaryWeapon->GetBulletList())
 	{
 		auto objectCollide = Game::m_quadTreev2->GetCollision(bullet, Layer::ENEMY);
 		if (objectCollide != nullptr)
 		{
-			std::cout << "HIT " << objectCollide->GetName() << std::endl;
+			auto slime = static_cast<Slime*>(objectCollide);
+			slime->TakeDamage(bullet->GetDamage());
+			bullet->SetActive(false);
+			m_primaryWeapon->DestroyBullet(bullet);
 		}
 	}
+
 
 	GameObject::Update(deltaTime);
 }

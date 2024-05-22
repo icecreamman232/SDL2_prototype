@@ -48,28 +48,28 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 
 	m_healthBar = new PlayerHealthBar(20, 20, 200, 20);
 
-	m_enemy = new Slime(1,"enemy", SLIME_TEX, 0, 0, 16, 16,0);
+	m_enemy = new Slime("enemy", SLIME_TEX, 0, 0, 16, 16,0);
 	m_enemy->SetLayer(Layer::ENEMY);
 
-	m_enemy1 = new Slime(2,"enemy1",SLIME_TEX, 0, 100, 16, 16,1);
+	m_enemy1 = new Slime("enemy1",SLIME_TEX, 0, 100, 16, 16,1);
 	m_enemy1->SetLayer(Layer::ENEMY);
 
-	m_enemy2 = new Slime(3,"enemy2", SLIME_TEX, 100, 0, 16, 16,2);
+	m_enemy2 = new Slime("enemy2", SLIME_TEX, 100, 0, 16, 16,2);
 	m_enemy2->SetLayer(Layer::ENEMY);
 
-	m_enemy3 = new Slime(4,"enemy3",SLIME_TEX, 1110, 100, 16, 16,3);
+	m_enemy3 = new Slime("enemy3",SLIME_TEX, 1110, 100, 16, 16,3);
 	m_enemy3->SetLayer(Layer::ENEMY);
 
-	m_enemy4 = new Slime(5,"enemy4",SLIME_TEX, 800, 500, 16, 16,4);
+	m_enemy4 = new Slime("enemy4",SLIME_TEX, 800, 500, 16, 16,4);
 	m_enemy4->SetLayer(Layer::ENEMY);
 
-	m_enemy5 = new Slime(6,"enemy5",SLIME_TEX, 1000, 300, 16, 16,5);
+	m_enemy5 = new Slime("enemy5",SLIME_TEX, 1000, 300, 16, 16,5);
 	m_enemy5->SetLayer(Layer::ENEMY);
 
-	m_enemy6 = new Slime(7,"enemy6",SLIME_TEX, 300, 600, 16, 16,7);
+	m_enemy6 = new Slime("enemy6",SLIME_TEX, 300, 600, 16, 16,7);
 	m_enemy6->SetLayer(Layer::ENEMY);
 
-	m_enemy7 = new Slime(8,"enemy7",SLIME_TEX, 500, 600, 16, 16,6);
+	m_enemy7 = new Slime("enemy7",SLIME_TEX, 500, 600, 16, 16,6);
 	m_enemy7->SetLayer(Layer::ENEMY);
 
 

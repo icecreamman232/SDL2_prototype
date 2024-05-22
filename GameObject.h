@@ -25,10 +25,12 @@ public:
 	virtual bool IsCollideWith(GameObject* other);
 	virtual void SetLayer(Layer layer);
 	const SDL_FRect Rect();
+	int GetID();
 
+	
 	inline Vector2 GetPosition() { return m_pos; };
 	inline const char* GetName() { return m_name; };
-	inline const Layer GetLayer() { return m_layer; };
+	inline Layer GetLayer() { return m_layer; };
 	inline void SetActive(bool isActive) { m_isActive = isActive; };
 	inline bool IsActive() { return m_isActive; };
 	inline Sprite* GetSprite() { return m_sprite; };
@@ -37,6 +39,9 @@ public:
 protected:
 	virtual ~GameObject();
 
+	static int s_nextID;
+
+	int m_id;
 	Layer m_layer;
 	bool m_isActive;
 	const char* m_name;

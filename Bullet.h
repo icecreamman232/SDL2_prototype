@@ -16,7 +16,11 @@ public:
 	void Render();
 	void SetAngle(float angle);
 	void SetDirection(Vector2 direction);
+	int GetDamage();
+	
 private:
+	int m_minDamage;
+	int m_maxDamage;
 	bool m_isInitialized;
 	Weapon* m_weapon;
 	float m_moveSpeed;
