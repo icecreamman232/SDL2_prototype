@@ -17,7 +17,15 @@ Slime::Slime(const char* name, TEXTURE_ID textureID,
 	m_idleAnim = new Animation(SLIME_TEX, m_sprite, 1, 0.1, 16, 16);
 	m_deadAnim = new Animation(ENEMY_EXPLOSION, m_sprite, 5, 0.1, 16, 16);
 
+	m_deadSFX = Mix_LoadWAV("Asset/Sound/enemy-pop-out-death.wav");
+
 	m_canMove = true;
+}
+
+Slime::~Slime()
+{
+	Mix_FreeChunk(m_deadSFX);
+	GameObject::~GameObject();
 }
 
 void Slime::Update(float deltaTime)
@@ -81,6 +89,7 @@ void Slime::TakeDamage(int damage)
 	if (m_health->GetCurrentHealth() <= 0)
 	{
 		m_canMove = false;
+		Mix_PlayChannel(-1, m_deadSFX, 0);
 		m_deadAnim->Play();
 	}
 }

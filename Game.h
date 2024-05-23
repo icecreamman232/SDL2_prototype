@@ -1,9 +1,11 @@
 #pragma once
 #include <SDL.h>
+#include "SDL_mixer.h"
+
 #include <stdio.h>
 #include <iostream>
-#include "AssetManager.h"
 
+#include "AssetManager.h"
 #include "SpaceShip.h"
 #include "Slime.h"
 #include "QuadTreev2.h"
@@ -38,6 +40,7 @@ private:
 
 	std::vector<GameObject*> m_collisionList;
 
+	Mix_Music* music;
 
 	Slime* m_enemy;
 	Slime* m_enemy1;

@@ -17,6 +17,7 @@ public:
 	GameObject();
 	GameObject(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order = 0);
 	GameObject(const char* name, TEXTURE_ID textureID, int width, int height, int order = 0);
+	virtual ~GameObject();
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void SetPosition(int x, int y);
@@ -37,8 +38,7 @@ public:
 	inline int GetRenderOrder() { return m_sprite->GetOrder(); };
 
 protected:
-	virtual ~GameObject();
-
+	
 	static int s_nextID;
 
 	int m_id;

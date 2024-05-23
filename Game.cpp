@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Input.h"
 
+
 int Game::ScreenWidth = 0;
 int Game::ScreenHeight = 0;
 SDL_Renderer* Game::Renderer = nullptr;
@@ -38,9 +39,19 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 		else {
 			m_isRunning = false;
 		}
+
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048))
+		{
+			std::cout << "SDL_mixer could not initialize! SDL_mixer Error:" << Mix_GetError() << std::endl;
+			m_isRunning = false;
+		}
 	}
 
+
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
+
+	music = Mix_LoadMUS("Asset/Music/DaniStob-OverdriveSunset-Loop.wav");
+
 	AssetManager::Instance().Initialize();
 	CurrentScene = new Scene();
 
@@ -99,6 +110,8 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	CurrentScene->Add(m_enemy6, RenderLayer::ENEMY);
 	CurrentScene->Add(m_enemy7, RenderLayer::ENEMY);
 	CurrentScene->Add(m_player, RenderLayer::ENEMY);
+
+	Mix_PlayMusic(music, -1);
 }
 
 void Game::HandleEvents()
@@ -172,6 +185,9 @@ void Game::Render(float deltaTime)
 
 void Game::Clean()
 {
+	Mix_HaltMusic();
+	Mix_FreeMusic(music);
+
 	SDL_DestroyWindow(m_window);
 	SDL_DestroyRenderer(Renderer);
 	SDL_Quit();
