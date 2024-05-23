@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include <random>
 #include "Health.h"
+#include "Animation.h"
 
 class Slime : public GameObject
 {
@@ -24,5 +25,6 @@ private:
 	float m_moveSpeed;
 	Vector2 m_direction;
 	Health* m_health;
+	Animation* m_deadAnim;
 };
 

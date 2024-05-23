@@ -13,6 +13,7 @@ Slime::Slime(const char* name, TEXTURE_ID textureID,
 	m_maxDamage = 10;
 	m_health = new Health();
 	m_health->Initialize(10, 0.5);
+	m_deadAnim = new Animation(ENEMY_EXPLOSION, m_sprite, 5, 0.1, 16, 16);
 }
 
 void Slime::Update(float deltaTime)
@@ -42,7 +43,7 @@ void Slime::Update(float deltaTime)
 		m_pos.y = Game::ScreenHeight - m_sprite->GetRect().h;
 		GetNextDirection(m_direction);
 	}
-
+	m_deadAnim->Update(deltaTime);
 	GameObject::Update(deltaTime);
 }
 
@@ -51,13 +52,15 @@ void Slime::TakeDamage(int damage)
 	if(!m_isActive) return;
 	if (m_health == nullptr) return;
 	m_health->TakeDamage(damage);
+	m_deadAnim->Play();
 
-	if (m_health->GetCurrentHealth() <= 0)
-	{
-		m_isActive = false;
-		//TODO: Implement death behavior and try to move/delete object from scene
-		Game::CurrentScene->Remove(this,RenderLayer::ENEMY);
-	}
+	//TEST ANIMATION
+	//if (m_health->GetCurrentHealth() <= 0)
+	//{
+	//	m_isActive = false;
+	//	//TODO: Implement death behavior and try to move/delete object from scene
+	//	Game::CurrentScene->Remove(this,RenderLayer::ENEMY);
+	//}
 }
 
 int Slime::GetDamage()

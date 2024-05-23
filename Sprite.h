@@ -9,6 +9,8 @@ public:
 	void Render(float angle);
 	void Update(int x, int y);
 	SDL_FRect GetRect();
+	void SetFrame(int index);
+	void SetTexture(SDL_Texture* newTexture);
 
 	inline int GetOrder() { return m_order; };
 private:

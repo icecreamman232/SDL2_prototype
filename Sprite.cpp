@@ -38,3 +38,14 @@ SDL_FRect Sprite::GetRect()
 {
 	return m_destRect;
 }
+
+void Sprite::SetFrame(int index)
+{
+	m_srcRect.x += index * m_srcRect.w;
+	//m_srcRect.y += index * m_srcRect.h;
+}
+
+void Sprite::SetTexture(SDL_Texture* newTexture)
+{
+	m_texture = newTexture;
+}
