@@ -14,6 +14,7 @@ Animation::Animation(TEXTURE_ID textureID, Sprite* sprite,
 	m_isFinished = false;
 	m_isPlaying = false;
 	m_timer = 0;
+	m_canLoop = false;
 }
 
 void Animation::Play()
@@ -21,6 +22,7 @@ void Animation::Play()
 	if (m_isPlaying) return;
 	m_isPlaying = true;
 	m_timer = 0;
+	m_curFrame = 0;
 }
 
 void Animation::Update(float deltaTime)
@@ -34,6 +36,24 @@ void Animation::Update(float deltaTime)
 	m_sprite->SetTexture(m_texture);
 	m_sprite->SetFrame(m_curFrame);
 	m_curFrame++;
+	if (m_curFrame > m_numFrame)
+	{
+		if (m_canLoop)
+		{
+			m_curFrame = 0;
+		}
+		else 
+		{
+			m_isFinished = true;
+			m_curFrame = m_numFrame;
+			/*if (m_nextAnim != nullptr)
+			{
+				m_isPlaying = false;
+				m_nextAnim->Play();
+			}*/
+		}	
+	}
+
 	m_timer = m_timeFrame;
 }
 

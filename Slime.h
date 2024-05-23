@@ -16,6 +16,8 @@ public:
 private:
 
 	void GetNextDirection(Vector2& direction);
+	void UpdateMovement(float deltaTime);
+
 
 	std::mt19937 randomGenerator;
 
@@ -25,6 +27,10 @@ private:
 	float m_moveSpeed;
 	Vector2 m_direction;
 	Health* m_health;
+	bool m_canMove;
+
+
+	Animation* m_idleAnim;
 	Animation* m_deadAnim;
 };
 
