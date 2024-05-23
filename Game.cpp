@@ -111,7 +111,12 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	CurrentScene->Add(m_enemy7, RenderLayer::ENEMY);
 	CurrentScene->Add(m_player, RenderLayer::ENEMY);
 
-	Mix_PlayMusic(music, -1);
+	//Mix_PlayMusic(music, -1);
+	Mix_FadeInMusic(music, -1, 1500);
+	while (Mix_FadingMusic() == MIX_FADING_IN)
+	{
+		SDL_Delay(30);
+	}
 }
 
 void Game::HandleEvents()
