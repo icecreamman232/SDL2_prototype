@@ -12,6 +12,10 @@ QuadTreev2* Game::m_quadTreev2 = nullptr;
 
 using namespace General;
 
+#if !SDL_VERSION_ATLEAST(2,0,17)
+#error This backend requires SDL 2.0.17+ because of SDL_RenderGeometry() function
+#endif
+
 Game::Game()
 {
 	m_healthBar = nullptr;
@@ -27,8 +31,13 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
+		// From 2.0.18: Enable native IME.
+#ifdef SDL_HINT_IME_SHOW_UI
+		SDL_SetHint(SDL_HINT_IME_SHOW_UI, "1");
+#endif
 		std::cout << "Initialized..." << std::endl;
-		m_window = SDL_CreateWindow("Prototype", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1366, 768, SDL_WINDOW_SHOWN);
+		SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+		m_window = SDL_CreateWindow("Prototype", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1366, 768, window_flags);
 		Renderer = SDL_CreateRenderer(m_window, -1, 0);
 		if (Renderer)
 		{
@@ -47,6 +56,28 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 		}
 	}
 
+
+	// Setup Dear ImGui context
+	IMGUI_CHECKVERSION();
+	auto context = ImGui::CreateContext();
+	//ImGui::SetCurrentContext(context);
+	io = ImGui::GetIO(); (void)io;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
+
+	// Setup Dear ImGui style
+	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsLight();
+
+	// Setup Platform/Renderer backends
+	ImGui_ImplSDL2_InitForSDLRenderer(m_window, Renderer);
+	ImGui_ImplSDLRenderer2_Init(Renderer);
+
+	m_FPSOverlayWindownFlags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoDocking 
+		| ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings 
+		| ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav;
+	m_showFPSOverlay = false;
 
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 
@@ -123,7 +154,7 @@ void Game::HandleEvents()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
-
+	ImGui_ImplSDL2_ProcessEvent(&event);
 	Input::Instance().HandleEvent(&event);
 	switch (event.type)
 	{
@@ -169,11 +200,56 @@ void Game::Update(float deltaTime)
 			m_player->TakeDamage(slime->GetDamage());
 		}
 	}
+
+	//Toggle the FPS Overlay
+	if (Input::Instance().GetKeyPressed(SDL_Scancode::SDL_SCANCODE_P))
+	{
+		m_showFPSOverlay = !m_showFPSOverlay;
+	}
 }
 
+void Game::RenderImGUI()
+{
+	// Start the Dear ImGui frame
+	ImGui_ImplSDLRenderer2_NewFrame();
+	ImGui_ImplSDL2_NewFrame();
+	ImGui::NewFrame();
+
+
+	io = ImGui::GetIO();
+	m_viewport = ImGui::GetMainViewport();
+	ImVec2 work_pos = m_viewport->WorkPos; // Use work area to avoid menu-bar/task-bar, if any!
+	ImVec2 work_size = m_viewport->WorkSize;
+	ImVec2 window_pos, window_pos_pivot;
+	window_pos.x = work_pos.x + work_size.x - PAD;
+	window_pos.y = work_pos.y + PAD;
+	window_pos_pivot.x = 1.0f;
+	window_pos_pivot.y = 0.0f;
+	ImGui::SetNextWindowPos(window_pos, ImGuiCond_Always, window_pos_pivot);
+	ImGui::SetNextWindowViewport(m_viewport->ID);
+	m_FPSOverlayWindownFlags |= ImGuiWindowFlags_NoMove;
+
+	if (ImGui::Begin("FPS Overlay", &m_showFPSOverlay, m_FPSOverlayWindownFlags))
+	{
+		ImGui::Text("FPS Overlay");
+		ImGui::Separator();
+		ImGui::Text("FPS:%f", m_fps);
+	}
+	ImGui::End();
+
+
+	// Rendering
+	ImGui::Render();
+	SDL_RenderSetScale(Renderer, io.DisplayFramebufferScale.x, io.DisplayFramebufferScale.y);
+	SDL_SetRenderDrawColor(Renderer, (Uint8)(clear_color.x * 255), (Uint8)(clear_color.y * 255), (Uint8)(clear_color.z * 255), (Uint8)(clear_color.w * 255));
+	//SDL_RenderClear(Renderer);
+	ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), Renderer);
+}
 
 void Game::Render(float deltaTime)
 {
+
+
 	//m_quadTree->Render(m_renderer);
 	SDL_SetRenderDrawColor(Renderer, 31, 31, 31, 255);
 	SDL_RenderClear(Renderer);
@@ -184,12 +260,22 @@ void Game::Render(float deltaTime)
 
 	m_healthBar->Render();
 
+	if (m_showFPSOverlay)
+	{
+		RenderImGUI();
+	}
+	
 	SDL_RenderPresent(Renderer);
 }
 
 
 void Game::Clean()
 {
+	// Cleanup
+	ImGui_ImplSDLRenderer2_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui::DestroyContext();
+
 	Mix_HaltMusic();
 	Mix_FreeMusic(music);
 

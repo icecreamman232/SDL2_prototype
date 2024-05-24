@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include "Singleton.h"
+#include <unordered_map>
 
 class Input : public Singleton<Input>
 {
@@ -13,22 +14,13 @@ public:
 	
 	bool IsLeftMouseDown();
 	bool GetKeyDown(SDL_Scancode keyCode);
+	bool GetKeyPressed(SDL_Scancode keyCode);
 
 private:
-	//std::<map>
-	const Uint8* m_keyStates;
+	std::unordered_map<SDL_Scancode, bool> m_keyStates;
+	std::unordered_map<SDL_Scancode, bool> m_prevKeyStates;
+
 	bool m_isLeftMouseDown;
 };
 
-enum KeyState
-{
-	RELEASE,
-	PRESS,
-};
-
-struct KeyCodeState
-{
-	KeyState State;
-	SDL_Scancode KeyCode;
-};
 

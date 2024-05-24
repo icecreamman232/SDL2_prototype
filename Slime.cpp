@@ -6,7 +6,6 @@ Slime::Slime(const char* name, TEXTURE_ID textureID,
 	: GameObject(name, textureID,initX, initY, width, height, order)
 {
 	GetNextDirection(m_direction);
-	std::cout << m_direction.x << "/" << m_direction.y << std::endl;
 
 	m_moveSpeed = 150;
 	m_minDamage = 5;

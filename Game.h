@@ -12,6 +12,11 @@
 #include "PlayerHealthBar.h"
 #include "Scene.h"
 
+
+#include "imgui.h"
+#include "imgui_impl_sdl2.h"
+#include "imgui_impl_sdlrenderer2.h"
+
 using namespace std;
 
 class Game
@@ -24,7 +29,9 @@ public:
 	void HandleEvents();
 	void Update(float deltaTime);
 	void Render(float deltaTime);
+	void RenderImGUI();
 	void Clean();
+	inline void PassFPSValue(float value) { m_fps = value; };
 
 	bool IsRunning();
 
@@ -50,9 +57,20 @@ private:
 	Slime* m_enemy5;
 	Slime* m_enemy6;
 	Slime* m_enemy7;
-	
+
 	PlayerHealthBar* m_healthBar;
 	SpaceShip* m_player;
 
+	ImGuiIO io;
+	bool show_demo_window = true;
+	bool show_another_window = false;
+	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
+	//FPS overlay
+	float m_fps;
+	const float PAD = 10.0f;
+	const ImGuiViewport* m_viewport;
+	bool m_showFPSOverlay = false;
+	ImGuiWindowFlags m_FPSOverlayWindownFlags;
 };
 

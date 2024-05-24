@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>F:\SDL2_mixer-devel-2.8.0-VC\SDL2_mixer-2.8.0\include;F:\SDL2_image-devel-2.8.2-VC\SDL2_image-2.8.2\include;F:\SDL2-devel-2.30.3-VC\SDL2-2.30.3\include;$(IncludePath)</IncludePath>
+    <IncludePath>F:\SDL2_prototype\imgui;F:\SDL2_mixer-devel-2.8.0-VC\SDL2_mixer-2.8.0\include;F:\SDL2_image-devel-2.8.2-VC\SDL2_image-2.8.2\include;F:\SDL2-devel-2.30.3-VC\SDL2-2.30.3\include;$(IncludePath)</IncludePath>
     <LibraryPath>F:\SDL2_mixer-devel-2.8.0-VC\SDL2_mixer-2.8.0\lib\x64;F:\SDL2_image-devel-2.8.2-VC\SDL2_image-2.8.2\lib\x64;F:\SDL2-devel-2.30.3-VC\SDL2-2.30.3\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\SDL2_mixer-devel-2.8.0-VC\SDL2_mixer-2.8.0\include;F:\SDL2_image-devel-2.8.2-VC\SDL2_image-2.8.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\SDL2_prototype\imgui;F:\SDL2_mixer-devel-2.8.0-VC\SDL2_mixer-2.8.0\include;F:\SDL2_image-devel-2.8.2-VC\SDL2_image-2.8.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +141,13 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Health.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_sdl2.cpp" />
+    <ClCompile Include="imgui\imgui_impl_sdlrenderer2.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\MathHelper.cpp" />
@@ -164,6 +171,14 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Health.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_sdl2.h" />
+    <ClInclude Include="imgui\imgui_impl_sdlrenderer2.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Math\MathHelper.h" />
     <ClInclude Include="Math\Vector2.h" />
