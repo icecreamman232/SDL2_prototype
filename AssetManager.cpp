@@ -22,6 +22,7 @@ SDL_Texture* AssetManager::LoadTexture(TEXTURE_ID textureID)
 {
     SDL_Surface* surface = IMG_Load(GetTexturePath(textureID));
     m_textureList[textureID] = SDL_CreateTextureFromSurface(Game::Renderer, surface);
+    SDL_SetTextureScaleMode(m_textureList[textureID], SDL_ScaleModeNearest);
     SDL_FreeSurface(surface);
     return m_textureList[textureID];
 }
