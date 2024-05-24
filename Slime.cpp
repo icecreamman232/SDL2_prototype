@@ -80,6 +80,8 @@ void Slime::UpdateMovement(float deltaTime)
 void Slime::TakeDamage(int damage)
 {
 	if(!m_isActive) return;
+	if (m_health->GetCurrentHealth() <= 0) return;
+
 	if (m_health == nullptr) return;
 
 	m_health->TakeDamage(damage);
