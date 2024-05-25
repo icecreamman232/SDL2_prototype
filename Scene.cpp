@@ -18,8 +18,14 @@ void Scene::Add(GameObject* object, RenderLayer renderLayer)
 		});
 }
 
+void Scene::Add(BMTextRenderer* textRenderer)
+{
+	m_textContainer.push_back(textRenderer);
+}
+
 void Scene::Render()
 {
+	//Render objects
 	for (int i=0;i<static_cast<int>(RenderLayer::COUNT); i++)
 	{
 		auto layer = static_cast<RenderLayer>(i);
@@ -28,6 +34,12 @@ void Scene::Render()
 		{
 			m_renderingContainer[layer][j]->Render();
 		}
+	}
+
+	//Render text and UI
+	for (auto text : m_textContainer)
+	{
+		text->Render();
 	}
 }
 

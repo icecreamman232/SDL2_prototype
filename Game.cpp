@@ -88,7 +88,9 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	AssetManager::Instance().Initialize();
 	CurrentScene = new Scene();
 
-
+	m_text = new BMTextRenderer(BM_FONT_PIXEL, "WAVE",Render::Pivot::CENTER, Game::ScreenWidth/2, 10);
+	m_text->SetSpacing(20);
+	m_text->SetSize(32);
 
 	m_healthBar = new PlayerHealthBar(20, 20, 200, 20);
 

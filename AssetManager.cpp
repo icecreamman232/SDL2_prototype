@@ -10,7 +10,7 @@ void AssetManager::Initialize()
     m_texturePathList[WHITE_BAR_UI] = "Asset/white-bar.png";
     m_texturePathList[ENEMY_EXPLOSION] = "Asset/enemy-die-explosion.png";
     m_texturePathList[PLAYER_NORMAL_BULLET] = "Asset/normal-bullet.png";
-
+    m_texturePathList[BM_FONT_PIXEL] = "Asset/Font/pixel-sdl-font.bmp";
 }
 
 const char* AssetManager::GetTexturePath(TEXTURE_ID textureID)

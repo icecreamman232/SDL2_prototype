@@ -19,6 +19,8 @@
 
 using namespace std;
 
+class BMTextRenderer;
+
 class Game
 {
 public:
@@ -61,6 +63,10 @@ private:
 	PlayerHealthBar* m_healthBar;
 	SpaceShip* m_player;
 
+
+	BMTextRenderer* m_text;
+
+	//ImGUI
 	ImGuiIO io;
 	bool show_demo_window = true;
 	bool show_another_window = false;

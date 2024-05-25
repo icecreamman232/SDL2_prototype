@@ -25,6 +25,9 @@ namespace Render
 
 		//UI
 		WHITE_BAR_UI = 100,
+
+		//BITMAP FONT
+		BM_FONT_PIXEL = 300,
 	};
 
 
@@ -36,5 +39,14 @@ namespace Render
 		UI = 999,
 
 		COUNT = 3,
+	};
+
+	enum Pivot
+	{
+		LEFT,
+		RIGHT,
+		CENTER,
+		TOP,
+		BOTTOM,
 	};
 }
