@@ -167,7 +167,6 @@
     <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timer.cpp" />
-    <ClCompile Include="UIBase.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
