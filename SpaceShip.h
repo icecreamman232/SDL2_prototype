@@ -16,6 +16,10 @@ public:
 	float GetPercentHealth();
 
 private:
+	float m_invulnerableDuration;
+	float m_flickerTimer; //use for calculating flickering sprite color duration
+	float m_flickerInterval;
+
 	float m_moveSpeed;
 	Vector2 m_direction;
 	Health m_health;

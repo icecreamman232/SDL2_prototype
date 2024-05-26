@@ -11,11 +11,21 @@ public:
 	SDL_FRect GetRect();
 	void SetFrame(int index);
 	void SetTexture(SDL_Texture* newTexture);
+	void TintColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+	void ResetColor();
 
+	inline SDL_Color GetColor() { return m_tintColor; };
 	inline int GetOrder() { return m_order; };
 private:
 	//Rendering order
 	int m_order;
+
+	SDL_Color m_originalColor;
+	SDL_Color m_tintColor;
+
+	Uint8 m_originalAlpha;
+	Uint8 m_curAlpha;
+
 	int m_width;
 	int m_height;
 	SDL_Texture* m_texture;

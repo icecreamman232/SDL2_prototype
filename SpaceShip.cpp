@@ -12,8 +12,13 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY
 	m_direction.x = 0;
 	m_direction.y = 0;
 	m_moveSpeed = 200;
+	m_invulnerableDuration = 0.5f;
+	m_flickerInterval = 0.1f;
+	m_flickerTimer = 0.0;
 
-	m_health.Initialize(100, 0.5);
+
+
+	m_health.Initialize(100, m_invulnerableDuration);
 	m_primaryWeapon = new Weapon(0.15);
 	m_primaryWeapon->InitializeBullet(20,"Bullet",
 		AssetManager::Instance().LoadTexture(PLAYER_NORMAL_BULLET),16, 16);
@@ -57,6 +62,37 @@ void SpaceShip::Update(float deltaTime)
 			slime->TakeDamage(bullet->GetDamage());
 			bullet->SetActive(false);
 			m_primaryWeapon->DestroyBullet(bullet);
+		}
+	}
+
+	if (m_health.IsInvulernable())
+	{
+		m_flickerTimer += deltaTime;
+		if (m_flickerTimer >= m_flickerInterval)
+		{
+			auto curColor = m_sprite->GetColor();
+			if (curColor.r == 255
+				&& curColor.g == 255
+				&& curColor.b == 255)
+			{
+				m_sprite->TintColor(255, 0, 0, 255);
+			}
+			else 
+			{
+				m_sprite->TintColor(255, 255, 255, 255);
+			}
+			m_flickerTimer = 0;
+		}
+	}
+	else 
+	{
+		//Reset tint color to white
+		auto curColor = m_sprite->GetColor();
+		if (curColor.r != 255
+			|| curColor.g != 255
+			|| curColor.b != 255)
+		{
+			m_sprite->TintColor(255, 255, 255, 255);
 		}
 	}
 
