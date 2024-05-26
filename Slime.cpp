@@ -106,9 +106,11 @@ int Slime::GetDamage()
 
 void Slime::GetNextDirection(Vector2& direction)
 {
+	std::random_device rd;
+	std::mt19937 gen(rd());
 	std::uniform_real_distribution<float> dist(-1.0, 1.0);
-	direction.x = dist(randomGenerator);
-	direction.y = dist(randomGenerator);
+	direction.x = dist(gen);
+	direction.y = dist(gen);
 }
 
 

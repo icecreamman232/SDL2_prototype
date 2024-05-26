@@ -21,9 +21,6 @@ private:
 	void GetNextDirection(Vector2& direction);
 	void UpdateMovement(float deltaTime);
 
-
-	std::mt19937 randomGenerator;
-
 	int m_minDamage;
 	int m_maxDamage;
 
