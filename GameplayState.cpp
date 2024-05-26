@@ -4,6 +4,7 @@
 #include "GameStateManager.h"
 #include <string>
 #include <sstream>
+#include "Slime.h"	
 
 void GameplayState::Initialize(GameStateManager* manager)
 {
@@ -22,6 +23,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_enemySpawner = new EnemySpawner();
 	m_enemySpawner->Initialize();
 
+	m_healthBar = new PlayerHealthBar(20, 20, 200, 20);
 
 	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
 	m_waveTitle = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, Game::ScreenWidth / 2, 10);
@@ -34,6 +36,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	Game::CurrentScene->Add(m_waveTitle);
 	Game::CurrentScene->Add(m_waveTimerText);
+
 }
 
 void GameplayState::Update(float deltaTime)
@@ -61,7 +64,7 @@ void GameplayState::Update(float deltaTime)
 
 	m_player->Update(deltaTime);
 	Game::m_quadTreev2->Insert(m_player);
-
+	m_healthBar->UpdateBar(m_player->GetPercentHealth());
 
 	//Check collision between player and enemy
 	auto result = Game::m_quadTreev2->GetCollision(m_player, Layer::ENEMY);
@@ -78,7 +81,7 @@ void GameplayState::Update(float deltaTime)
 
 void GameplayState::Render()
 {
-	
+	m_healthBar->Render();
 }
 
 std::string GameplayState::GetFormatedTime()

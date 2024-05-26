@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "Slime.h"
 #include "SpaceShip.h"
 #include "Game.h"
 #include "Math/MathHelper.h"

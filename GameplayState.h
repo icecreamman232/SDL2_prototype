@@ -3,6 +3,7 @@
 #include "SpaceShip.h"
 #include "EnemySpawner.h"
 #include "BMTextRenderer.h"
+#include "PlayerHealthBar.h"
 
 class GameStateManager;
 
@@ -19,15 +20,16 @@ private:
 	std::string GetFormatedTime();
 
 	GameStateManager* m_manager;
-
 	SpaceShip* m_player;
 	EnemySpawner* m_enemySpawner;
 
+	//===== WAVE====//
 	int m_minute;
 	int m_seconds;
-
 	float m_secondsCounter;
 
+	//===== UI =====//
+	PlayerHealthBar* m_healthBar;
 	BMTextRenderer* m_waveTitle;
 	BMTextRenderer* m_waveTimerText;
 };

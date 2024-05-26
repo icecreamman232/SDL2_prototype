@@ -18,7 +18,6 @@ using namespace General;
 
 Game::Game()
 {
-	m_healthBar = nullptr;
 	Input::Instance().Initialize();
 }
 
@@ -88,7 +87,6 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	AssetManager::Instance().Initialize();
 	CurrentScene = new Scene();
 
-	m_healthBar = new PlayerHealthBar(20, 20, 200, 20);
 
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
 
@@ -118,10 +116,7 @@ void Game::HandleEvents()
 
 void Game::Update(float deltaTime)
 {
-	auto player = dynamic_cast<GameplayState*>(m_gameStateManager.CurrentState())->GetPlayer();
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
-
-	m_healthBar->UpdateBar(player->GetPercentHealth());
 
 	m_gameStateManager.Update(deltaTime);
 
@@ -179,9 +174,6 @@ void Game::Render(float deltaTime)
 	m_quadTreev2->Render(Renderer);
 	
 	CurrentScene->Render();
-
-	m_healthBar->Render();
-
 
 	m_gameStateManager.Render();
 

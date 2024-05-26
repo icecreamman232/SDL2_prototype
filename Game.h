@@ -6,12 +6,8 @@
 #include <iostream>
 
 #include "AssetManager.h"
-#include "SpaceShip.h"
-#include "Slime.h"
 #include "QuadTreev2.h"
-#include "PlayerHealthBar.h"
 #include "Scene.h"
-
 
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
@@ -48,14 +44,9 @@ private:
 	bool m_isRunning;
 	SDL_Window* m_window;
 
-	std::vector<GameObject*> m_collisionList;
-
 	Mix_Music* music;
 
-
 	GameStateManager m_gameStateManager;
-
-	PlayerHealthBar* m_healthBar;
 
 	//ImGUI
 	ImGuiIO io;
