@@ -35,9 +35,21 @@ void EnemySpawner::UpdateEnemy(float deltaTime)
 {
 	for (auto enemy : m_spawnList)
 	{
-		enemy.second->Update(deltaTime);
-		Game::m_quadTreev2->Insert(enemy.second);
+		if (!enemy.second->IsActive())
+		{
+			m_deadKeyList.push_back(enemy.first);
+		}
+		else 
+		{
+			enemy.second->Update(deltaTime);
+			Game::m_quadTreev2->Insert(enemy.second);
+		}
 	}
+	for (auto index : m_deadKeyList)
+	{
+		m_spawnList.erase(index);
+	}
+	m_deadKeyList.clear();
 }
 
 void EnemySpawner::SpawnNextEnemy()

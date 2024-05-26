@@ -14,6 +14,8 @@ public:
 	void Update(float deltaTime) override;
 	void TakeDamage(int damage);
 	int GetDamage();
+
+	inline bool IsDead() { return m_health->GetCurrentHealth() <= 0; };
 private:
 
 	void GetNextDirection(Vector2& direction);

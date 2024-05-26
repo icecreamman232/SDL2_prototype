@@ -19,7 +19,7 @@ private:
 
 	std::random_device rd;
 
-
+	std::vector<int> m_deadKeyList;
 	std::map<int, GameObject*> m_spawnList;
 };
 
