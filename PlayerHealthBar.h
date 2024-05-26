@@ -1,12 +1,13 @@
 #pragma once
+#include "UIBase.h"
 
-class PlayerHealthBar
+class PlayerHealthBar : public UIBase
 {
 public:
 	float fillBarAmount;
 	PlayerHealthBar(int x,int y,int width, int height);
 	void UpdateBar(float fillAmount);
-	void Render();
+	void Render() override;
 private:
 	float m_barWidth;
 

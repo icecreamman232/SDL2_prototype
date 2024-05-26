@@ -18,9 +18,10 @@ void Scene::Add(GameObject* object, RenderLayer renderLayer)
 		});
 }
 
-void Scene::Add(BMTextRenderer* textRenderer)
+
+void Scene::Add(UIBase* UIElement)
 {
-	m_textContainer.push_back(textRenderer);
+	m_UIContainer.push_back(UIElement);
 }
 
 void Scene::Render()
@@ -37,9 +38,9 @@ void Scene::Render()
 	}
 
 	//Render text and UI
-	for (auto text : m_textContainer)
+	for (auto element : m_UIContainer)
 	{
-		text->Render();
+		element->Render();
 	}
 }
 

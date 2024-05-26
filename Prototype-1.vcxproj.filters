@@ -37,6 +37,12 @@
     <Filter Include="Source Files\GameState">
       <UniqueIdentifier>{13d749a6-70f3-4e81-91bd-f9969f71caa7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{2b977153-ee10-44f6-b9df-edcbea79ec02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{7cf4f736-c22e-4feb-a2d5-4c779e758207}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,9 +80,6 @@
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHealthBar.cpp">
-      <Filter>Source Files\Player</Filter>
     </ClCompile>
     <ClCompile Include="SpaceShip.cpp">
       <Filter>Source Files\Player</Filter>
@@ -135,6 +138,12 @@
     <ClCompile Include="EnemySpawner.cpp">
       <Filter>Source Files\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="UIBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHealthBar.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -175,9 +184,6 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHealthBar.h">
-      <Filter>Header Files\Player</Filter>
     </ClInclude>
     <ClInclude Include="SpaceShip.h">
       <Filter>Header Files\Player</Filter>
@@ -238,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="EnemySpawner.h">
       <Filter>Header Files\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="UIBase.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHealthBar.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

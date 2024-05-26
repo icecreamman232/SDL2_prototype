@@ -39,4 +39,6 @@ void PlayerHealthBar::Render()
 
 	SDL_SetTextureColorMod(m_texture, 255, 0, 0);
 	SDL_RenderCopyF(Game::Renderer, m_texture, &m_srcRect, &m_barRect);
+
+	UIBase::Render();
 }

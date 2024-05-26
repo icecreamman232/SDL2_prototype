@@ -36,7 +36,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	Game::CurrentScene->Add(m_waveTitle);
 	Game::CurrentScene->Add(m_waveTimerText);
-
+	Game::CurrentScene->Add(m_healthBar);
 }
 
 void GameplayState::Update(float deltaTime)
@@ -81,7 +81,7 @@ void GameplayState::Update(float deltaTime)
 
 void GameplayState::Render()
 {
-	m_healthBar->Render();
+	
 }
 
 std::string GameplayState::GetFormatedTime()

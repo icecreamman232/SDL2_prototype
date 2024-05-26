@@ -3,16 +3,17 @@
 #include "Math/Vector2.h"
 #include <string>
 #include <SDL.h>
+#include "UIBase.h"
 
 using namespace Render;
 
 
-class BMTextRenderer
+class BMTextRenderer : public UIBase
 { 
 public:
 	BMTextRenderer(TEXTURE_ID textureID, std::string text,
 					Pivot pivot, int x, int y);
-	void Render();
+	void Render() override;
 
 	inline void SetSpacing(float spacing) { m_spacing = spacing; };
 	inline void SetSize(int size) { m_size = size; };

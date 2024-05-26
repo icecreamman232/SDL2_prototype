@@ -3,7 +3,7 @@
 #include <map>
 #include <vector>
 #include "GameObject.h"
-#include "BMTextRenderer.h"
+#include "UIBase.h"
 
 using namespace Render;
 
@@ -14,12 +14,12 @@ public:
 	void Add(GameObject* object, RenderLayer renderLayer);
 
 	//TODO:Add text and UI to separated layer and container and render calls
-	void Add(BMTextRenderer* textRenderer); 
+	void Add(UIBase* UIElement);
 
 	void Render();
 	void Remove(GameObject* object, RenderLayer rendeLayer);
 private:
 	std::map<RenderLayer, std::vector<GameObject*>> m_renderingContainer;
-	std::vector<BMTextRenderer*> m_textContainer;
+	std::vector<UIBase*> m_UIContainer;
 };
 
