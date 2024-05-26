@@ -123,17 +123,6 @@ void Game::Update(float deltaTime)
 
 	m_healthBar->UpdateBar(player->GetPercentHealth());
 
-
-	auto result = m_quadTreev2->GetCollision(player, Layer::ENEMY);
-	if (result != nullptr)
-	{
-		auto slime = dynamic_cast<Slime*>(result);
-		if (slime != nullptr)
-		{
-			player->TakeDamage(slime->GetDamage());
-		}
-	}
-
 	m_gameStateManager.Update(deltaTime);
 
 	//Toggle the FPS Overlay

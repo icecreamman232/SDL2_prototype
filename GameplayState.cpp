@@ -62,6 +62,18 @@ void GameplayState::Update(float deltaTime)
 	m_player->Update(deltaTime);
 	Game::m_quadTreev2->Insert(m_player);
 
+
+	//Check collision between player and enemy
+	auto result = Game::m_quadTreev2->GetCollision(m_player, Layer::ENEMY);
+	if (result != nullptr)
+	{
+		auto slime = dynamic_cast<Slime*>(result);
+		if (slime != nullptr)
+		{
+			m_player->TakeDamage(slime->GetDamage());
+		}
+	}
+
 }
 
 void GameplayState::Render()
