@@ -16,6 +16,7 @@
 #include "imgui.h"
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_sdlrenderer2.h"
+#include "GameStateManager.h"
 
 using namespace std;
 
@@ -51,20 +52,10 @@ private:
 
 	Mix_Music* music;
 
-	Slime* m_enemy;
-	Slime* m_enemy1;
-	Slime* m_enemy2;
-	Slime* m_enemy3;
-	Slime* m_enemy4;
-	Slime* m_enemy5;
-	Slime* m_enemy6;
-	Slime* m_enemy7;
+
+	GameStateManager m_gameStateManager;
 
 	PlayerHealthBar* m_healthBar;
-	SpaceShip* m_player;
-
-
-	BMTextRenderer* m_text;
 
 	//ImGUI
 	ImGuiIO io;

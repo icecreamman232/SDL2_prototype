@@ -22,8 +22,6 @@ BMTextRenderer::BMTextRenderer(TEXTURE_ID textureID, std::string text,Pivot pivo
 	m_destRect.h = 16;
 
 	ComputeTextSize();
-
-	Game::CurrentScene->Add(this);
 }
 
 void BMTextRenderer::Render()

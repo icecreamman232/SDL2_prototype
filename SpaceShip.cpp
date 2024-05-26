@@ -21,6 +21,8 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY
 	{
 		Game::m_quadTreev2->Insert(bullet);
 	}
+
+	Game::CurrentScene->Add(dynamic_cast<GameObject*>(this), RenderLayer::PLAYER);
 }
 
 void SpaceShip::SetDirectionX(float value)

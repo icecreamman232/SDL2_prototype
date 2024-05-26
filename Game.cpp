@@ -88,63 +88,11 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	AssetManager::Instance().Initialize();
 	CurrentScene = new Scene();
 
-	m_text = new BMTextRenderer(BM_FONT_PIXEL, "WAVE",Render::Pivot::CENTER, Game::ScreenWidth/2, 10);
-	m_text->SetSpacing(20);
-	m_text->SetSize(32);
-
 	m_healthBar = new PlayerHealthBar(20, 20, 200, 20);
-
-	m_enemy = new Slime("enemy", SLIME_TEX, 0, 0, 16, 16,0);
-	m_enemy->SetLayer(Layer::ENEMY);
-
-	m_enemy1 = new Slime("enemy1",SLIME_TEX, 0, 100, 16, 16,1);
-	m_enemy1->SetLayer(Layer::ENEMY);
-
-	m_enemy2 = new Slime("enemy2", SLIME_TEX, 100, 0, 16, 16,2);
-	m_enemy2->SetLayer(Layer::ENEMY);
-
-	m_enemy3 = new Slime("enemy3",SLIME_TEX, 1110, 100, 16, 16,3);
-	m_enemy3->SetLayer(Layer::ENEMY);
-
-	m_enemy4 = new Slime("enemy4",SLIME_TEX, 800, 500, 16, 16,4);
-	m_enemy4->SetLayer(Layer::ENEMY);
-
-	m_enemy5 = new Slime("enemy5",SLIME_TEX, 1000, 300, 16, 16,5);
-	m_enemy5->SetLayer(Layer::ENEMY);
-
-	m_enemy6 = new Slime("enemy6",SLIME_TEX, 300, 600, 16, 16,7);
-	m_enemy6->SetLayer(Layer::ENEMY);
-
-	m_enemy7 = new Slime("enemy7",SLIME_TEX, 500, 600, 16, 16,6);
-	m_enemy7->SetLayer(Layer::ENEMY);
-
-
-	m_player = new SpaceShip("Ship",PLAYER_TEX, 300, 300, 18, 16,9);
-	m_player->SetLayer(Layer::PLAYER);
 
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
 
-	m_quadTreev2->Insert(m_player);
-	m_quadTreev2->Insert(m_enemy);
-	m_quadTreev2->Insert(m_enemy1);
-	m_quadTreev2->Insert(m_enemy2);
-	m_quadTreev2->Insert(m_enemy3);
-	m_quadTreev2->Insert(m_enemy4);
-	m_quadTreev2->Insert(m_enemy5);
-	m_quadTreev2->Insert(m_enemy6);
-	m_quadTreev2->Insert(m_enemy7);
-
-
-	//Add game object to current scene
-	CurrentScene->Add(m_enemy, RenderLayer::ENEMY);
-	CurrentScene->Add(m_enemy1, RenderLayer::ENEMY);
-	CurrentScene->Add(m_enemy2, RenderLayer::ENEMY);
-	CurrentScene->Add(m_enemy3, RenderLayer::ENEMY);
-	CurrentScene->Add(m_enemy4, RenderLayer::ENEMY);
-	CurrentScene->Add(m_enemy5, RenderLayer::ENEMY);
-	CurrentScene->Add(m_enemy6, RenderLayer::ENEMY);
-	CurrentScene->Add(m_enemy7, RenderLayer::ENEMY);
-	CurrentScene->Add(m_player, RenderLayer::ENEMY);
+	m_gameStateManager.Initialize();
 
 	//Mix_PlayMusic(music, -1);
 	Mix_FadeInMusic(music, -1, 1500);
@@ -170,40 +118,23 @@ void Game::HandleEvents()
 
 void Game::Update(float deltaTime)
 {
+	auto player = dynamic_cast<GameplayState*>(m_gameStateManager.CurrentState())->GetPlayer();
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
 
-	m_quadTreev2->Insert(m_player);
-	m_quadTreev2->Insert(m_enemy);
-	m_quadTreev2->Insert(m_enemy1);
-	m_quadTreev2->Insert(m_enemy2);
-	m_quadTreev2->Insert(m_enemy3);
-	m_quadTreev2->Insert(m_enemy4);
-	m_quadTreev2->Insert(m_enemy5);
-	m_quadTreev2->Insert(m_enemy6);
-	m_quadTreev2->Insert(m_enemy7);
-
-	m_enemy->Update(deltaTime);
-	m_enemy1->Update(deltaTime);
-	m_enemy2->Update(deltaTime);
-	m_enemy3->Update(deltaTime);
-	m_enemy4->Update(deltaTime);
-	m_enemy5->Update(deltaTime);
-	m_enemy6->Update(deltaTime);
-	m_enemy7->Update(deltaTime);
-	m_player->Update(deltaTime);
-
-	m_healthBar->UpdateBar(m_player->GetPercentHealth());
+	m_healthBar->UpdateBar(player->GetPercentHealth());
 
 
-	auto result = m_quadTreev2->GetCollision(m_player, Layer::ENEMY);
+	auto result = m_quadTreev2->GetCollision(player, Layer::ENEMY);
 	if (result != nullptr)
 	{
 		auto slime = dynamic_cast<Slime*>(result);
 		if (slime != nullptr)
 		{
-			m_player->TakeDamage(slime->GetDamage());
+			player->TakeDamage(slime->GetDamage());
 		}
 	}
+
+	m_gameStateManager.Update(deltaTime);
 
 	//Toggle the FPS Overlay
 	if (Input::Instance().GetKeyPressed(SDL_Scancode::SDL_SCANCODE_P))
@@ -252,8 +183,6 @@ void Game::RenderImGUI()
 
 void Game::Render(float deltaTime)
 {
-
-
 	//m_quadTree->Render(m_renderer);
 	SDL_SetRenderDrawColor(Renderer, 31, 31, 31, 255);
 	SDL_RenderClear(Renderer);
@@ -263,6 +192,9 @@ void Game::Render(float deltaTime)
 	CurrentScene->Render();
 
 	m_healthBar->Render();
+
+
+	m_gameStateManager.Render();
 
 	if (m_showFPSOverlay)
 	{
