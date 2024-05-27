@@ -39,6 +39,7 @@ public:
 	static SDL_Renderer* Renderer;
 	static Scene* CurrentScene;
 	static QuadTreev2* m_quadTreev2;
+	static float DeltaTime;
 
 private:
 	bool m_isRunning;

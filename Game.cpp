@@ -9,6 +9,7 @@ int Game::ScreenHeight = 0;
 SDL_Renderer* Game::Renderer = nullptr;
 Scene* Game::CurrentScene = nullptr;
 QuadTreev2* Game::m_quadTreev2 = nullptr;
+float Game::DeltaTime = 0;
 
 using namespace General;
 
@@ -82,6 +83,9 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 
+
+	DeltaTime = 1.0 /60.0;
+
 	music = Mix_LoadMUS("Asset/Music/DaniStob-OverdriveSunset-Loop.wav");
 
 	AssetManager::Instance().Initialize();
@@ -94,10 +98,10 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 
 	//Mix_PlayMusic(music, -1);
 	Mix_FadeInMusic(music, -1, 1500);
-	while (Mix_FadingMusic() == MIX_FADING_IN)
+	/*while (Mix_FadingMusic() == MIX_FADING_IN)
 	{
 		SDL_Delay(30);
-	}
+	}*/
 }
 
 void Game::HandleEvents()
@@ -116,6 +120,8 @@ void Game::HandleEvents()
 
 void Game::Update(float deltaTime)
 {
+	DeltaTime = deltaTime;
+
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
 
 	m_gameStateManager.Update(deltaTime);

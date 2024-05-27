@@ -16,7 +16,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_secondsCounter = 0.0;
 
 
-	m_player = new SpaceShip("Ship", PLAYER_TEX, 300, 300, 18, 16, 9);
+	m_player = new SpaceShip("Ship", PLAYER_TEX, Game::ScreenWidth / 2, Game::ScreenHeight / 2, 18, 16, 9);
 	m_player->SetLayer(Layer::PLAYER);
 	Game::m_quadTreev2->Insert(m_player);
 
@@ -37,6 +37,8 @@ void GameplayState::Initialize(GameStateManager* manager)
 	Game::CurrentScene->Add(m_waveTitle);
 	Game::CurrentScene->Add(m_waveTimerText);
 	Game::CurrentScene->Add(m_healthBar);
+
+	m_healthBar->FadeIn(0.5f);
 }
 
 void GameplayState::Update(float deltaTime)

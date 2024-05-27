@@ -8,8 +8,17 @@ using namespace General;
 
 void EnemySpawner::Initialize()
 {
-	m_delayTime = 2.5f;
+	m_initDelayTime = 1.0f;
+	m_delayTime = m_initDelayTime;
 	m_timer = 0.0f;
+
+	//Every 5 seconds, we reduce the delay time to spawn new enemy
+	m_timeMark = 5.0;
+	//The reduce value per 5 seconds
+	m_delayTimeReduce = 0.1f;
+
+	m_minDelayTime = 0.5f;
+
 	m_numberSpawned = 0;
 }
 
@@ -23,6 +32,17 @@ void EnemySpawner::Update(float deltaTime)
 void EnemySpawner::UpdateTimer(float deltaTime)
 {
 	m_timer += deltaTime;
+	m_timerReduce += deltaTime;
+
+	if (m_timerReduce >= m_timeMark)
+	{
+		m_timerReduce = 0;
+		m_delayTime -= m_delayTimeReduce;
+		if (m_delayTime <= m_minDelayTime)
+		{
+			m_delayTime = m_minDelayTime;
+		}
+	}
 
 	if (m_timer >= m_delayTime)
 	{

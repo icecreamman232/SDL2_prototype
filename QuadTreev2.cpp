@@ -237,6 +237,7 @@ std::vector<QuadTreev2*> QuadTreev2::GetLeaves(GameObject* object)
 
 void QuadTreev2::Render(SDL_Renderer* render)
 {
+	return;
 	if (IsLeaf)
 	{
 		SDL_SetRenderDrawColor(render, 255, 0, 0, 255);

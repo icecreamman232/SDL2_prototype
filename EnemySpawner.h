@@ -14,8 +14,16 @@ private:
 	void SpawnNextEnemy();
 
 	float m_timer;
+	float m_initDelayTime;
 	float m_delayTime;
 	int m_numberSpawned;
+
+	//After this time duration, spawn delay time will be reduced to increase tension
+	float m_timerReduce;
+	float m_timeMark;
+	float m_delayTimeReduce;
+	float m_minDelayTime;
+	
 
 	std::random_device rd;
 
