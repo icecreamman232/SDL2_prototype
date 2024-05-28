@@ -141,6 +141,7 @@
     <ClCompile Include="BMTextRenderer.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="EnemyHealthEventDispatcher.cpp" />
     <ClCompile Include="EnemySpawner.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Math\MathHelper.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="ObjectPooler.cpp" />
+    <ClCompile Include="IDispatcher.cpp" />
     <ClCompile Include="PlayerHealthBar.cpp" />
     <ClCompile Include="QuadTreev2.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -175,6 +177,8 @@
     <ClInclude Include="BMTextRenderer.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="MyEvent.h" />
+    <ClInclude Include="EnemyHealthEventDispatcher.h" />
     <ClInclude Include="EnemySpawner.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -195,6 +199,8 @@
     <ClInclude Include="Math\MathHelper.h" />
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="ObjectPooler.h" />
+    <ClInclude Include="ISubscriber.h" />
+    <ClInclude Include="IDispatcher.h" />
     <ClInclude Include="PlayerHealthBar.h" />
     <ClInclude Include="QuadTreev2.h" />
     <ClInclude Include="Scene.h" />

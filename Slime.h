@@ -4,6 +4,7 @@
 #include "Health.h"
 #include "Animation.h"
 #include "SDL_mixer.h"
+#include "ISubscriber.h"
 
 class Slime : public GameObject
 {
@@ -11,9 +12,12 @@ public:
 	Slime(const char* name, TEXTURE_ID textureID ,
 		int initX, int initY, int width, int height,int order = 0);
 	~Slime() override;
+
 	void Update(float deltaTime) override;
 	void TakeDamage(int damage);
 	int GetDamage();
+
+
 
 	inline bool IsDead() { return m_health->GetCurrentHealth() <= 0; };
 private:

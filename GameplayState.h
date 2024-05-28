@@ -4,6 +4,7 @@
 #include "EnemySpawner.h"
 #include "BMTextRenderer.h"
 #include "PlayerHealthBar.h"
+#include "EnemyHealthEventDispatcher.h"
 
 class GameStateManager;
 
@@ -28,9 +29,13 @@ private:
 	int m_seconds;
 	float m_secondsCounter;
 
+
 	//===== UI =====//
 	PlayerHealthBar* m_healthBar;
 	BMTextRenderer* m_waveTitle;
 	BMTextRenderer* m_waveTimerText;
+
+	//===Events===//
+	EnemyHealthEventDispatcher m_enemyHealthEventDispatcher;
 };
 

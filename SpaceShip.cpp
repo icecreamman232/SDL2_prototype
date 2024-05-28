@@ -28,6 +28,9 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY
 		Game::m_quadTreev2->Insert(bullet);
 	}
 
+	//Listen to death event of enemy
+	EnemyHealthEventDispatcher::Attach(this);
+
 	Game::CurrentScene->Add(dynamic_cast<GameObject*>(this), RenderLayer::PLAYER);
 }
 
@@ -98,6 +101,11 @@ void SpaceShip::Update(float deltaTime)
 
 
 	GameObject::Update(deltaTime);
+}
+
+void SpaceShip::OnTriggerEvent(const EnemyHealthEvent& eventType)
+{
+	std::cout << eventType.CurrentHealth << " DEAD \n";
 }
 
 void SpaceShip::UpdateInput()

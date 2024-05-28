@@ -3,12 +3,17 @@
 #include "Health.h"
 #include "Input.h"
 #include "Weapon.h"
+#include "ISubscriber.h"
+#include "MyEvent.h"
 
-class SpaceShip : public GameObject
+
+class SpaceShip : public GameObject, public ISubscriber<EnemyHealthEvent>
 {
 public:
 	SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order=0);
 	void Update(float deltaTime) override;
+
+	void OnTriggerEvent(const EnemyHealthEvent& eventType) override;
 
 	void SetDirectionX(float);
 	void SetDirectionY(float);

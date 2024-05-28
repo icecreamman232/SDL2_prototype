@@ -85,6 +85,9 @@ void EnemySpawner::SpawnNextEnemy()
 
 	auto newEnemy = new Slime(name.c_str(), TEXTURE_ID::SLIME_TEX, x, y, 16, 16, m_numberSpawned + 100);
 	newEnemy->SetLayer(Layer::ENEMY);
+
+	//EnemyHealthEventDispatcher::Attach(newEnemy);
+
 	m_spawnList[m_numberSpawned] = newEnemy;
 	Game::CurrentScene->Add(newEnemy,Render::RenderLayer::ENEMY);
 	Game::m_quadTreev2->Insert(newEnemy);
