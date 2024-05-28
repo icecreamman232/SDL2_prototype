@@ -35,6 +35,7 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY
 
 	//TODO:Load xp from savefile. For now it's always zero when player enter gameplay
 	m_xpController.SetCurrentXP(0);
+	m_xpController.SetMaxXP(100);
 
 	Game::CurrentScene->Add(dynamic_cast<GameObject*>(this), RenderLayer::PLAYER);
 }

@@ -42,7 +42,6 @@ void Slime::Update(float deltaTime)
 		&& !m_canMove)
 	{
 		//EnemyHealthEventDispatcher::Trigger(EnemyHealthEvent{ true , m_id});
-		XPEventDispatcher::Trigger(XPEvent{10});
 		m_isActive = false;
 		Game::CurrentScene->Remove(this, RenderLayer::ENEMY);
 	}
@@ -85,6 +84,9 @@ void Slime::UpdateMovement(float deltaTime)
 void Slime::TakeDamage(int damage)
 {
 	if(!m_isActive) return;
+
+	if (!m_canCollide) return;
+
 	if (m_health->GetCurrentHealth() <= 0) return;
 
 	if (m_health == nullptr) return;
@@ -98,6 +100,7 @@ void Slime::TakeDamage(int damage)
 		Mix_PlayChannel(-1, m_deadSFX, 0);
 		m_deadAnim->Play();
 		m_canCollide = false;
+		XPEventDispatcher::Trigger(XPEvent{ 10 });
 	}
 }
 

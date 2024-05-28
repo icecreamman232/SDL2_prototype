@@ -3,7 +3,7 @@
 #include "SpaceShip.h"
 #include "EnemySpawner.h"
 #include "BMTextRenderer.h"
-#include "PlayerHealthBar.h"
+#include "PlayerUIBar.h"
 #include "EnemyHealthEventDispatcher.h"
 
 class GameStateManager;
@@ -30,7 +30,8 @@ private:
 	float m_secondsCounter;
 
 	//===== UI =====//
-	PlayerHealthBar* m_healthBar;
+	PlayerUIBar* m_healthBar;
+	PlayerUIBar* m_expBar;
 	BMTextRenderer* m_waveTitle;
 	BMTextRenderer* m_waveTimerText;
 

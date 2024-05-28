@@ -108,7 +108,7 @@
     <ClCompile Include="EnemySpawner.cpp">
       <Filter>Source Files\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerHealthBar.cpp">
+    <ClCompile Include="PlayerUIBar.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="BMTextRenderer.cpp">
@@ -221,7 +221,7 @@
     <ClInclude Include="UIBase.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerHealthBar.h">
+    <ClInclude Include="PlayerUIBar.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">

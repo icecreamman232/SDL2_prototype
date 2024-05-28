@@ -162,7 +162,7 @@
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="ObjectPooler.cpp" />
     <ClCompile Include="IDispatcher.cpp" />
-    <ClCompile Include="PlayerHealthBar.cpp" />
+    <ClCompile Include="PlayerUIBar.cpp" />
     <ClCompile Include="QuadTreev2.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Slime.cpp" />
@@ -202,7 +202,7 @@
     <ClInclude Include="ObjectPooler.h" />
     <ClInclude Include="ISubscriber.h" />
     <ClInclude Include="IDispatcher.h" />
-    <ClInclude Include="PlayerHealthBar.h" />
+    <ClInclude Include="PlayerUIBar.h" />
     <ClInclude Include="QuadTreev2.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Singleton.h" />

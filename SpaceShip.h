@@ -22,7 +22,7 @@ public:
 	void TakeDamage(int damage);
 	float GetPercentHealth();
 
-	inline const ExpController XPController() { return m_xpController; };
+	inline ExpController XPController() { return m_xpController; };
 
 private:
 	float m_invulnerableDuration;
