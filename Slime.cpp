@@ -1,6 +1,7 @@
 #include "Slime.h"
 #include "Game.h"
 #include "EnemyHealthEventDispatcher.h"
+#include "XPEventDispatcher.h"
 
 Slime::Slime(const char* name, TEXTURE_ID textureID, 
 	int initX, int initY, int width, int height, int order) 
@@ -40,7 +41,8 @@ void Slime::Update(float deltaTime)
 		&& m_health->GetCurrentHealth() <= 0
 		&& !m_canMove)
 	{
-		EnemyHealthEventDispatcher::Trigger(EnemyHealthEvent{ true , m_id});
+		//EnemyHealthEventDispatcher::Trigger(EnemyHealthEvent{ true , m_id});
+		XPEventDispatcher::Trigger(XPEvent{10});
 		m_isActive = false;
 		Game::CurrentScene->Remove(this, RenderLayer::ENEMY);
 	}

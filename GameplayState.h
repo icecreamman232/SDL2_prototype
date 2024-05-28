@@ -29,7 +29,6 @@ private:
 	int m_seconds;
 	float m_secondsCounter;
 
-
 	//===== UI =====//
 	PlayerHealthBar* m_healthBar;
 	BMTextRenderer* m_waveTitle;

@@ -141,8 +141,8 @@
     <ClCompile Include="BMTextRenderer.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collider.cpp" />
-    <ClCompile Include="EnemyHealthEventDispatcher.cpp" />
     <ClCompile Include="EnemySpawner.cpp" />
+    <ClCompile Include="ExpController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameplayState.cpp" />
@@ -177,6 +177,7 @@
     <ClInclude Include="BMTextRenderer.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="ExpController.h" />
     <ClInclude Include="MyEvent.h" />
     <ClInclude Include="EnemyHealthEventDispatcher.h" />
     <ClInclude Include="EnemySpawner.h" />
@@ -211,6 +212,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UIBase.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="XPEventDispatcher.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Asset\blue-starship.png" />

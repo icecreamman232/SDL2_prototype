@@ -4,6 +4,7 @@
 #include "SpaceShip.h"
 #include "Game.h"
 #include "Math/MathHelper.h"
+#include "XPEventDispatcher.h"
 
 
 SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order)
@@ -30,6 +31,10 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY
 
 	//Listen to death event of enemy
 	EnemyHealthEventDispatcher::Attach(this);
+	XPEventDispatcher::Attach(this);
+
+	//TODO:Load xp from savefile. For now it's always zero when player enter gameplay
+	m_xpController.SetCurrentXP(0);
 
 	Game::CurrentScene->Add(dynamic_cast<GameObject*>(this), RenderLayer::PLAYER);
 }
@@ -106,7 +111,13 @@ void SpaceShip::Update(float deltaTime)
 
 void SpaceShip::OnTriggerEvent(const EnemyHealthEvent& eventType)
 {
-	std::cout << eventType.CurrentHealth << " DEAD \n";
+	//std::cout << eventType.CurrentHealth << " DEAD \n";
+}
+
+void SpaceShip::OnTriggerEvent(const XPEvent& eventType)
+{
+	//std::cout << "XP Gain: "<< eventType.XPGain << "\n";
+	m_xpController.AddXP(eventType.XPGain);
 }
 
 void SpaceShip::UpdateInput()

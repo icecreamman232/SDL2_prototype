@@ -150,7 +150,7 @@
     <ClCompile Include="IDispatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyHealthEventDispatcher.cpp">
+    <ClCompile Include="ExpController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -271,6 +271,12 @@
     </ClInclude>
     <ClInclude Include="MyEvent.h">
       <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XPEventDispatcher.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
