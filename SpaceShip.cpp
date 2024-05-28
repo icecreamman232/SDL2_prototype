@@ -65,6 +65,7 @@ void SpaceShip::Update(float deltaTime)
 			slime->TakeDamage(bullet->GetDamage());
 			bullet->SetActive(false);
 			m_primaryWeapon->DestroyBullet(bullet);
+			//std::cout << "BULLET HIT " << slime->GetID() << "\n";
 		}
 	}
 

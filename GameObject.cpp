@@ -93,6 +93,8 @@ bool GameObject::IsCollideWith(GameObject* other)
 	//If game object is inactive, it should not collide with any
 	if (!m_isActive) return false;
 
+	if (!m_canCollide) return false;
+
 	return m_collider->IsCollideWith(other);
 }
 

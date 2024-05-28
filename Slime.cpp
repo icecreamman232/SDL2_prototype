@@ -19,6 +19,7 @@ Slime::Slime(const char* name, TEXTURE_ID textureID,
 
 	m_deadSFX = Mix_LoadWAV("Asset/Sound/enemy-pop-out-death.wav");
 
+	m_canCollide = true;
 	m_canMove = true;
 }
 
@@ -94,6 +95,7 @@ void Slime::TakeDamage(int damage)
 		m_canMove = false;
 		Mix_PlayChannel(-1, m_deadSFX, 0);
 		m_deadAnim->Play();
+		m_canCollide = false;
 	}
 }
 

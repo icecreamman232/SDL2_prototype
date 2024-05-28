@@ -28,7 +28,7 @@ public:
 	const SDL_FRect Rect();
 	int GetID();
 
-	
+	inline bool CanCollide() { return m_canCollide; };
 	inline Vector2 GetPosition() { return m_pos; };
 	inline const char* GetName() { return m_name; };
 	inline Layer GetLayer() { return m_layer; };
@@ -43,6 +43,7 @@ protected:
 
 	int m_id;
 	Layer m_layer;
+	bool m_canCollide;
 	bool m_isActive;
 	const char* m_name;
 	double m_angle;
