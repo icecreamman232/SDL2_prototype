@@ -10,3 +10,9 @@ struct XPEvent
 {
 	int XPGain;
 };
+
+struct LevelUpEvent
+{
+	int CurrentLv;
+	int PreviousLv;
+};

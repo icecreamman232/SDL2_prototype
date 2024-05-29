@@ -4,16 +4,20 @@
 #include "EnemySpawner.h"
 #include "BMTextRenderer.h"
 #include "PlayerUIBar.h"
+#include "ISubscriber.h"
 #include "EnemyHealthEventDispatcher.h"
 
 class GameStateManager;
 
-class GameplayState : public GameState
+class GameplayState : public GameState,
+	public ISubscriber<LevelUpEvent>
 {
 public:
 	void Initialize(GameStateManager* manager) override;
 	void Update(float deltaTime) override;
 	void Render() override;
+
+	void OnTriggerEvent(const LevelUpEvent& eventType) override;
 
 	inline SpaceShip* GetPlayer() { return m_player; };
 private:
@@ -35,7 +39,5 @@ private:
 	BMTextRenderer* m_waveTitle;
 	BMTextRenderer* m_waveTimerText;
 
-	//===Events===//
-	EnemyHealthEventDispatcher m_enemyHealthEventDispatcher;
 };
 

@@ -4,7 +4,8 @@
 #include "GameStateManager.h"
 #include <string>
 #include <sstream>
-#include "Slime.h"	
+#include "Slime.h"
+#include "PlayerLevelUpEventDispatcher.h"
 
 void GameplayState::Initialize(GameStateManager* manager)
 {
@@ -47,6 +48,9 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	m_healthBar->FadeIn(0.5f);
 	m_expBar->FadeIn(0.5f);
+
+
+	PlayerLevelUpEventDispatcher::Attach(this);
 }
 
 void GameplayState::Update(float deltaTime)
@@ -93,6 +97,11 @@ void GameplayState::Update(float deltaTime)
 void GameplayState::Render()
 {
 	
+}
+
+void GameplayState::OnTriggerEvent(const LevelUpEvent& eventType)
+{
+	std::cout << "LEVEL UP!\n";
 }
 
 std::string GameplayState::GetFormatedTime()

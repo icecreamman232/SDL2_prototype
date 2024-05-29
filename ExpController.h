@@ -1,17 +1,27 @@
 #pragma once
+#include <vector>
 
 class ExpController
 {
 public:
-
-
-	inline void AddXP(int xp) { m_curXP += xp; };
-	inline void SetCurrentXP(int xp) { m_curXP = xp; };
-	inline void SetMaxXP(int maxXP) { m_maxXP = maxXP; };
+	void Initialize(int multiple);
+	void AddXP(int xp);
 	inline int GetCurrentXP() { return m_curXP; };
-	inline float GetXPPercent() { return ( static_cast<float>(m_curXP) / m_maxXP); };
+	inline float GetXPPercent() { return ( static_cast<float>(m_curXP) / m_curMaxXPPerLevel[m_curLevel]); };
+	inline int GetCurrentLv() { return m_curLevel; };
 private:
+
+	void LevelUp();
+
 	int m_curXP;
-	int m_maxXP;
+	int m_multipleFactor;
+
+	int m_curLevel;
+	std::vector<int> m_originalXPArray = {5,10,15,
+								          25,35,45,
+								          65,85,125};
+	std::vector<int> m_curMaxXPPerLevel = {5,10,15,
+								           25,35,45,
+								           65,85,125 };
 };
 

@@ -1,4 +1,5 @@
 #pragma once
+#include "SDL_mixer.h"
 #include "GameObject.h"
 #include "Health.h"
 #include "Input.h"
@@ -8,7 +9,9 @@
 #include "ExpController.h"
 
 
-class SpaceShip : public GameObject, public ISubscriber<EnemyHealthEvent>, public ISubscriber<XPEvent>
+class SpaceShip : public GameObject, 
+	public ISubscriber<EnemyHealthEvent>, 
+	public ISubscriber<XPEvent>
 {
 public:
 	SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order=0);
@@ -25,6 +28,9 @@ public:
 	inline ExpController XPController() { return m_xpController; };
 
 private:
+	void UpdateInput();
+	void UpdateMovement(float deltaTime);
+
 	float m_invulnerableDuration;
 	float m_flickerTimer; //use for calculating flickering sprite color duration
 	float m_flickerInterval;
@@ -37,7 +43,7 @@ private:
 	//====EXP===//
 	ExpController m_xpController;
 
-	void UpdateInput();
-	void UpdateMovement(float deltaTime);
+	//===SFX===//
+	Mix_Chunk* m_levelUpSFX;
 };
 

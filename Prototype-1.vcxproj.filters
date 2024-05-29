@@ -49,6 +49,9 @@
     <Filter Include="Source Files\Core">
       <UniqueIdentifier>{6b2b097b-dcb6-4aa2-ab35-9b8da02fb5db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Events">
+      <UniqueIdentifier>{c87d155e-d486-4252-8f82-af676d924108}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -263,20 +266,23 @@
     <ClInclude Include="ISubscriber.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="IDispatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyHealthEventDispatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyEvent.h">
-      <Filter>Source Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="ExpController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyHealthEventDispatcher.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
     <ClInclude Include="XPEventDispatcher.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLevelUpEventDispatcher.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="IDispatcher.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="MyEvent.h">
+      <Filter>Header Files\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
