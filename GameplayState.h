@@ -28,12 +28,15 @@ public:
 	inline SpaceShip* GetPlayer() { return m_player; };
 private:
 
+	void InitializeUI();
 	std::string GetFormatedTime();
 	void UpdateUI();
 
 	GameStateManager* m_manager;
 	SpaceShip* m_player;
 	EnemySpawner* m_enemySpawner;
+
+	Uint16 m_numLvGained;
 
 	int m_coinAmount;
 

@@ -17,7 +17,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_minute = 0;
 	m_seconds = 30;
 	m_secondsCounter = 0.0;
-
+	m_numLvGained = 0;
 
 	m_player = new SpaceShip("Ship", PLAYER_TEX, Game::ScreenWidth / 2, Game::ScreenHeight / 2, 18, 16, 9);
 	m_player->SetLayer(Layer::PLAYER);
@@ -28,44 +28,8 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_enemySpawner = new EnemySpawner();
 	m_enemySpawner->Initialize();
 
-	m_healthBar = new PlayerUIBar(20, 20, 200, 20);
-	m_healthBar->SetBarColor({ 255, 0, 0 });
-	m_healthBar->SetBackgroundColor({ 255, 155, 155 });
 
-	m_hpTxtValue = std::to_string(m_player->GetHealth().GetCurrentHealth()) 
-								+ "/" 
-								+ std::to_string(m_player->GetHealth().GetMaxHealth());
-	m_hpText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 115, 22);
-	m_hpText->SetSpacing(8);
-	m_hpText->SetSize(16);
-
-
-	m_expBar = new PlayerUIBar(20, 50, 200, 20);
-	m_expBar->SetBarColor({ 0,162,232 });
-	m_expBar->SetBackgroundColor({ 142, 214, 232 });
-	m_expBar->SetBarFillInstant(0);
-
-	m_levelTxtValue = "Lv " + std::to_string(m_player->XPController().GetCurrentLv());
-
-	m_levelText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_levelTxtValue, Render::Pivot::CENTER, 120, 52);
-	m_levelText->SetSpacing(8);
-	m_levelText->SetSize(16);
-
-	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
-	m_waveTitle = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, Game::ScreenWidth / 2, 10);
-	m_waveTitle->SetSpacing(20);
-	m_waveTitle->SetSize(32);
-
-	m_waveTimerText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, GetFormatedTime(), Render::Pivot::CENTER, Game::ScreenWidth / 2 + 15, 50);
-	m_waveTimerText->SetSpacing(16);
-	m_waveTimerText->SetSize(24);
-
-	m_coinIcon = new UIImage();
-	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 70, 20, 20);
-
-	m_coinText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
-	m_coinText->SetSpacing(14);
-	m_coinText->SetSize(24);
+	InitializeUI();
 
 	Game::CurrentScene->Add(m_waveTitle);
 	Game::CurrentScene->Add(m_waveTimerText);
@@ -146,6 +110,7 @@ void GameplayState::ExitState()
 void GameplayState::OnTriggerEvent(const LevelUpEvent& eventType)
 {
 	m_levelTxtValue = "Lv " + std::to_string(m_player->XPController().GetCurrentLv());
+	m_numLvGained++;
 }
 
 void GameplayState::OnTriggerEvent(const EnemyHealthEvent& eventType)
@@ -160,6 +125,54 @@ void GameplayState::OnTriggerEvent(const EnemyHealthEvent& eventType)
 void GameplayState::OnTriggerEvent(const CoinCollectEvent& eventType)
 {
 	m_coinAmount++;
+}
+
+void GameplayState::InitializeUI()
+{
+	//Health bar
+	m_healthBar = new PlayerUIBar(20, 20, 200, 20);
+	m_healthBar->SetBarColor({ 255, 0, 0 });
+	m_healthBar->SetBackgroundColor({ 255, 155, 155 });
+
+	//Health text inside health bar
+	m_hpTxtValue = std::to_string(m_player->GetHealth().GetCurrentHealth())
+		+ "/"
+		+ std::to_string(m_player->GetHealth().GetMaxHealth());
+	m_hpText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 115, 22);
+	m_hpText->SetSpacing(8);
+	m_hpText->SetSize(16);
+
+	//Exp bar
+	m_expBar = new PlayerUIBar(20, 50, 200, 20);
+	m_expBar->SetBarColor({ 0,162,232 });
+	m_expBar->SetBackgroundColor({ 142, 214, 232 });
+	m_expBar->SetBarFillInstant(0);
+
+	//Exp text inside exp bar
+	m_levelTxtValue = "Lv " + std::to_string(m_player->XPController().GetCurrentLv());
+	m_levelText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_levelTxtValue, Render::Pivot::CENTER, 120, 52);
+	m_levelText->SetSpacing(8);
+	m_levelText->SetSize(16);
+
+	//Wave title text
+	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
+	m_waveTitle = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, Game::ScreenWidth / 2, 10);
+	m_waveTitle->SetSpacing(20);
+	m_waveTitle->SetSize(32);
+
+	//Wave timer text
+	m_waveTimerText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, GetFormatedTime(), Render::Pivot::CENTER, Game::ScreenWidth / 2 + 15, 50);
+	m_waveTimerText->SetSpacing(16);
+	m_waveTimerText->SetSize(24);
+
+	//Coin icon
+	m_coinIcon = new UIImage();
+	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 70, 20, 20);
+
+	//Number coin text
+	m_coinText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
+	m_coinText->SetSpacing(14);
+	m_coinText->SetSize(24);
 }
 
 std::string GameplayState::GetFormatedTime()
