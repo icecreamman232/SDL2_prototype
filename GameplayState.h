@@ -5,12 +5,13 @@
 #include "BMTextRenderer.h"
 #include "PlayerUIBar.h"
 #include "ISubscriber.h"
-#include "EnemyHealthEventDispatcher.h"
+#include "DropsManager.h"
 
 class GameStateManager;
 
 class GameplayState : public GameState,
-	public ISubscriber<LevelUpEvent>
+	public ISubscriber<LevelUpEvent>,
+	public ISubscriber<EnemyHealthEvent>
 {
 public:
 	void Initialize(GameStateManager* manager) override;
@@ -18,6 +19,7 @@ public:
 	void Render() override;
 
 	void OnTriggerEvent(const LevelUpEvent& eventType) override;
+	void OnTriggerEvent(const EnemyHealthEvent& eventType) override;
 
 	inline SpaceShip* GetPlayer() { return m_player; };
 private:
@@ -38,6 +40,9 @@ private:
 	PlayerUIBar* m_expBar;
 	BMTextRenderer* m_waveTitle;
 	BMTextRenderer* m_waveTimerText;
+
+	//====Drops===//
+	DropsManager* m_moneyDropsMnger;
 
 };
 

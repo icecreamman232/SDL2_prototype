@@ -1,5 +1,14 @@
 #pragma once
 
+
+struct WindowSettings
+{
+	int Width = 1366;
+	int Height = 768;
+};
+
+inline WindowSettings g_WindowSettings;
+
 namespace General
 {
 	enum Layer
@@ -19,6 +28,7 @@ namespace Render
 		PLAYER_TEX,
 		SLIME_TEX,
 		ENEMY_EXPLOSION,
+		COIN,
 
 		//WEAPON
 		PLAYER_NORMAL_BULLET = 50,
@@ -36,9 +46,10 @@ namespace Render
 		DEFAULT = 0,
 		PLAYER = 1,
 		ENEMY = 2,
+		ITEM = 3,
 		UI = 999,
 
-		COUNT = 3,
+		COUNT = 4,
 	};
 
 	enum Pivot

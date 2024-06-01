@@ -20,7 +20,6 @@ Slime::Slime(const char* name, TEXTURE_ID textureID,
 
 	m_deadSFX = Mix_LoadWAV("Asset/Sound/enemy-pop-out-death.wav");
 
-	m_canCollide = true;
 	m_canMove = true;
 }
 
@@ -41,7 +40,8 @@ void Slime::Update(float deltaTime)
 		&& m_health->GetCurrentHealth() <= 0
 		&& !m_canMove)
 	{
-		//EnemyHealthEventDispatcher::Trigger(EnemyHealthEvent{ true , m_id});
+		EnemyHealthEventDispatcher::Trigger(
+			EnemyHealthEvent { true , m_pos});
 		m_isActive = false;
 		Game::CurrentScene->Remove(this, RenderLayer::ENEMY);
 	}

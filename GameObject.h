@@ -28,6 +28,7 @@ public:
 	const SDL_FRect Rect();
 	int GetID();
 
+	inline void SetCollide(bool value) { m_canCollide = value; };
 	inline bool CanCollide() { return m_canCollide; };
 	inline Vector2 GetPosition() { return m_pos; };
 	inline const char* GetName() { return m_name; };

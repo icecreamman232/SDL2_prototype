@@ -3,7 +3,7 @@
 struct EnemyHealthEvent
 {
 	bool IsDead;
-	int CurrentHealth;
+	Vector2 DeadPosition;
 };
 
 struct XPEvent

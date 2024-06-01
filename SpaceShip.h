@@ -10,14 +10,12 @@
 
 
 class SpaceShip : public GameObject, 
-	public ISubscriber<EnemyHealthEvent>, 
 	public ISubscriber<XPEvent>
 {
 public:
 	SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order=0);
 	void Update(float deltaTime) override;
 
-	void OnTriggerEvent(const EnemyHealthEvent& eventType) override;
 	void OnTriggerEvent(const XPEvent& eventType) override;
 
 	void SetDirectionX(float);

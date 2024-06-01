@@ -141,6 +141,7 @@
     <ClCompile Include="BMTextRenderer.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="DropsManager.cpp" />
     <ClCompile Include="EnemySpawner.cpp" />
     <ClCompile Include="ExpController.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Health.cpp" />
+    <ClCompile Include="IItem.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -177,7 +179,9 @@
     <ClInclude Include="BMTextRenderer.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="DropsManager.h" />
     <ClInclude Include="ExpController.h" />
+    <ClInclude Include="IItem.h" />
     <ClInclude Include="MyEvent.h" />
     <ClInclude Include="EnemyHealthEventDispatcher.h" />
     <ClInclude Include="EnemySpawner.h" />

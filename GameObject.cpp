@@ -15,6 +15,7 @@ GameObject::GameObject(const char* name, TEXTURE_ID textureID, int initX, int in
 	m_angle = 0;
 
 	m_collider = new Collider(this);
+	m_canCollide = true;
 
 	m_sprite = new Sprite(AssetManager::Instance().LoadTexture(textureID), initX, initY, width, height, order);
 

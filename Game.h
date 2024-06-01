@@ -18,6 +18,7 @@ using namespace std;
 
 class BMTextRenderer;
 
+
 class Game
 {
 public:

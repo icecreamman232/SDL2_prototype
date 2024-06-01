@@ -6,6 +6,7 @@
 #include <sstream>
 #include "Slime.h"
 #include "PlayerLevelUpEventDispatcher.h"
+#include "EnemyHealthEventDispatcher.h"
 
 void GameplayState::Initialize(GameStateManager* manager)
 {
@@ -50,6 +51,9 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_expBar->FadeIn(0.5f);
 
 
+	m_moneyDropsMnger = new DropsManager(20);
+
+	EnemyHealthEventDispatcher::Attach(this);
 	PlayerLevelUpEventDispatcher::Attach(this);
 }
 
@@ -92,6 +96,9 @@ void GameplayState::Update(float deltaTime)
 		}
 	}
 
+	//Check collision between player and coins
+	m_moneyDropsMnger->Update(m_player, deltaTime);
+
 }
 
 void GameplayState::Render()
@@ -102,6 +109,15 @@ void GameplayState::Render()
 void GameplayState::OnTriggerEvent(const LevelUpEvent& eventType)
 {
 	std::cout << "LEVEL UP!\n";
+}
+
+void GameplayState::OnTriggerEvent(const EnemyHealthEvent& eventType)
+{
+	if (eventType.IsDead)
+	{
+		//Drop items at enemy dead spot
+		m_moneyDropsMnger->Drop(1, eventType.DeadPosition);
+	}
 }
 
 std::string GameplayState::GetFormatedTime()

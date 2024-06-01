@@ -31,7 +31,6 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY
 	}
 
 	//Listen to death event of enemy
-	EnemyHealthEventDispatcher::Attach(this);
 	XPEventDispatcher::Attach(this);
 
 	//TODO:Load xp from savefile. For now it's always zero when player enter gameplay
@@ -113,10 +112,6 @@ void SpaceShip::Update(float deltaTime)
 	GameObject::Update(deltaTime);
 }
 
-void SpaceShip::OnTriggerEvent(const EnemyHealthEvent& eventType)
-{
-	//std::cout << eventType.CurrentHealth << " DEAD \n";
-}
 
 void SpaceShip::OnTriggerEvent(const XPEvent& eventType)
 {

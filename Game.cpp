@@ -39,7 +39,7 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 		std::cout << "Initialized..." << std::endl;
 		SDL_WindowFlags window_flags = (SDL_WindowFlags)(SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
-		m_window = SDL_CreateWindow("Prototype", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1366, 768, window_flags);
+		m_window = SDL_CreateWindow("Prototype", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, g_WindowSettings.Width, g_WindowSettings.Height, window_flags);
 		Renderer = SDL_CreateRenderer(m_window, -1, 0);
 		if (Renderer)
 		{
