@@ -162,6 +162,9 @@
     <ClCompile Include="IItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UIImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -295,6 +298,12 @@
     </ClInclude>
     <ClInclude Include="IItem.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoinCollectEventDispatcher.h">
+      <Filter>Header Files\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,3 +11,7 @@ void GameState::Update(float deltaTime)
 void GameState::Render()
 {
 }
+
+void GameState::ExitState()
+{
+}

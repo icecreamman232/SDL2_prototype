@@ -7,6 +7,7 @@
 #include "Slime.h"
 #include "PlayerLevelUpEventDispatcher.h"
 #include "EnemyHealthEventDispatcher.h"
+#include "CoinCollectEventDispatcher.h"
 
 void GameplayState::Initialize(GameStateManager* manager)
 {
@@ -44,9 +45,11 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_expBar->SetBackgroundColor({ 142, 214, 232 });
 	m_expBar->SetBarFillInstant(0);
 
-	m_expText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 120, 52);
-	m_expText->SetSpacing(8);
-	m_expText->SetSize(16);
+	m_levelTxtValue = "Lv " + std::to_string(m_player->XPController().GetCurrentLv());
+
+	m_levelText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_levelTxtValue, Render::Pivot::CENTER, 120, 52);
+	m_levelText->SetSpacing(8);
+	m_levelText->SetSize(16);
 
 	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
 	m_waveTitle = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, Game::ScreenWidth / 2, 10);
@@ -57,12 +60,21 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_waveTimerText->SetSpacing(16);
 	m_waveTimerText->SetSize(24);
 
+	m_coinIcon = new UIImage();
+	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 70, 20, 20);
+
+	m_coinText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
+	m_coinText->SetSpacing(14);
+	m_coinText->SetSize(24);
+
 	Game::CurrentScene->Add(m_waveTitle);
 	Game::CurrentScene->Add(m_waveTimerText);
 	Game::CurrentScene->Add(m_healthBar);
 	Game::CurrentScene->Add(m_expBar);
 	Game::CurrentScene->Add(m_hpText);
-	Game::CurrentScene->Add(m_expText);
+	Game::CurrentScene->Add(m_levelText);
+	Game::CurrentScene->Add(m_coinIcon);
+	Game::CurrentScene->Add(m_coinText);
 
 	m_healthBar->FadeIn(0.5f);
 	m_expBar->FadeIn(0.5f);
@@ -72,6 +84,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	EnemyHealthEventDispatcher::Attach(this);
 	PlayerLevelUpEventDispatcher::Attach(this);
+	CoinCollectEventDistpacher::Attach(this);
 }
 
 void GameplayState::Update(float deltaTime)
@@ -123,9 +136,16 @@ void GameplayState::Render()
 	
 }
 
+void GameplayState::ExitState()
+{
+	EnemyHealthEventDispatcher::Detach(this);
+	PlayerLevelUpEventDispatcher::Detach(this);
+	CoinCollectEventDistpacher::Detach(this);
+}
+
 void GameplayState::OnTriggerEvent(const LevelUpEvent& eventType)
 {
-	std::cout << "LEVEL UP!\n";
+	m_levelTxtValue = "Lv " + std::to_string(m_player->XPController().GetCurrentLv());
 }
 
 void GameplayState::OnTriggerEvent(const EnemyHealthEvent& eventType)
@@ -135,6 +155,11 @@ void GameplayState::OnTriggerEvent(const EnemyHealthEvent& eventType)
 		//Drop items at enemy dead spot
 		m_moneyDropsMnger->Drop(3, eventType.DeadPosition);
 	}
+}
+
+void GameplayState::OnTriggerEvent(const CoinCollectEvent& eventType)
+{
+	m_coinAmount++;
 }
 
 std::string GameplayState::GetFormatedTime()
@@ -179,11 +204,11 @@ void GameplayState::UpdateUI()
 	m_hpText->SetText(m_hpTxtValue);
 
 	m_expBar->UpdateBar(m_player->XPController().GetXPPercent());
-	m_expTxtValue = std::to_string(m_player->XPController().GetCurrentXP())
-		+ "/"
-		+ std::to_string(m_player->XPController().GetMaxXP());
 
-	m_expText->SetText(m_expTxtValue);
+	m_levelText->SetText(m_levelTxtValue);
+
+	m_coinIcon->Update();
+	m_coinText->SetText(std::to_string(m_coinAmount));
 }
 
 

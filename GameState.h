@@ -12,6 +12,7 @@ public:
 	virtual void Initialize(GameStateManager* manager);
 	virtual void Update(float deltaTime);
 	virtual void Render();
+	virtual void ExitState();
 	virtual ~GameState() {};
 };
 

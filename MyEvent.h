@@ -16,3 +16,8 @@ struct LevelUpEvent
 	int CurrentLv;
 	int PreviousLv;
 };
+
+struct CoinCollectEvent
+{
+	int CoinValue;
+};

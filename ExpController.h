@@ -9,7 +9,8 @@ public:
 	inline int GetCurrentXP() { return m_curXP; };
 	inline int GetMaxXP() { return m_curMaxXPPerLevel[m_curLevel]; };
 	inline float GetXPPercent() { return ( static_cast<float>(m_curXP) / m_curMaxXPPerLevel[m_curLevel]); };
-	inline int GetCurrentLv() { return m_curLevel; };
+	//As level is used as index so its starting from 0. So real level should be bigger 1 unit
+	inline int GetCurrentLv() { return m_curLevel + 1; };
 private:
 
 	void LevelUp();

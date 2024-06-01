@@ -171,6 +171,7 @@
     <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="BMTextRenderer.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="CoinCollectEventDispatcher.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="DropsManager.h" />
     <ClInclude Include="ExpController.h" />
@@ -216,6 +218,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UIBase.h" />
+    <ClInclude Include="UIImage.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="XPEventDispatcher.h" />
   </ItemGroup>

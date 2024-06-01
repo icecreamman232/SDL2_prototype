@@ -5,6 +5,7 @@
 class Sprite
 {
 public:
+	Sprite();
 	Sprite(SDL_Texture* texture, int x, int y, int width, int height, int order = 0);
 	void Render(float angle);
 	void Update(int x, int y);

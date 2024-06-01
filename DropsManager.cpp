@@ -1,6 +1,7 @@
 #include "DropsManager.h"
 #include <random>
 #include "Game.h"
+#include "CoinCollectEventDispatcher.h"
 
 DropsManager::DropsManager(int initialAmount)
 {
@@ -37,6 +38,7 @@ void DropsManager::Update(GameObject* objectToCheck, float deltaTime)
 			m_pool->m_activeList[i]->SetCollide(false);
 			Game::CurrentScene->Remove(m_pool->m_activeList[i], Render::RenderLayer::ITEM);
 
+			CoinCollectEventDistpacher::Trigger(CoinCollectEvent{ 1 });
 			Mix_PlayChannel(-1, m_collectCoinSFX,0);
 		}
 	}
