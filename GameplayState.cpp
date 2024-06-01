@@ -28,9 +28,12 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_enemySpawner->Initialize();
 
 	m_healthBar = new PlayerUIBar(20, 20, 200, 20);
-	m_healthBar->SetBarColor({ 255,0,0 });
+	m_healthBar->SetBarColor({ 255, 0, 0 });
+	m_healthBar->SetBackgroundColor({ 255, 155, 155 });
+
 	m_expBar = new PlayerUIBar(20, 50, 200, 20);
 	m_expBar->SetBarColor({ 0,162,232 });
+	m_expBar->SetBackgroundColor({ 142, 214, 232 });
 	m_expBar->SetBarFillInstant(0);
 
 	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
@@ -116,7 +119,7 @@ void GameplayState::OnTriggerEvent(const EnemyHealthEvent& eventType)
 	if (eventType.IsDead)
 	{
 		//Drop items at enemy dead spot
-		m_moneyDropsMnger->Drop(1, eventType.DeadPosition);
+		m_moneyDropsMnger->Drop(3, eventType.DeadPosition);
 	}
 }
 

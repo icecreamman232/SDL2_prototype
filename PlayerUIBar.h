@@ -8,6 +8,7 @@ public:
 	PlayerUIBar(int x,int y,int width, int height);
 	void SetBarFillInstant(float fillAmount);
 	void SetBarColor(SDL_Color color);
+	void SetBackgroundColor(SDL_Color color);
 	void FadeIn(float duration = 0.5f);
 	void FadeOut(float duration = 0.5f);
 	void UpdateBar(float fillAmount);
@@ -25,6 +26,7 @@ private:
 	void Show();
 
 	SDL_Color m_barColor;
+	SDL_Color m_backgroundColor;
 
 	float m_fadeDuration;
 	float m_timeStep;

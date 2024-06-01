@@ -25,6 +25,7 @@ PlayerUIBar::PlayerUIBar(int x, int y, int width, int height)
 	m_texture = AssetManager::Instance().LoadTexture(WHITE_BAR_UI);
 
 	m_barColor = { 255,255,255 };
+	m_backgroundColor = { 255,255,255 };
 
 	m_curAlpha = 0;
 	m_renderBarState = BarState::HIDE;
@@ -39,6 +40,11 @@ void PlayerUIBar::SetBarFillInstant(float fillAmount)
 void PlayerUIBar::SetBarColor(SDL_Color color)
 {
 	m_barColor = color;
+}
+
+void PlayerUIBar::SetBackgroundColor(SDL_Color color)
+{
+	m_backgroundColor = color;
 }
 
 void PlayerUIBar::UpdateBar(float fillAmount)
@@ -87,7 +93,7 @@ void PlayerUIBar::Render()
 	{
 		case BarState::FADE_IN:
 			SDL_SetTextureAlphaMod(m_texture, m_curAlpha);
-			SDL_SetTextureColorMod(m_texture, 255, 255, 255); //background bar is always white
+			SDL_SetTextureColorMod(m_texture, m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b);
 			SDL_RenderCopyF(Game::Renderer, m_texture, &m_srcRect, &m_backgroundRect);
 			SDL_SetTextureColorMod(m_texture, m_barColor.r, m_barColor.g, m_barColor.b);
 			SDL_RenderCopyF(Game::Renderer, m_texture, &m_srcRect, &m_barRect);
@@ -136,7 +142,7 @@ void PlayerUIBar::FadeOut(float duration)
 void PlayerUIBar::Show()
 {
 	//Background
-	SDL_SetTextureColorMod(m_texture, 255, 255, 255);
+	SDL_SetTextureColorMod(m_texture, m_backgroundColor.r, m_backgroundColor.g, m_backgroundColor.b);
 	SDL_RenderCopyF(Game::Renderer, m_texture, &m_srcRect, &m_backgroundRect);
 
 	//Foreground

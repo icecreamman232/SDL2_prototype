@@ -1,4 +1,5 @@
 #pragma once
+#include "SDL_mixer.h"
 #include "ObjectPooler.h"
 #include "IItem.h"
 
@@ -11,5 +12,7 @@ public:
 private:
 	ObjectPooler<IItem>* m_pool;
 	std::vector<IItem*> m_toBeRemovedList;
+
+	Mix_Chunk* m_collectCoinSFX;
 };
 
