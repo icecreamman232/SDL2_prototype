@@ -203,4 +203,9 @@ float SpaceShip::GetPercentHealth()
 	return MathHelper::Remap(m_health.GetCurrentHealth(), 0, m_health.GetMaxHealth(), 0, 1);
 }
 
+Health& SpaceShip::GetHealth()
+{
+	return m_health;
+}
+
 

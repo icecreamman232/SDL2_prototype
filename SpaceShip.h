@@ -23,6 +23,8 @@ public:
 	void TakeDamage(int damage);
 	float GetPercentHealth();
 
+	Health& GetHealth();
+
 	inline ExpController XPController() { return m_xpController; };
 
 private:

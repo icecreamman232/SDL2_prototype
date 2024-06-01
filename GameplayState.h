@@ -25,6 +25,7 @@ public:
 private:
 
 	std::string GetFormatedTime();
+	void UpdateUI();
 
 	GameStateManager* m_manager;
 	SpaceShip* m_player;
@@ -36,8 +37,14 @@ private:
 	float m_secondsCounter;
 
 	//===== UI =====//
+	std::string m_hpTxtValue;
+	std::string m_expTxtValue;
+
 	PlayerUIBar* m_healthBar;
 	PlayerUIBar* m_expBar;
+
+	BMTextRenderer* m_hpText;
+	BMTextRenderer* m_expText;
 	BMTextRenderer* m_waveTitle;
 	BMTextRenderer* m_waveTimerText;
 

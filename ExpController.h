@@ -7,6 +7,7 @@ public:
 	void Initialize(int multiple);
 	void AddXP(int xp);
 	inline int GetCurrentXP() { return m_curXP; };
+	inline int GetMaxXP() { return m_curMaxXPPerLevel[m_curLevel]; };
 	inline float GetXPPercent() { return ( static_cast<float>(m_curXP) / m_curMaxXPPerLevel[m_curLevel]); };
 	inline int GetCurrentLv() { return m_curLevel; };
 private:

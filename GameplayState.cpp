@@ -31,10 +31,22 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_healthBar->SetBarColor({ 255, 0, 0 });
 	m_healthBar->SetBackgroundColor({ 255, 155, 155 });
 
+	m_hpTxtValue = std::to_string(m_player->GetHealth().GetCurrentHealth()) 
+								+ "/" 
+								+ std::to_string(m_player->GetHealth().GetMaxHealth());
+	m_hpText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 115, 22);
+	m_hpText->SetSpacing(8);
+	m_hpText->SetSize(16);
+
+
 	m_expBar = new PlayerUIBar(20, 50, 200, 20);
 	m_expBar->SetBarColor({ 0,162,232 });
 	m_expBar->SetBackgroundColor({ 142, 214, 232 });
 	m_expBar->SetBarFillInstant(0);
+
+	m_expText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 120, 52);
+	m_expText->SetSpacing(8);
+	m_expText->SetSize(16);
 
 	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
 	m_waveTitle = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, Game::ScreenWidth / 2, 10);
@@ -49,6 +61,8 @@ void GameplayState::Initialize(GameStateManager* manager)
 	Game::CurrentScene->Add(m_waveTimerText);
 	Game::CurrentScene->Add(m_healthBar);
 	Game::CurrentScene->Add(m_expBar);
+	Game::CurrentScene->Add(m_hpText);
+	Game::CurrentScene->Add(m_expText);
 
 	m_healthBar->FadeIn(0.5f);
 	m_expBar->FadeIn(0.5f);
@@ -85,9 +99,8 @@ void GameplayState::Update(float deltaTime)
 
 	m_player->Update(deltaTime);
 	Game::m_quadTreev2->Insert(m_player);
-	m_healthBar->UpdateBar(m_player->GetPercentHealth());
-	m_expBar->UpdateBar(m_player->XPController().GetXPPercent());
-
+	
+	
 	//Check collision between player and enemy
 	auto result = Game::m_quadTreev2->GetCollision(m_player, Layer::ENEMY);
 	if (result != nullptr)
@@ -98,10 +111,11 @@ void GameplayState::Update(float deltaTime)
 			m_player->TakeDamage(slime->GetDamage());
 		}
 	}
-
 	//Check collision between player and coins
 	m_moneyDropsMnger->Update(m_player, deltaTime);
 
+
+	UpdateUI();
 }
 
 void GameplayState::Render()
@@ -153,6 +167,23 @@ std::string GameplayState::GetFormatedTime()
 	std::string formattedTimer = ss.str();
 
 	return formattedTimer;
+}
+
+void GameplayState::UpdateUI()
+{
+	m_healthBar->UpdateBar(m_player->GetPercentHealth());
+
+	m_hpTxtValue = std::to_string(m_player->GetHealth().GetCurrentHealth())
+		+ "/"
+		+ std::to_string(m_player->GetHealth().GetMaxHealth());
+	m_hpText->SetText(m_hpTxtValue);
+
+	m_expBar->UpdateBar(m_player->XPController().GetXPPercent());
+	m_expTxtValue = std::to_string(m_player->XPController().GetCurrentXP())
+		+ "/"
+		+ std::to_string(m_player->XPController().GetMaxXP());
+
+	m_expText->SetText(m_expTxtValue);
 }
 
 
