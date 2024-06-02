@@ -7,7 +7,7 @@ Bullet::Bullet()
 {
 }
 
-void Bullet::Initialize(Weapon* weaponOwner, const char* name, TEXTURE_ID textureID, int initX, int initY, int width, int height)
+void Bullet::Initialize(Weapon* weaponOwner, const char* name, TEXTURE_ID textureID, float initX, float initY, int width, int height)
 {
 	m_isActive = true;
 

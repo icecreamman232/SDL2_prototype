@@ -84,7 +84,7 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
 
 
-	DeltaTime = 1.0 /60.0;
+	DeltaTime = 1.0f /60.0f;
 
 	music = Mix_LoadMUS("Asset/Music/DaniStob-OverdriveSunset-Loop.wav");
 

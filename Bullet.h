@@ -11,7 +11,7 @@ class Bullet : public GameObject
 public:
 	Bullet();
 	void Initialize(Weapon* weaponOwner,const char* name, TEXTURE_ID textureID,
-		int initX, int initY, int width, int height);
+		float initX, float initY, int width, int height);
 	void Update(float deltaTime) override;
 	void Render();
 	void SetAngle(float angle);

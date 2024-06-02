@@ -47,7 +47,7 @@ protected:
 	bool m_canCollide;
 	bool m_isActive;
 	const char* m_name;
-	double m_angle;
+	float m_angle;
 	Vector2 m_pos;
 	Collider* m_collider;
 	Sprite* m_sprite;

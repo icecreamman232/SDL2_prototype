@@ -6,7 +6,7 @@ class IItem : public GameObject
 {
 public:
 	IItem();
-	void Initialize(const char* name, TEXTURE_ID textureID, int initX, int initY, int width, int height, int order = 0);
+	void Initialize(const char* name, TEXTURE_ID textureID, float initX, float initY, int width, int height, int order = 0);
 	void PickedUp();
 protected:
 	static int s_nextID;

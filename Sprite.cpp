@@ -5,7 +5,7 @@ Sprite::Sprite()
 {
 }
 
-Sprite::Sprite(SDL_Texture* texture, int x, int y, int width, int height, int order)
+Sprite::Sprite(SDL_Texture* texture, float x, float y, int width, int height, int order)
 {
 	m_order = 0;
 	m_texture = texture;
@@ -33,7 +33,7 @@ Sprite::Sprite(SDL_Texture* texture, int x, int y, int width, int height, int or
 }
 
 
-void Sprite::Update(int x, int y)
+void Sprite::Update(float x, float y)
 {
 	m_destRect.x = x;
 	m_destRect.y = y;

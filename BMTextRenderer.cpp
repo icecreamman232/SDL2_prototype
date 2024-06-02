@@ -2,7 +2,7 @@
 #include "AssetManager.h"
 #include "Game.h"
 
-BMTextRenderer::BMTextRenderer(TEXTURE_ID textureID, std::string text,Pivot pivot, int x, int y)
+BMTextRenderer::BMTextRenderer(TEXTURE_ID textureID, std::string text,Pivot pivot, float x, float y)
 {
 	m_texture = AssetManager::Instance().LoadTexture(textureID);
 	m_text = text;
@@ -56,7 +56,7 @@ void BMTextRenderer::ComputeTextSize()
 	}
 }
 
-int BMTextRenderer::GetOffSetX()
+float BMTextRenderer::GetOffSetX()
 {
 	switch (m_pivot)
 	{
@@ -74,7 +74,7 @@ int BMTextRenderer::GetOffSetX()
 	}
 }
 
-int BMTextRenderer::GetOffSetY()
+float BMTextRenderer::GetOffSetY()
 {
 	return 0;
 }

@@ -6,9 +6,9 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(SDL_Texture* texture, int x, int y, int width, int height, int order = 0);
+	Sprite(SDL_Texture* texture, float x, float y, int width, int height, int order = 0);
 	void Render(float angle);
-	void Update(int x, int y);
+	void Update(float x, float y);
 	SDL_FRect GetRect();
 	void SetFrame(int index);
 	void SetTexture(SDL_Texture* newTexture);

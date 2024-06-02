@@ -8,7 +8,7 @@ IItem::IItem()
 	m_isInitialized = false;
 }
 
-void IItem::Initialize(const char* name, TEXTURE_ID textureID, int initX, int initY, int width, int height, int order)
+void IItem::Initialize(const char* name, TEXTURE_ID textureID, float initX, float initY, int width, int height, int order)
 {
 	m_isActive = true;
 
