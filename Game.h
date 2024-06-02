@@ -35,8 +35,8 @@ public:
 
 	bool IsRunning();
 
-	static int ScreenWidth;
-	static int ScreenHeight;
+	//static int ScreenWidth;
+	//static int ScreenHeight;
 	static SDL_Renderer* Renderer;
 	static Scene* CurrentScene;
 	static QuadTreev2* m_quadTreev2;

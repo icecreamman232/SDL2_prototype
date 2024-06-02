@@ -4,7 +4,7 @@
 #include "XPEventDispatcher.h"
 
 Slime::Slime(const char* name, TEXTURE_ID textureID, 
-	int initX, int initY, int width, int height, int order) 
+	float initX, float initY, int width, int height, int order)
 	: GameObject(name, textureID,initX, initY, width, height, order)
 {
 	GetNextDirection(m_direction);
@@ -15,8 +15,8 @@ Slime::Slime(const char* name, TEXTURE_ID textureID,
 	m_health = new Health();
 	m_health->Initialize(10, 0.5);
 
-	m_idleAnim = new Animation(SLIME_TEX, m_sprite, 1, 0.1, 16, 16);
-	m_deadAnim = new Animation(ENEMY_EXPLOSION, m_sprite, 5, 0.1, 16, 16);
+	m_idleAnim = new Animation(SLIME_TEX, m_sprite, 1, 0.1f, 16, 16);
+	m_deadAnim = new Animation(ENEMY_EXPLOSION, m_sprite, 5, 0.1f, 16, 16);
 
 	m_deadSFX = Mix_LoadWAV("Asset/Sound/enemy-pop-out-death.wav");
 
@@ -62,9 +62,9 @@ void Slime::UpdateMovement(float deltaTime)
 			m_pos.x = 0;
 			GetNextDirection(m_direction);
 		}
-		else if (m_pos.x >= Game::ScreenWidth - m_sprite->GetRect().w)
+		else if (m_pos.x >= g_WindowSettings.Width - m_sprite->GetRect().w)
 		{
-			m_pos.x = Game::ScreenWidth - m_sprite->GetRect().w;
+			m_pos.x = g_WindowSettings.Width - m_sprite->GetRect().w;
 			GetNextDirection(m_direction);
 		}
 
@@ -73,9 +73,9 @@ void Slime::UpdateMovement(float deltaTime)
 			m_pos.y = 0;
 			GetNextDirection(m_direction);
 		}
-		else if (m_pos.y >= Game::ScreenHeight - m_sprite->GetRect().h)
+		else if (m_pos.y >= g_WindowSettings.Height - m_sprite->GetRect().h)
 		{
-			m_pos.y = Game::ScreenHeight - m_sprite->GetRect().h;
+			m_pos.y = g_WindowSettings.Height - m_sprite->GetRect().h;
 			GetNextDirection(m_direction);
 		}
 	}

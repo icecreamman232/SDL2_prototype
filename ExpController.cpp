@@ -35,7 +35,7 @@ void ExpController::LevelUp()
 	m_curLevel++;
 	if (m_curLevel > m_curMaxXPPerLevel.size())
 	{
-		m_curLevel = m_curMaxXPPerLevel.size() - 1;
+		m_curLevel = static_cast<int>(m_curMaxXPPerLevel.size()) - 1;
 	}
 }
 

@@ -4,9 +4,9 @@
 #include <cmath>
 namespace MathHelper
 {
-    constexpr float PI = 3.141;
-    constexpr float RadToDeg = (180.0/PI);
-    constexpr float DegToRad = (PI/180.0);
+    constexpr float PI = 3.141f;
+    constexpr float RadToDeg = (180.0f/PI);
+    constexpr float DegToRad = (PI/180.0f);
 
     
     /**
@@ -40,7 +40,7 @@ namespace MathHelper
      */
     static float PercentOf(float x, float percent)
     {
-        return (x / 100.0 * percent);
+        return (x / 100.0f * percent);
     }
     
 }

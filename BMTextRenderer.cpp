@@ -61,16 +61,17 @@ float BMTextRenderer::GetOffSetX()
 	switch (m_pivot)
 	{
 		case Pivot::LEFT:
-			break;
+			return 0.0f;
 		case Pivot::RIGHT:
 			return -m_textSize;
 		case Pivot::CENTER:
 			return -m_textSize/2;
-			break;
 		case Pivot::TOP:
-			break;
+			return 0.0f;
 		case Pivot::BOTTOM:
-			break;
+			return 0.0f;
+		default:
+			return 0.0f;
 	}
 }
 

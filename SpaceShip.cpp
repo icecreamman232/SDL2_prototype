@@ -8,7 +8,7 @@
 #include "PlayerLevelUpEventDispatcher.h"
 
 
-SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order)
+SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, float initX, float initY,int width, int height, int order)
 	:GameObject(name, textureID,initX, initY, width, height, order)
 {
 	m_direction.x = 0;
@@ -21,7 +21,7 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, int initX, int initY
 
 
 	m_health.Initialize(100, m_invulnerableDuration);
-	m_primaryWeapon = new Weapon(0.15);
+	m_primaryWeapon = new Weapon(0.15f);
 	m_primaryWeapon->InitializeBullet(20,"Bullet",
 		AssetManager::Instance().LoadTexture(PLAYER_NORMAL_BULLET),16, 16);
 
@@ -172,19 +172,19 @@ void SpaceShip::UpdateMovement(float deltaTime)
 
 	if (m_pos.x <= -m_sprite->GetRect().w)
 	{
-		m_pos.x = Game::ScreenWidth;
+		m_pos.x = g_WindowSettings.Width;
 	}
-	else if (m_pos.x >= Game::ScreenWidth)
+	else if (m_pos.x >= g_WindowSettings.Width)
 	{
 		m_pos.x = -m_sprite->GetRect().w;
 	}
 
 	if (m_pos.y <= -m_sprite->GetRect().h)
 	{
-		m_pos.y = Game::ScreenHeight;
+		m_pos.y = g_WindowSettings.Height;
 
 	}
-	else if (m_pos.y >= Game::ScreenHeight)
+	else if (m_pos.y >= g_WindowSettings.Height)
 	{
 		m_pos.y = -m_sprite->GetRect().h;
 	}

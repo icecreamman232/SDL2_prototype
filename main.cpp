@@ -37,7 +37,7 @@ int main(int argc, char* arg[])
 			SDL_Delay(frameDelay - frameTime);
 		}
 		tickTime = SDL_GetTicks64();
-		deltaTime = (tickTime - lastTime)/1000.0;
+		deltaTime = (tickTime - lastTime)/1000.0f;
 		lastTime = tickTime;
 
 		//FPS Calculation

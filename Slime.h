@@ -10,7 +10,7 @@ class Slime : public GameObject
 {
 public:
 	Slime(const char* name, TEXTURE_ID textureID ,
-		int initX, int initY, int width, int height,int order = 0);
+		float initX, float initY, int width, int height,int order = 0);
 	~Slime() override;
 
 	void Update(float deltaTime) override;

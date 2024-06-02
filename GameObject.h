@@ -15,13 +15,13 @@ class GameObject
 {
 public:
 	GameObject();
-	GameObject(const char* name,TEXTURE_ID textureID, int initX, int initY,int width, int height, int order = 0);
+	GameObject(const char* name,TEXTURE_ID textureID, float initX, float initY,int width, int height, int order = 0);
 	GameObject(const char* name, TEXTURE_ID textureID, int width, int height, int order = 0);
 	virtual ~GameObject();
 	virtual void Update(float deltaTime);
 	virtual void Render();
-	virtual void SetPosition(int x, int y);
-	virtual void SetRotation(double angle);
+	virtual void SetPosition(float x, float y);
+	virtual void SetRotation(float angle);
 	virtual void LookAt(int x, int y);
 	virtual bool IsCollideWith(GameObject* other);
 	virtual void SetLayer(Layer layer);

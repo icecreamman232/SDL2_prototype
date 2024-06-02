@@ -1,8 +1,9 @@
+#include "Global.h"
 #include "EnemySpawner.h"
 #include "Game.h"
 #include "Slime.h"
 #include "string"
-#include "Global.h"
+
 
 using namespace General;
 
@@ -77,11 +78,11 @@ void EnemySpawner::SpawnNextEnemy()
 	auto name = std::to_string(m_numberSpawned);
 
 	std::mt19937 rng(rd());
-	std::uniform_int_distribution<int> distributionX(0, Game::ScreenWidth);
-	std::uniform_int_distribution<int> distributionY(0, Game::ScreenHeight);
+	std::uniform_int_distribution<int> distributionX(0, g_WindowSettings.Width);
+	std::uniform_int_distribution<int> distributionY(0, g_WindowSettings.Height);
 
-	auto x = distributionX(rng);
-	auto y = distributionY(rng);
+	float x = static_cast<float>(distributionX(rng));
+	float y = static_cast<float>(distributionY(rng));
 
 	auto newEnemy = new Slime(name.c_str(), TEXTURE_ID::SLIME_TEX, x, y, 16, 16, m_numberSpawned + 100);
 	newEnemy->SetLayer(Layer::ENEMY);

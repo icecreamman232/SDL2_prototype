@@ -2,7 +2,7 @@
 #include "PlayerUIBar.h"
 #include "Math/MathHelper.h"
 
-PlayerUIBar::PlayerUIBar(int x, int y, int width, int height)
+PlayerUIBar::PlayerUIBar(float x, float y, float width, float height)
 {
 	fillBarAmount = 1;
 	m_barWidth = width;

@@ -1,12 +1,13 @@
 #include "GameObject.h"
 #include "Game.h"
 #include "Collider.h"
+#include "Math/MathHelper.h"
 
 int GameObject::s_nextID = 0;
 
 GameObject::GameObject(){}
 
-GameObject::GameObject(const char* name, TEXTURE_ID textureID, int initX, int initY, int width, int height, int order)
+GameObject::GameObject(const char* name, TEXTURE_ID textureID, float initX, float initY, int width, int height, int order)
 {
 	m_name = name;
 
@@ -69,13 +70,13 @@ void GameObject::Render()
 	m_sprite->Render(m_angle);
 }
 
-void GameObject::SetPosition(int x, int y)
+void GameObject::SetPosition(float x, float y)
 {
 	m_pos.x = x;
 	m_pos.y = y;
 }
 
-void GameObject::SetRotation(double angle)
+void GameObject::SetRotation(float angle)
 {
 	m_angle = angle;
 }
@@ -85,7 +86,7 @@ void GameObject::LookAt(int x, int y)
 	float relativeX = x - m_pos.x;
 	float relativeY = y - m_pos.y;
 
-	m_angle = SDL_atan2(relativeY, relativeX) * (180.0 / M_PI ) + 90;
+	m_angle = SDL_atan2f(relativeY, relativeX) * (180.0f / MathHelper::PI ) + 90.0f;
 	SetRotation(m_angle);
 }
 

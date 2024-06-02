@@ -1,3 +1,4 @@
+#include "Global.h"
 #include "GameplayState.h"
 #include "Game.h"
 #include <iostream>
@@ -19,7 +20,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_secondsCounter = 0.0;
 	m_numLvGained = 0;
 
-	m_player = new SpaceShip("Ship", PLAYER_TEX, Game::ScreenWidth / 2, Game::ScreenHeight / 2, 18, 16, 9);
+	m_player = new SpaceShip("Ship", PLAYER_TEX, g_WindowSettings.Width / 2, g_WindowSettings.Height / 2, 18, 16, 9);
 	m_player->SetLayer(Layer::PLAYER);
 
 
@@ -156,12 +157,12 @@ void GameplayState::InitializeUI()
 
 	//Wave title text
 	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
-	m_waveTitle = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, Game::ScreenWidth / 2, 10);
+	m_waveTitle = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f, 10);
 	m_waveTitle->SetSpacing(20);
 	m_waveTitle->SetSize(32);
 
 	//Wave timer text
-	m_waveTimerText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, GetFormatedTime(), Render::Pivot::CENTER, Game::ScreenWidth / 2 + 15, 50);
+	m_waveTimerText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, GetFormatedTime(), Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f + 15, 50);
 	m_waveTimerText->SetSpacing(16);
 	m_waveTimerText->SetSize(24);
 

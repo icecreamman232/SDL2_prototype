@@ -4,8 +4,8 @@
 #include "Input.h"
 
 
-int Game::ScreenWidth = 0;
-int Game::ScreenHeight = 0;
+//int Game::ScreenWidth = 0;
+//int Game::ScreenHeight = 0;
 SDL_Renderer* Game::Renderer = nullptr;
 Scene* Game::CurrentScene = nullptr;
 QuadTreev2* Game::m_quadTreev2 = nullptr;
@@ -81,7 +81,7 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 		| ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav;
 	m_showFPSOverlay = false;
 
-	SDL_GetWindowSize(m_window, &ScreenWidth, &ScreenHeight);
+	SDL_GetWindowSize(m_window, &g_WindowSettings.Width, &g_WindowSettings.Height);
 
 
 	DeltaTime = 1.0f /60.0f;
@@ -92,7 +92,7 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 	CurrentScene = new Scene();
 
 
-	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
+	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(g_WindowSettings.Width) ,static_cast<float>(g_WindowSettings.Height) }, 0, 0);
 
 	m_gameStateManager.Initialize();
 
@@ -122,7 +122,7 @@ void Game::Update(float deltaTime)
 {
 	DeltaTime = deltaTime;
 
-	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(ScreenWidth) ,static_cast<float>(ScreenHeight) }, 0, 0);
+	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(g_WindowSettings.Width) ,static_cast<float>(g_WindowSettings.Height) }, 0, 0);
 
 	m_gameStateManager.Update(deltaTime);
 

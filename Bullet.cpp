@@ -1,3 +1,4 @@
+#include "Global.h"
 #include "Bullet.h"
 #include "Game.h"
 #include "Collider.h"
@@ -48,7 +49,7 @@ void Bullet::Update(float deltaTime)
 	{
 		Destroy();
 	}
-	else if (m_pos.x >= Game::ScreenWidth - m_sprite->GetRect().w)
+	else if (m_pos.x >= g_WindowSettings.Width - m_sprite->GetRect().w)
 	{
 		Destroy();
 	}
@@ -57,7 +58,7 @@ void Bullet::Update(float deltaTime)
 	{
 		Destroy();
 	}
-	else if (m_pos.y >= Game::ScreenHeight - m_sprite->GetRect().h)
+	else if (m_pos.y >= g_WindowSettings.Height - m_sprite->GetRect().h)
 	{
 		Destroy();
 	}

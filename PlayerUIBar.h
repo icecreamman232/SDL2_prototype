@@ -5,7 +5,7 @@ class PlayerUIBar : public UIBase
 {
 public:
 	float fillBarAmount;
-	PlayerUIBar(int x,int y,int width, int height);
+	PlayerUIBar(float x, float y, float width, float height);
 	void SetBarFillInstant(float fillAmount);
 	void SetBarColor(SDL_Color color);
 	void SetBackgroundColor(SDL_Color color);
@@ -32,7 +32,7 @@ private:
 	float m_timeStep;
 	float m_timer;
 
-	int m_fadeStep;
+	float m_fadeStep;
 	int m_curAlpha;
 
 	float m_barWidth;
