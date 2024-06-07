@@ -9,6 +9,17 @@ struct WindowSettings
 
 inline WindowSettings g_WindowSettings;
 
+
+namespace Tween
+{
+	enum TweenEase
+	{
+		LINEAR,
+		IN_SIN,
+		OUT_SIN,
+	};
+}
+
 namespace General
 {
 	enum Layer
@@ -29,6 +40,7 @@ namespace Render
 		SLIME_TEX,
 		ENEMY_EXPLOSION,
 		COIN,
+		LVL_UP_ICON,
 
 		//WEAPON
 		PLAYER_NORMAL_BULLET = 50,

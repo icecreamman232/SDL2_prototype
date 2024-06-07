@@ -9,6 +9,7 @@
 #include "PlayerLevelUpEventDispatcher.h"
 #include "EnemyHealthEventDispatcher.h"
 #include "CoinCollectEventDispatcher.h"
+#include "TweenManager.h"
 
 void GameplayState::Initialize(GameStateManager* manager)
 {
@@ -32,6 +33,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	InitializeUI();
 
+
 	Game::CurrentScene->Add(m_waveTitle);
 	Game::CurrentScene->Add(m_waveTimerText);
 	Game::CurrentScene->Add(m_healthBar);
@@ -40,6 +42,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 	Game::CurrentScene->Add(m_levelText);
 	Game::CurrentScene->Add(m_coinIcon);
 	Game::CurrentScene->Add(m_coinText);
+	Game::CurrentScene->Add(m_lvlUpIcon);
 
 	m_healthBar->FadeIn(0.5f);
 	m_expBar->FadeIn(0.5f);
@@ -174,6 +177,14 @@ void GameplayState::InitializeUI()
 	m_coinText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
 	m_coinText->SetSpacing(14);
 	m_coinText->SetSize(24);
+
+	m_lvlUpIcon = new UIImage();
+	m_lvlUpIcon->Init(Render::TEXTURE_ID::LVL_UP_ICON, g_WindowSettings.Width - 100, 30, 24, 24);
+
+
+	/*TweenManager::Instance().CreateTween(Tween::TweenEase::LINEAR,
+		m_lvlUpIcon, g_WindowSettings.Width - 100, 200, 5);*/
+	
 }
 
 std::string GameplayState::GetFormatedTime()
@@ -223,6 +234,8 @@ void GameplayState::UpdateUI()
 
 	m_coinIcon->Update();
 	m_coinText->SetText(std::to_string(m_coinAmount));
+
+	m_lvlUpIcon->Update();
 }
 
 

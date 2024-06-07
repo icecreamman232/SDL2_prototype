@@ -11,6 +11,7 @@ void AssetManager::Initialize()
     m_texturePathList[ENEMY_EXPLOSION] = "Asset/enemy-die-explosion.png";
     m_texturePathList[PLAYER_NORMAL_BULLET] = "Asset/normal-bullet.png";
     m_texturePathList[COIN] = "Asset/coin.png";
+    m_texturePathList[LVL_UP_ICON] = "Asset/lvl-up-icon.png";
     m_texturePathList[BM_FONT_PIXEL] = "Asset/Font/pixel-sdl-font.bmp";
 }
 

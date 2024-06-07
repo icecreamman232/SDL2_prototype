@@ -3,7 +3,9 @@
 
 UIImage::UIImage()
 {
-
+	m_sprite = nullptr;
+	m_width = 0;
+	m_height = 0;
 }
 
 void UIImage::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height)
@@ -23,4 +25,10 @@ void UIImage::Render()
 void UIImage::Update()
 {
 	m_sprite->Update(m_pos.x, m_pos.y);
+}
+
+void UIImage::SetPosition(float x, float y)
+{
+	m_pos.x = x;
+	m_pos.y = y;
 }

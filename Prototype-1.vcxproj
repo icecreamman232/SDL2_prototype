@@ -171,7 +171,6 @@
     <ClCompile Include="Math\MathHelper.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="ObjectPooler.cpp" />
-    <ClCompile Include="IDispatcher.cpp" />
     <ClCompile Include="PlayerUIBar.cpp" />
     <ClCompile Include="QuadTreev2.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -179,6 +178,8 @@
     <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TweenEffect.cpp" />
+    <ClCompile Include="TweenManager.cpp" />
     <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
@@ -225,6 +226,8 @@
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TweenEffect.h" />
+    <ClInclude Include="TweenManager.h" />
     <ClInclude Include="UIBase.h" />
     <ClInclude Include="UIImage.h" />
     <ClInclude Include="Weapon.h" />

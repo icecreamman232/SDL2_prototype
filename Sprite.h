@@ -10,6 +10,7 @@ public:
 	void Render(float angle);
 	void Update(float x, float y);
 	SDL_FRect GetRect();
+	SDL_FRect* GetRectPointer();
 	void SetFrame(int index);
 	void SetTexture(SDL_Texture* newTexture);
 	void TintColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);

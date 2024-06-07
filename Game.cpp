@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "TweenManager.h"
 #include "SDL_image.h"
 #include "GameObject.h"
 #include "Input.h"
@@ -124,6 +125,8 @@ void Game::HandleEvents()
 void Game::Update(float deltaTime)
 {
 	DeltaTime = deltaTime;
+
+	TweenManager::Instance().Update(deltaTime);
 
 	m_quadTreev2 = new QuadTreev2(SDL_FRect{ 0.0,0.0,static_cast<float>(g_WindowSettings.Width) ,static_cast<float>(g_WindowSettings.Height) }, 0, 0);
 

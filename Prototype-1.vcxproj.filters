@@ -150,9 +150,6 @@
     <ClCompile Include="Math\Vector2.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="IDispatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ExpController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -162,8 +159,14 @@
     <ClCompile Include="IItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TweenManager.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TweenEffect.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
     <ClCompile Include="UIImage.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -299,11 +302,17 @@
     <ClInclude Include="IItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UIImage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CoinCollectEventDispatcher.h">
       <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="TweenManager.h">
+      <Filter>Header Files\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TweenEffect.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="UIImage.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

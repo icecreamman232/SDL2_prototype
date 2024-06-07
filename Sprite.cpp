@@ -64,6 +64,11 @@ SDL_FRect Sprite::GetRect()
 	return m_destRect;
 }
 
+SDL_FRect* Sprite::GetRectPointer()
+{
+	return &m_destRect;
+}
+
 void Sprite::SetFrame(int index)
 {
 	m_srcRect.x += index * m_srcRect.w;
