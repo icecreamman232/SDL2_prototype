@@ -182,8 +182,8 @@ void GameplayState::InitializeUI()
 	m_lvlUpIcon->Init(Render::TEXTURE_ID::LVL_UP_ICON, g_WindowSettings.Width - 100, 30, 24, 24);
 
 
-	/*TweenManager::Instance().CreateTween(Tween::TweenEase::LINEAR,
-		m_lvlUpIcon, g_WindowSettings.Width - 100, 200, 5);*/
+	TweenManager::Instance().CreateTween(Tween::TweenEase::IN_OUT_BOUNCE,
+		m_lvlUpIcon, g_WindowSettings.Width - 100, 200, 2);
 	
 }
 
