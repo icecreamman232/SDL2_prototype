@@ -1,10 +1,6 @@
 #include "Sprite.h"
 #include "Game.h"
 
-Sprite::Sprite()
-{
-}
-
 Sprite::Sprite(SDL_Texture* texture, float x, float y, int width, int height, int order)
 {
 	m_order = 0;

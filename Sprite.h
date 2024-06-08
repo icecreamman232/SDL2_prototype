@@ -1,11 +1,9 @@
 #pragma once
 #include <SDL.h>
-#include "Math/Vector2.h"
 
 class Sprite
 {
 public:
-	Sprite();
 	Sprite(SDL_Texture* texture, float x, float y, int width, int height, int order = 0);
 	void Render(float angle);
 	void Update(float x, float y);
