@@ -26,7 +26,6 @@ void Weapon::Shoot(Vector2 pos,Vector2 direction, float angle)
 	if (m_isDelay) return;
 	m_isDelay = true;
 
-	//TODO:Implement scene system first before coming back here to continue with pooling
 	Bullet* bullet = m_pool->GetObject();
 	bullet->Initialize(this,"Bullet",PLAYER_NORMAL_BULLET, pos.x, pos.y, m_width, m_height);
 	bullet->SetDirection(direction);

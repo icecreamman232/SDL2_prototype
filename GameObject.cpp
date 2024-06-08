@@ -5,8 +5,6 @@
 
 int GameObject::s_nextID = 0;
 
-GameObject::GameObject(){}
-
 GameObject::GameObject(const char* name, TEXTURE_ID textureID, float initX, float initY, int width, int height, int order)
 {
 	m_name = name;

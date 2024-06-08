@@ -14,7 +14,10 @@ using namespace General;
 class GameObject
 {
 public:
-	GameObject();
+	//Pool system will return pure game object with no params. 
+	// Therefore we need default constructor with no params here
+	//Might be refactor later
+	GameObject() = default;
 	GameObject(const char* name,TEXTURE_ID textureID, float initX, float initY,int width, int height, int order = 0);
 	GameObject(const char* name, TEXTURE_ID textureID, int width, int height, int order = 0);
 	virtual ~GameObject();
