@@ -14,22 +14,21 @@ int main(int argc, char* arg[])
 	float deltaTime = 0.0;
 	float lastTime = 0.0;
 	float tickTime = 0.0;
-	Game* game = nullptr;
+	Game game;
 
 	//FPS
 	float elapsedTime = 0;
 	Uint64 frameCount = 0;
 	framePerSecondCounter = 0;
 
-	game = new Game();
-	game->Init("Prototype", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1366, 768);
-	while (game->IsRunning())
+	game.Init("Prototype", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1366, 768);
+	while (game.IsRunning())
 	{
 		frameCount++;
 		frameStart = SDL_GetTicks64();
-		game->HandleEvents();
-		game->Update(deltaTime);
-		game->Render(deltaTime);
+		game.HandleEvents();
+		game.Update(deltaTime);
+		game.Render(deltaTime);
 		frameTime = SDL_GetTicks64() - frameStart;
 		
 		if (frameDelay > frameTime)
@@ -45,13 +44,13 @@ int main(int argc, char* arg[])
 		if (elapsedTime >= 1000.0f)
 		{
 			framePerSecondCounter = frameCount / (elapsedTime / 1000.0f);
-			game->PassFPSValue(framePerSecondCounter);
+			game.PassFPSValue(framePerSecondCounter);
 			elapsedTime = 0;
 			frameCount = 0;
 		}
 	}
 
-	game->Clean();
+	game.Clean();
 
 	return 0;
 }

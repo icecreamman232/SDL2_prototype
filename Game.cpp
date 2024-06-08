@@ -18,16 +18,6 @@ using namespace General;
 #error This backend requires SDL 2.0.17+ because of SDL_RenderGeometry() function
 #endif
 
-Game::Game()
-{
-	Input::Instance().Initialize();
-}
-
-Game::~Game()
-{
-
-}
-
 void Game::Init(const char* title, int x, int y, int width, int height)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
@@ -62,6 +52,7 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 		}
 	}
 
+	Input::Instance().Initialize();
 
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
