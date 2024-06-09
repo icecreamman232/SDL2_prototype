@@ -14,5 +14,8 @@ public:
 	virtual void Render();
 	virtual void ExitState();
 	virtual ~GameState() {};
+	bool IsRunning() { return m_isRunning; };
+protected:
+	bool m_isRunning = false;
 };
 

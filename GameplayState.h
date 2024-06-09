@@ -34,7 +34,7 @@ private:
 
 	GameStateManager* m_manager;
 	SpaceShip* m_player;
-	EnemySpawner* m_enemySpawner;
+	EnemySpawner m_enemySpawner;
 
 	Uint16 m_numLvGained;
 

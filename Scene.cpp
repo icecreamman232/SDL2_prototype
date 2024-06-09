@@ -1,11 +1,5 @@
 #include "Scene.h"
 #include "algorithm"
-#include <iostream>
-
-void Scene::Initialize()
-{
-
-}
 
 void Scene::Add(GameObject* object, RenderLayer renderLayer)
 {

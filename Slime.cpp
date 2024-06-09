@@ -113,6 +113,17 @@ int Slime::GetDamage()
 	return distribution(gen);
 }
 
+void Slime::SelfKill()
+{
+	m_health->TakeDamage(99999);
+
+	m_canMove = false;
+	m_canCollide = false;
+	Mix_PlayChannel(-1, m_deadSFX, 0);
+	m_isActive = false;
+	Game::CurrentScene->Remove(this, RenderLayer::ENEMY);
+}
+
 void Slime::GetNextDirection(Vector2& direction)
 {
 	std::random_device rd;

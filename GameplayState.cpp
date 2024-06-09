@@ -17,7 +17,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 
 	m_minute = 0;
-	m_seconds = 30;
+	m_seconds = 6;
 	m_secondsCounter = 0.0;
 	m_numLvGained = 0;
 
@@ -27,8 +27,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	Game::m_quadTreev2->Insert(m_player);
 
-	m_enemySpawner = new EnemySpawner();
-	m_enemySpawner->Initialize();
+	m_enemySpawner.Initialize();
 
 
 	InitializeUI();
@@ -53,10 +52,13 @@ void GameplayState::Initialize(GameStateManager* manager)
 	EnemyHealthEventDispatcher::Attach(this);
 	PlayerLevelUpEventDispatcher::Attach(this);
 	CoinCollectEventDistpacher::Attach(this);
+
+	m_isRunning = true;
 }
 
 void GameplayState::Update(float deltaTime)
 {
+	if (!m_isRunning) return;
 	m_secondsCounter += deltaTime;
 	if (m_secondsCounter >= 1.0)
 	{
@@ -68,15 +70,20 @@ void GameplayState::Update(float deltaTime)
 			m_minute--;
 			if (m_minute <= 0)
 			{
-				//TODO:Do somethings
 				m_minute = 0;
+				m_waveTimerText->SetText(GetFormatedTime());
+
+				//Time is over and we stop gameplay 
+				// and ready to start end wave screen
+				ExitState();
+				return;
 			}
 		}
 		m_waveTimerText->SetText(GetFormatedTime());
 	}
 
 	
-	m_enemySpawner->Update(deltaTime);
+	m_enemySpawner.Update(deltaTime);
 
 	m_player->Update(deltaTime);
 	Game::m_quadTreev2->Insert(m_player);
@@ -106,9 +113,21 @@ void GameplayState::Render()
 
 void GameplayState::ExitState()
 {
+	//Detach all events
 	EnemyHealthEventDispatcher::Detach(this);
 	PlayerLevelUpEventDispatcher::Detach(this);
 	CoinCollectEventDistpacher::Detach(this);
+
+	m_isRunning = false;
+
+	m_enemySpawner.StopAndClear();
+	m_player->SetActive(false);
+
+	delete m_player;
+
+	m_manager->BeginChangeState();
+	m_manager->ChangeState(General::GameStateType::ENDWAVE);
+	m_manager->EndChangeState();
 }
 
 void GameplayState::OnTriggerEvent(const LevelUpEvent& eventType)

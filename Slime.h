@@ -17,7 +17,7 @@ public:
 	void TakeDamage(int damage);
 	int GetDamage();
 
-
+	void SelfKill();
 
 	inline bool IsDead() { return m_health->GetCurrentHealth() <= 0; };
 private:

@@ -42,6 +42,17 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, float initX, float i
 	Game::CurrentScene->Add(dynamic_cast<GameObject*>(this), RenderLayer::PLAYER);
 }
 
+SpaceShip::~SpaceShip()
+{
+	Game::CurrentScene->Remove(dynamic_cast<GameObject*>(this), RenderLayer::PLAYER);
+	if (m_primaryWeapon != nullptr)
+	{
+		delete m_primaryWeapon;
+	}
+
+	Mix_FreeChunk(m_levelUpSFX);
+}
+
 void SpaceShip::SetDirectionX(float value)
 {
 	m_direction.x = value;
@@ -54,6 +65,7 @@ void SpaceShip::SetDirectionY(float value)
 
 void SpaceShip::Update(float deltaTime)
 {
+	if (!m_isActive) return;
 	UpdateInput();
 	UpdateMovement(deltaTime);
 

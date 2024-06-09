@@ -8,10 +8,13 @@ class EnemySpawner
 public:
 	void Initialize();
 	void Update(float deltaTime);
+	void StopAndClear();
 private:
 	void UpdateTimer(float deltaTime);
 	void UpdateEnemy(float deltaTime);
 	void SpawnNextEnemy();
+
+	bool m_shouldUpdate = false;
 
 	float m_timer;
 	float m_initDelayTime;

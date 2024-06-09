@@ -56,7 +56,11 @@ namespace General
 		PLAYER = 2,
 		ENEMY = 4,
 	};
-
+	enum GameStateType
+	{
+		GAMEPLAY,
+		ENDWAVE,
+	};
 }
 
 namespace Render

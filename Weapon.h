@@ -18,7 +18,6 @@ private:
 
 
 	std::string m_generalName;
-	SDL_Texture* m_texture;
 	int m_width;
 	int m_height;
 

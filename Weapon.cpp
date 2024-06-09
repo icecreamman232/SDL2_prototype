@@ -9,13 +9,15 @@ Weapon::Weapon(float delay)
 	m_delayBetween2Shot = delay;
 	m_isDelay = false;
 	m_pool = nullptr;
+	m_width = 0;
+	m_height = 0;
 }
+
 
 void Weapon::InitializeBullet(int number, std::string generalName, SDL_Texture* texture, int width, int height)
 {
 	m_pool = new ObjectPooler<Bullet>(number);
 	m_generalName = generalName;
-	m_texture = texture;
 	m_width = width;
 	m_height = height;
 }

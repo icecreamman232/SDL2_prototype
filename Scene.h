@@ -10,10 +10,7 @@ using namespace Render;
 class Scene
 {
 public:
-	void Initialize();
 	void Add(GameObject* object, RenderLayer renderLayer);
-
-	//TODO:Add text and UI to separated layer and container and render calls
 	void Add(UIBase* UIElement);
 
 	void Render();

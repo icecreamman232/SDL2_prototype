@@ -21,13 +21,43 @@ void EnemySpawner::Initialize()
 	m_minDelayTime = 0.5f;
 
 	m_numberSpawned = 0;
+
+	m_shouldUpdate = true;
 }
 
 void EnemySpawner::Update(float deltaTime)
 {
-	UpdateTimer(deltaTime);
+	if (!m_shouldUpdate) return;
 
+	UpdateTimer(deltaTime);
 	UpdateEnemy(deltaTime);
+}
+
+/// <summary>
+/// Stop and kill all enemies in the screen
+/// </summary>
+void EnemySpawner::StopAndClear()
+{
+	m_shouldUpdate = false;
+	for (auto enemy : m_spawnList)
+	{
+		if (!enemy.second->IsActive())
+		{
+			m_deadKeyList.push_back(enemy.first);
+		}
+		else
+		{
+			dynamic_cast<Slime*>(enemy.second)->SelfKill();
+		}
+	}
+
+	for (auto index : m_deadKeyList)
+	{
+		delete m_spawnList[index];
+		m_spawnList.erase(index);
+	}
+	m_deadKeyList.clear();
+	m_spawnList.clear();
 }
 
 void EnemySpawner::UpdateTimer(float deltaTime)

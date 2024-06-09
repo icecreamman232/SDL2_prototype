@@ -150,6 +150,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="DropsManager.cpp" />
+    <ClCompile Include="EndWaveState.cpp" />
     <ClCompile Include="EnemySpawner.cpp" />
     <ClCompile Include="ExpController.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="CoinCollectEventDispatcher.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="DropsManager.h" />
+    <ClInclude Include="EndWaveState.h" />
     <ClInclude Include="ExpController.h" />
     <ClInclude Include="IItem.h" />
     <ClInclude Include="MyEvent.h" />
