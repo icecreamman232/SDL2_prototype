@@ -15,6 +15,8 @@ void UIImage::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int he
 	m_pos.y = y;
 	m_width = width;
 	m_height = height;
+	m_id = s_next_UIID;
+	s_next_UIID++;
 }
 
 void UIImage::Render()

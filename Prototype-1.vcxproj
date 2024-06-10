@@ -181,6 +181,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TweenEffect.cpp" />
     <ClCompile Include="TweenManager.cpp" />
+    <ClCompile Include="UIBase.cpp" />
     <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>

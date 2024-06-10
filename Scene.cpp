@@ -52,3 +52,17 @@ void Scene::Remove(GameObject* object, RenderLayer renderLayer)
 	}
 }
 
+void Scene::Remove(UIBase* UIElement)
+{
+	auto& container = m_UIContainer;
+	auto it = std::find_if(container.begin(), container.end(),
+		[UIElement](UIBase* foundObj)
+		{
+			return (foundObj->GetID() == UIElement->GetID());
+		});
+	if (it != container.end())
+	{
+		container.erase(it);
+	}
+}
+

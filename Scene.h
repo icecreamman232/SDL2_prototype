@@ -15,6 +15,7 @@ public:
 
 	void Render();
 	void Remove(GameObject* object, RenderLayer rendeLayer);
+	void Remove(UIBase* UIElement);
 private:
 	std::map<RenderLayer, std::vector<GameObject*>> m_renderingContainer;
 	std::vector<UIBase*> m_UIContainer;

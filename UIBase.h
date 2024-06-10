@@ -8,6 +8,10 @@ class UIBase
 public:
 	virtual void Render() {};
 	virtual void Update() {};
+	inline int GetID() { return m_id; };
 protected:
+	int m_id;
+	static int  s_next_UIID;
 };
+
 

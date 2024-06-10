@@ -29,6 +29,9 @@ PlayerUIBar::PlayerUIBar(float x, float y, float width, float height)
 
 	m_curAlpha = 0;
 	m_renderBarState = BarState::HIDE;
+
+	m_id = s_next_UIID;
+	s_next_UIID++;
 }
 
 void PlayerUIBar::SetBarFillInstant(float fillAmount)

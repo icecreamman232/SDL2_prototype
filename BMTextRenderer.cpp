@@ -22,6 +22,9 @@ BMTextRenderer::BMTextRenderer(TEXTURE_ID textureID, std::string text,Pivot pivo
 	m_destRect.h = 16;
 
 	ComputeTextSize();
+
+	m_id = s_next_UIID;
+	s_next_UIID++;
 }
 
 void BMTextRenderer::Render()

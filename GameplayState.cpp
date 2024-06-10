@@ -120,6 +120,27 @@ void GameplayState::ExitState()
 
 	m_isRunning = false;
 
+	Game::CurrentScene->Remove(m_waveTitle);
+	Game::CurrentScene->Remove(m_waveTimerText);
+	Game::CurrentScene->Remove(m_healthBar);
+	Game::CurrentScene->Remove(m_expBar);
+	Game::CurrentScene->Remove(m_hpText);
+	Game::CurrentScene->Remove(m_levelText);
+	Game::CurrentScene->Remove(m_coinIcon);
+	Game::CurrentScene->Remove(m_coinText);
+	Game::CurrentScene->Remove(m_lvlUpIcon);
+
+	delete m_waveTitle;
+	delete m_waveTimerText;
+	delete m_healthBar;
+	delete m_expBar;
+	delete m_hpText;
+	delete m_levelText;
+	delete m_coinIcon;
+	delete m_coinText;
+	delete m_lvlUpIcon;
+
+
 	m_enemySpawner.StopAndClear();
 	m_player->SetActive(false);
 
