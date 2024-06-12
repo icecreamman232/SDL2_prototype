@@ -12,7 +12,7 @@ public:
 	void Update(float deltaTime);
 private:
 	std::vector<TweenEffect*> m_tweenContainer;
-	std::vector<TweenEffect*> m_toBeRemovedContainer;
+	std::vector<int> m_toBeRemovedContainer;
 };
 
 

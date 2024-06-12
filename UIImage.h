@@ -15,6 +15,8 @@ public:
 	void SetPosition(float x, float y);
 	inline float GetPosX() { return m_pos.x; };
 	inline float GetPosY() { return m_pos.y; };
+	inline int GetWidth() { return m_width; };
+	inline int GetHeight() { return m_height; };
 	inline SDL_FRect* GetRect() { return m_sprite->GetRectPointer(); };
 private:
 	Sprite* m_sprite;

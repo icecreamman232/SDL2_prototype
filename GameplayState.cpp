@@ -19,7 +19,6 @@ void GameplayState::Initialize(GameStateManager* manager)
 	m_minute = 0;
 	m_seconds = 6;
 	m_secondsCounter = 0.0;
-	m_numLvGained = 0;
 
 	m_player = new SpaceShip("Ship", PLAYER_TEX, g_WindowSettings.Width / 2, g_WindowSettings.Height / 2, 18, 16, 9);
 	m_player->SetLayer(Layer::PLAYER);
@@ -148,13 +147,13 @@ void GameplayState::ExitState()
 
 	m_manager->BeginChangeState();
 	m_manager->ChangeState(General::GameStateType::ENDWAVE);
-	m_manager->EndChangeState();
+	//m_manager->EndChangeState();
 }
 
 void GameplayState::OnTriggerEvent(const LevelUpEvent& eventType)
 {
 	m_levelTxtValue = "Lv " + std::to_string(m_player->XPController().GetCurrentLv());
-	m_numLvGained++;
+	m_manager->LevelGained();
 }
 
 void GameplayState::OnTriggerEvent(const EnemyHealthEvent& eventType)
@@ -211,7 +210,7 @@ void GameplayState::InitializeUI()
 
 	//Coin icon
 	m_coinIcon = new UIImage();
-	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 70, 20, 20);
+	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 70, 60, 60);
 
 	//Number coin text
 	m_coinText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);

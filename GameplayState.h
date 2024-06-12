@@ -36,8 +36,6 @@ private:
 	SpaceShip* m_player;
 	EnemySpawner m_enemySpawner;
 
-	Uint16 m_numLvGained;
-
 	int m_coinAmount;
 
 

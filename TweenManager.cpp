@@ -223,7 +223,7 @@ void TweenManager::Update(float deltaTime)
     {
         if (m_tweenContainer[i]->IsFinished())
         {
-            m_toBeRemovedContainer.push_back(m_tweenContainer[i]);
+            m_toBeRemovedContainer.push_back(i);
         }
         else 
         {
@@ -235,8 +235,12 @@ void TweenManager::Update(float deltaTime)
     {
         for (size_t i = 0; i < m_toBeRemovedContainer.size(); i++)
         {
-            m_tweenContainer.erase(m_tweenContainer.begin() + i);
-            delete m_toBeRemovedContainer[i];
+            size_t indexToRemove = m_toBeRemovedContainer[i];
+            if (indexToRemove < m_tweenContainer.size())
+            {
+                delete m_tweenContainer[indexToRemove];
+                m_tweenContainer.erase(m_tweenContainer.begin() + indexToRemove);
+            }
         }
         m_toBeRemovedContainer.clear();
     }

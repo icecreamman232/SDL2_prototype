@@ -31,9 +31,25 @@ void GameStateManager::BeginChangeState()
 void GameStateManager::ChangeState(GameStateType nextState)
 {
 	if (!m_isChangingState) return;
+
+	switch (nextState)
+	{
+		case GameStateType::ENDWAVE:
+			delete m_currentState;
+			m_currentState = new EndWaveState();
+			m_currentState->Initialize(this);
+
+			m_isChangingState = false;
+			break;
+	}
 }
 
 void GameStateManager::EndChangeState()
 {
 	m_isChangingState = false;
+}
+
+void GameStateManager::LevelGained()
+{
+	m_levelGainedDuringRun++;
 }

@@ -4,7 +4,7 @@
 class Sprite
 {
 public:
-	Sprite(SDL_Texture* texture, float x, float y, int width, int height, int order = 0);
+	Sprite(SDL_Texture* texture, float x, float y, int width, int height, int order = 0, bool isUI = false);
 	void Render(float angle);
 	void Update(float x, float y);
 	SDL_FRect GetRect();
@@ -17,6 +17,9 @@ public:
 	inline SDL_Color GetColor() { return m_tintColor; };
 	inline int GetOrder() { return m_order; };
 private:
+
+	bool m_isUI;
+
 	//Rendering order
 	int m_order;
 

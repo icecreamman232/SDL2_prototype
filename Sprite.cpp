@@ -1,8 +1,9 @@
 #include "Sprite.h"
 #include "Game.h"
 
-Sprite::Sprite(SDL_Texture* texture, float x, float y, int width, int height, int order)
+Sprite::Sprite(SDL_Texture* texture, float x, float y, int width, int height, int order, bool isUI)
 {
+	m_isUI = isUI;
 	m_order = 0;
 	m_texture = texture;
 	m_width = width;
@@ -15,8 +16,8 @@ Sprite::Sprite(SDL_Texture* texture, float x, float y, int width, int height, in
 	
 	m_destRect.x = x;
 	m_destRect.y = y;
-	m_destRect.w = m_srcRect.w * 3.0f;
-	m_destRect.h = m_srcRect.h * 3.0f;
+	m_destRect.w = m_srcRect.w * (m_isUI ? 1.0f : 3.0f);
+	m_destRect.h = m_srcRect.h * (m_isUI ? 1.0f : 3.0f);
 
 	SDL_GetTextureColorMod(m_texture, &m_originalColor.r, &m_originalColor.g, &m_originalColor.b);
 	SDL_GetTextureAlphaMod(m_texture, &m_originalAlpha);
@@ -33,8 +34,8 @@ void Sprite::Update(float x, float y)
 {
 	m_destRect.x = x;
 	m_destRect.y = y;
-	m_destRect.w = m_srcRect.w * 3;
-	m_destRect.h = m_srcRect.h * 3;
+	m_destRect.w = m_srcRect.w * (m_isUI ? 1.0f : 3.0f);
+	m_destRect.h = m_srcRect.h * (m_isUI ? 1.0f : 3.0f);
 }
 
 void Sprite::Render(float angle)
