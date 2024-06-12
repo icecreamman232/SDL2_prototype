@@ -10,7 +10,7 @@ class UIImage : public UIBase, public Selectable
 {
 public:
 	UIImage();
-	void Init(Render::TEXTURE_ID textureID, int x, int y, int width, int heigh);
+	virtual void Init(Render::TEXTURE_ID textureID, int x, int y, int width, int heigh);
 	void Render() override;
 	void Update() override;
 	void SetPosition(float x, float y);
@@ -19,7 +19,7 @@ public:
 	inline int GetWidth() { return m_width; };
 	inline int GetHeight() { return m_height; };
 	inline SDL_FRect* GetRect() { return m_sprite->GetRectPointer(); };
-private:
+protected:
 	Sprite* m_sprite;
 	Vector2 m_pos;
 	int m_width;

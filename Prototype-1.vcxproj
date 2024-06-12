@@ -184,6 +184,7 @@
     <ClCompile Include="TweenManager.cpp" />
     <ClCompile Include="UIBase.cpp" />
     <ClCompile Include="UIImage.cpp" />
+    <ClCompile Include="UpgradeCard.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +236,7 @@
     <ClInclude Include="TweenManager.h" />
     <ClInclude Include="UIBase.h" />
     <ClInclude Include="UIImage.h" />
+    <ClInclude Include="UpgradeCard.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="XPEventDispatcher.h" />
   </ItemGroup>

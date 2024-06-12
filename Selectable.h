@@ -11,6 +11,7 @@ public:
 	virtual void OnMouseExit() {};
 	virtual void OnMouseLeftClick() {};
 	inline bool IsMouseEnter() { return m_isEnter; };
+	void SetInteract(bool canInteract);
 protected:
 	SDL_FRect m_rect;
 	bool m_canInteract = true;

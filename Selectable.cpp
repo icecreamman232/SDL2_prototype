@@ -16,19 +16,22 @@ void Selectable::UpdateSelectable()
 	int x = Input::Instance().MouseX;
 	int y = Input::Instance().MouseY;
 
-	if((x < m_rect.x + m_rect.w && x > m_rect.x)
-		&& (y < m_rect.y + m_rect.h && y > m_rect.y)
-		&& !m_isEnter)
+	if (m_isEnter)
 	{
-		OnMouseEnter();
-		m_isEnter = true;
-	}
-	else
-	{
-		if (m_isEnter)
+		if (!(x < m_rect.x + m_rect.w && x > m_rect.x)
+			|| !(y < m_rect.y + m_rect.h && y > m_rect.y))
 		{
 			OnMouseExit();
 			m_isEnter = false;
+		}
+	}
+	else 
+	{
+		if ((x < m_rect.x + m_rect.w && x > m_rect.x)
+			&& (y < m_rect.y + m_rect.h && y > m_rect.y))
+		{
+			OnMouseEnter();
+			m_isEnter = true;
 		}
 	}
 
@@ -39,4 +42,9 @@ void Selectable::UpdateSelectable()
 			OnMouseLeftClick();
 		}
 	}
+}
+
+void Selectable::SetInteract(bool canInteract)
+{
+	m_canInteract = canInteract;
 }
