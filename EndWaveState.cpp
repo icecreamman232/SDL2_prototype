@@ -41,6 +41,7 @@ void EndWaveState::Update(float deltaTime)
 	m_upgradeCard_Left.Update();
 	m_upgradeCard_Mid.Update();
 	m_upgradeCard_Right.Update();
+
 }
 
 void EndWaveState::Render()

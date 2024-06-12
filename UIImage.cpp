@@ -15,6 +15,9 @@ void UIImage::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int he
 	m_pos.y = y;
 	m_width = width;
 	m_height = height;
+
+	InitSelectable(x, y, width, height);
+
 	m_id = s_next_UIID;
 	s_next_UIID++;
 }
@@ -27,6 +30,7 @@ void UIImage::Render()
 void UIImage::Update()
 {
 	m_sprite->Update(m_pos.x, m_pos.y);
+	UpdateSelectable();
 }
 
 void UIImage::SetPosition(float x, float y)

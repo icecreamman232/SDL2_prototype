@@ -175,6 +175,7 @@
     <ClCompile Include="PlayerUIBar.cpp" />
     <ClCompile Include="QuadTreev2.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Selectable.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="PlayerUIBar.h" />
     <ClInclude Include="QuadTreev2.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Selectable.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SpaceShip.h" />

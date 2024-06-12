@@ -1,11 +1,12 @@
 #pragma once
 #include "UIBase.h"
+#include "Selectable.h"
 #include "Sprite.h"
 #include "Math/Vector2.h"
 #include "Global.h"
 
 
-class UIImage : public UIBase
+class UIImage : public UIBase, public Selectable
 {
 public:
 	UIImage();
