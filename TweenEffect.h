@@ -29,8 +29,8 @@ public:
 		float t = m_elapsedTime / m_duration;
 
 		m_image->SetPosition(
-			(m_startX + (m_targetX - m_startX) * TweenFormulaCalculation(t))
-			, (m_startY + (m_targetY - m_startY) * TweenFormulaCalculation(t)));
+			(m_startX + (m_targetX - m_startX) * (TweenFormulaCalculation(t) > 1 ? 1 : TweenFormulaCalculation(t)))
+			, (m_startY + (m_targetY - m_startY) * (TweenFormulaCalculation(t) > 1 ? 1 : TweenFormulaCalculation(t))));
 	}
 	virtual bool IsFinished() 
 	{ 

@@ -9,6 +9,8 @@ public:
 	void AssignEndWaveStateRef(EndWaveState* state);
 	void OnMouseEnter() override;
 	void OnMouseExit() override;
+	void OnSelect() override;
+	void OnDeselect() override;
 	void SetOriginal_Y(float value);
 private:
 	EndWaveState* m_state;

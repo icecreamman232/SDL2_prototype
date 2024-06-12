@@ -16,6 +16,7 @@ void Selectable::UpdateSelectable()
 	int x = Input::Instance().MouseX;
 	int y = Input::Instance().MouseY;
 
+	//Handle mouse hover
 	if (m_isEnter)
 	{
 		if (!(x < m_rect.x + m_rect.w && x > m_rect.x)
@@ -35,11 +36,28 @@ void Selectable::UpdateSelectable()
 		}
 	}
 
+	//Handle selection
 	if (m_isEnter)
 	{
 		if (Input::Instance().IsLeftMouseDown())
 		{
 			OnMouseLeftClick();
+			if (!m_isSelected)
+			{
+				OnSelect();
+				m_isSelected = true;
+			}
+		}
+	}
+	else 
+	{
+		if (Input::Instance().IsLeftMouseDown())
+		{
+			if (m_isSelected)
+			{
+				OnDeselect();
+				m_isSelected = false;
+			}
 		}
 	}
 }

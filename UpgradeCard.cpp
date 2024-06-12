@@ -14,14 +14,26 @@ void UpgradeCard::AssignEndWaveStateRef(EndWaveState* state)
 
 void UpgradeCard::OnMouseEnter()
 {
-	TweenManager::Instance().CreateTween(Tween::TweenEase::OUT_QUINT,
-		this, m_pos.x, m_originalY - 20 , 0.5f);
+	
 }
 
 void UpgradeCard::OnMouseExit()
 {
+	
+}
+
+void UpgradeCard::OnSelect()
+{
+	std::cout << "SELECT\n";
 	TweenManager::Instance().CreateTween(Tween::TweenEase::OUT_QUINT,
-		this, m_pos.x, m_originalY + 20, 0.5f);
+		this, m_pos.x, m_originalY - 20, 0.3f);
+}
+
+void UpgradeCard::OnDeselect()
+{
+	std::cout << "DE-SELECT\n";
+	TweenManager::Instance().CreateTween(Tween::TweenEase::OUT_QUINT,
+		this, m_pos.x, m_originalY + 20, 0.3f);
 }
 
 void UpgradeCard::SetOriginal_Y(float value)
