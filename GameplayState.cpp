@@ -10,6 +10,7 @@
 #include "EnemyHealthEventDispatcher.h"
 #include "CoinCollectEventDispatcher.h"
 #include "TweenManager.h"
+#include "SaveManager.h"
 
 void GameplayState::Initialize(GameStateManager* manager)
 {
@@ -51,6 +52,12 @@ void GameplayState::Initialize(GameStateManager* manager)
 	EnemyHealthEventDispatcher::Attach(this);
 	PlayerLevelUpEventDispatcher::Attach(this);
 	CoinCollectEventDistpacher::Attach(this);
+
+	m_numEnemyKilled = 0;
+
+	SaveManager::Instance().LoadFromFile();
+
+	m_coinAmount = SaveManager::Instance().GetData()->CoinAmount;
 
 	m_isRunning = true;
 }
@@ -119,6 +126,10 @@ void GameplayState::ExitState()
 
 	m_isRunning = false;
 
+	SaveManager::Instance().SaveCoinAmount(m_coinAmount);
+	SaveManager::Instance().SaveEnemyKilledNumber(m_numEnemyKilled);
+	SaveManager::Instance().SaveToFile();
+
 	Game::CurrentScene->Remove(m_waveTitle);
 	Game::CurrentScene->Remove(m_waveTimerText);
 	Game::CurrentScene->Remove(m_healthBar);
@@ -160,6 +171,7 @@ void GameplayState::OnTriggerEvent(const EnemyHealthEvent& eventType)
 {
 	if (eventType.IsDead)
 	{
+		m_numEnemyKilled++;
 		//Drop items at enemy dead spot
 		m_moneyDropsMnger->Drop(3, eventType.DeadPosition);
 	}

@@ -1,0 +1,2 @@
+EnemyKilled,2
+CoinAmount,1002

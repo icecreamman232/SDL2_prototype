@@ -37,7 +37,7 @@ private:
 	EnemySpawner m_enemySpawner;
 
 	int m_coinAmount;
-
+	int m_numEnemyKilled; //Testing
 
 	//===== WAVE====//
 	int m_minute;
