@@ -33,14 +33,14 @@ void GameplayState::Initialize(GameStateManager* manager)
 	InitializeUI();
 
 
-	Game::CurrentScene->Add(m_waveTitle);
-	Game::CurrentScene->Add(m_waveTimerText);
+	Game::CurrentScene->Add(&m_waveTitle);
+	Game::CurrentScene->Add(&m_waveTimerText);
 	Game::CurrentScene->Add(m_healthBar);
 	Game::CurrentScene->Add(m_expBar);
-	Game::CurrentScene->Add(m_hpText);
-	Game::CurrentScene->Add(m_levelText);
+	Game::CurrentScene->Add(&m_hpText);
+	Game::CurrentScene->Add(&m_levelText);
 	Game::CurrentScene->Add(m_coinIcon);
-	Game::CurrentScene->Add(m_coinText);
+	Game::CurrentScene->Add(&m_coinText);
 	Game::CurrentScene->Add(m_lvlUpIcon);
 
 	m_healthBar->FadeIn(0.5f);
@@ -77,7 +77,7 @@ void GameplayState::Update(float deltaTime)
 			if (m_minute <= 0)
 			{
 				m_minute = 0;
-				m_waveTimerText->SetText(GetFormatedTime());
+				m_waveTimerText.SetText(GetFormatedTime());
 
 				//Time is over and we stop gameplay 
 				// and ready to start end wave screen
@@ -85,7 +85,7 @@ void GameplayState::Update(float deltaTime)
 				return;
 			}
 		}
-		m_waveTimerText->SetText(GetFormatedTime());
+		m_waveTimerText.SetText(GetFormatedTime());
 	}
 
 	
@@ -130,26 +130,23 @@ void GameplayState::ExitState()
 	SaveManager::Instance().SaveEnemyKilledNumber(m_numEnemyKilled);
 	SaveManager::Instance().SaveToFile();
 
-	Game::CurrentScene->Remove(m_waveTitle);
-	Game::CurrentScene->Remove(m_waveTimerText);
+	m_moneyDropsMnger->Cleanup();
+
+	Game::CurrentScene->Remove(&m_waveTitle);
+	Game::CurrentScene->Remove(&m_waveTimerText);
 	Game::CurrentScene->Remove(m_healthBar);
 	Game::CurrentScene->Remove(m_expBar);
-	Game::CurrentScene->Remove(m_hpText);
-	Game::CurrentScene->Remove(m_levelText);
+	Game::CurrentScene->Remove(&m_hpText);
+	Game::CurrentScene->Remove(&m_levelText);
 	Game::CurrentScene->Remove(m_coinIcon);
-	Game::CurrentScene->Remove(m_coinText);
+	Game::CurrentScene->Remove(&m_coinText);
 	Game::CurrentScene->Remove(m_lvlUpIcon);
 
-	delete m_waveTitle;
-	delete m_waveTimerText;
 	delete m_healthBar;
 	delete m_expBar;
-	delete m_hpText;
-	delete m_levelText;
 	delete m_coinIcon;
-	delete m_coinText;
 	delete m_lvlUpIcon;
-
+	delete m_moneyDropsMnger;
 
 	m_enemySpawner.StopAndClear();
 	m_player->SetActive(false);
@@ -193,9 +190,9 @@ void GameplayState::InitializeUI()
 	m_hpTxtValue = std::to_string(m_player->GetHealth().GetCurrentHealth())
 		+ "/"
 		+ std::to_string(m_player->GetHealth().GetMaxHealth());
-	m_hpText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 115, 22);
-	m_hpText->SetSpacing(8);
-	m_hpText->SetSize(16);
+	m_hpText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 115, 22);
+	m_hpText.SetSpacing(8);
+	m_hpText.SetSize(16);
 
 	//Exp bar
 	m_expBar = new PlayerUIBar(20, 50, 200, 20);
@@ -205,29 +202,29 @@ void GameplayState::InitializeUI()
 
 	//Exp text inside exp bar
 	m_levelTxtValue = "Lv " + std::to_string(m_player->XPController().GetCurrentLv());
-	m_levelText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, m_levelTxtValue, Render::Pivot::CENTER, 120, 52);
-	m_levelText->SetSpacing(8);
-	m_levelText->SetSize(16);
+	m_levelText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, m_levelTxtValue, Render::Pivot::CENTER, 120, 52);
+	m_levelText.SetSpacing(8);
+	m_levelText.SetSize(16);
 
 	//Wave title text
 	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
-	m_waveTitle = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f, 10);
-	m_waveTitle->SetSpacing(20);
-	m_waveTitle->SetSize(32);
+	m_waveTitle.Initialize(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f, 10);
+	m_waveTitle.SetSpacing(20);
+	m_waveTitle.SetSize(32);
 
 	//Wave timer text
-	m_waveTimerText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, GetFormatedTime(), Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f + 15, 50);
-	m_waveTimerText->SetSpacing(16);
-	m_waveTimerText->SetSize(24);
+	m_waveTimerText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, GetFormatedTime(), Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f + 15, 50);
+	m_waveTimerText.SetSpacing(16);
+	m_waveTimerText.SetSize(24);
 
 	//Coin icon
 	m_coinIcon = new UIImage();
 	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 70, 60, 60);
 
 	//Number coin text
-	m_coinText = new BMTextRenderer(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
-	m_coinText->SetSpacing(14);
-	m_coinText->SetSize(24);
+	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
+	m_coinText.SetSpacing(14);
+	m_coinText.SetSize(24);
 
 	m_lvlUpIcon = new UIImage();
 	m_lvlUpIcon->Init(Render::TEXTURE_ID::LVL_UP_ICON, g_WindowSettings.Width - 100, 30, 24, 24);
@@ -277,14 +274,14 @@ void GameplayState::UpdateUI()
 	m_hpTxtValue = std::to_string(m_player->GetHealth().GetCurrentHealth())
 		+ "/"
 		+ std::to_string(m_player->GetHealth().GetMaxHealth());
-	m_hpText->SetText(m_hpTxtValue);
+	m_hpText.SetText(m_hpTxtValue);
 
 	m_expBar->UpdateBar(m_player->XPController().GetXPPercent());
 
-	m_levelText->SetText(m_levelTxtValue);
+	m_levelText.SetText(m_levelTxtValue);
 
 	m_coinIcon->Update();
-	m_coinText->SetText(std::to_string(m_coinAmount));
+	m_coinText.SetText(std::to_string(m_coinAmount));
 
 	m_lvlUpIcon->Update();
 }

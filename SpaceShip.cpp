@@ -44,13 +44,16 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, float initX, float i
 
 SpaceShip::~SpaceShip()
 {
-	Game::CurrentScene->Remove(dynamic_cast<GameObject*>(this), RenderLayer::PLAYER);
+	m_isActive = false;
 	if (m_primaryWeapon != nullptr)
 	{
+		m_primaryWeapon->CleanUp();
 		delete m_primaryWeapon;
 	}
 
 	Mix_FreeChunk(m_levelUpSFX);
+
+	Game::CurrentScene->Remove(dynamic_cast<GameObject*>(this), RenderLayer::PLAYER);
 }
 
 void SpaceShip::SetDirectionX(float value)
@@ -84,7 +87,7 @@ void SpaceShip::Update(float deltaTime)
 			auto slime = static_cast<Slime*>(objectCollide);
 			slime->TakeDamage(bullet->GetDamage());
 			bullet->SetActive(false);
-			m_primaryWeapon->DestroyBullet(bullet);
+			m_primaryWeapon->ReleaseFromActivePool(bullet);
 			//std::cout << "BULLET HIT " << slime->GetID() << "\n";
 		}
 	}

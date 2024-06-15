@@ -9,7 +9,8 @@ public:
 	void InitializeBullet(int number, std::string generalName, SDL_Texture* texture, int width, int height);
 	void Shoot(Vector2 pos, Vector2 direction, float angle);
 	void Update(float deltaTime);
-	void DestroyBullet(Bullet* bullet);
+	void ReleaseFromActivePool(Bullet* bullet);
+	void CleanUp();
 	std::vector<Bullet*> GetBulletList();
 private:
 	bool m_isDelay;

@@ -2,7 +2,7 @@
 #include "AssetManager.h"
 #include "Game.h"
 
-BMTextRenderer::BMTextRenderer(TEXTURE_ID textureID, std::string text,Pivot pivot, float x, float y)
+void BMTextRenderer::Initialize(TEXTURE_ID textureID, std::string text, Pivot pivot, float x, float y)
 {
 	m_texture = AssetManager::Instance().LoadTexture(textureID);
 	m_text = text;

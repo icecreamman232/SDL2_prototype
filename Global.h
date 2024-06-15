@@ -89,11 +89,12 @@ namespace Render
 	{
 		DEFAULT = 0,
 		PLAYER = 1,
-		ENEMY = 2,
-		ITEM = 3,
+		WEAPON = 2,
+		ENEMY = 3,
+		ITEM = 4,
 		UI = 999,
 
-		COUNT = 4,
+		COUNT = 5,
 	};
 
 	enum Pivot

@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "algorithm"
+#include <iostream>
 
 void Scene::Add(GameObject* object, RenderLayer renderLayer)
 {
@@ -27,6 +28,7 @@ void Scene::Render()
 
 		for (int j = 0; j < m_renderingContainer[layer].size(); j++)
 		{
+			if (!m_renderingContainer[layer][j]->IsActive()) continue;
 			m_renderingContainer[layer][j]->Render();
 		}
 	}
@@ -50,6 +52,12 @@ void Scene::Remove(GameObject* object, RenderLayer renderLayer)
 	{
 		container.erase(it);
 	}
+}
+
+
+void Scene::RemoveAll(RenderLayer renderLayer)
+{
+	m_renderingContainer[renderLayer].clear();
 }
 
 void Scene::Remove(UIBase* UIElement)

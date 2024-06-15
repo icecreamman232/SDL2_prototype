@@ -1,5 +1,7 @@
 #pragma once
 #include "GameState.h"
+#include "BMTextRenderer.h"
+#include "UIImage.h"
 #include "TweenEffect.h"
 #include "UpgradeCard.h"
 
@@ -16,8 +18,14 @@ private:
 	UpgradeCard m_upgradeCard_Mid;
 	UpgradeCard m_upgradeCard_Right;
 
+
+	BMTextRenderer m_coinText;
+	UIImage* m_coinIcon;
+
 	TweenEffect* m_leftOpeningTween;
 	TweenEffect* m_midOpeningTween;
 	TweenEffect* m_rightOpeningTween;
+
+	int m_coinAmount;
 };
 

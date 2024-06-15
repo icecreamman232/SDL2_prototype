@@ -51,11 +51,11 @@ private:
 	PlayerUIBar* m_healthBar;
 	PlayerUIBar* m_expBar;
 
-	BMTextRenderer* m_coinText;
-	BMTextRenderer* m_hpText;
-	BMTextRenderer* m_levelText;
-	BMTextRenderer* m_waveTitle;
-	BMTextRenderer* m_waveTimerText;
+	BMTextRenderer m_coinText;
+	BMTextRenderer m_hpText;
+	BMTextRenderer m_levelText;
+	BMTextRenderer m_waveTitle;
+	BMTextRenderer m_waveTimerText;
 
 	UIImage* m_coinIcon;
 	UIImage* m_lvlUpIcon;

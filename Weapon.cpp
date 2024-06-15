@@ -52,9 +52,19 @@ void Weapon::AfterDelay()
 	m_isDelay = false;
 }
 
-void Weapon::DestroyBullet(Bullet* bullet)
+void Weapon::ReleaseFromActivePool(Bullet* bullet)
 {
 	m_pool->ReleaseObject(bullet);
+}
+
+void Weapon::CleanUp()
+{
+	m_isDelay = true; //Dirty trick to stop weapon shooting
+	Game::CurrentScene->RemoveAll(Render::RenderLayer::WEAPON);
+	for (auto bullet : m_pool->m_activeList)
+	{
+		dynamic_cast<Bullet*>(bullet)->Remove();
+	}
 }
 
 std::vector<Bullet*> Weapon::GetBulletList()

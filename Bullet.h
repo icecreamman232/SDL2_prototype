@@ -17,7 +17,7 @@ public:
 	void SetAngle(float angle);
 	void SetDirection(Vector2 direction);
 	int GetDamage();
-	
+	void Remove();
 private:
 	int m_minDamage;
 	int m_maxDamage;
@@ -27,6 +27,6 @@ private:
 	Vector2 m_direction;
 	float m_test;
 
-	void Destroy();
+	
 };
 

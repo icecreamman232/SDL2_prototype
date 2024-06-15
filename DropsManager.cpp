@@ -52,3 +52,11 @@ void DropsManager::Update(GameObject* objectToCheck, float deltaTime)
 		m_toBeRemovedList.clear();
 	}
 }
+
+void DropsManager::Cleanup()
+{
+	for (auto drop : m_pool->m_activeList)
+	{
+		Game::CurrentScene->Remove(dynamic_cast<GameObject*>(drop), Render::RenderLayer::ITEM);
+	}
+}

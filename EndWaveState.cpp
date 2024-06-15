@@ -49,6 +49,19 @@ void EndWaveState::Initialize(GameStateManager* manager)
 
 	Timer* timer = new Timer(1.5f, std::bind(&EndWaveState::OnFinishOpeningTween, this));
 
+
+	//Coin icon
+	m_coinIcon = new UIImage();
+	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 70, 60, 60);
+
+	//Number coin text
+	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
+	m_coinText.SetSpacing(14);
+	m_coinText.SetSize(24);
+
+	Game::CurrentScene->Add(m_coinIcon);
+	Game::CurrentScene->Add(&m_coinText);
+
 	m_isRunning = true;
 }
 
@@ -57,6 +70,8 @@ void EndWaveState::Update(float deltaTime)
 	m_upgradeCard_Left.Update();
 	m_upgradeCard_Mid.Update();
 	m_upgradeCard_Right.Update();
+
+	m_coinIcon->Update();
 }
 
 void EndWaveState::Render()

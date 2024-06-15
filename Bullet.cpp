@@ -30,13 +30,15 @@ void Bullet::Initialize(Weapon* weaponOwner, const char* name, TEXTURE_ID textur
 	{
 		m_name = name;
 		m_sprite = new Sprite(AssetManager::Instance().LoadTexture(textureID), initX, initY, width, height, 5);
-		Game::CurrentScene->Add(this, RenderLayer::PLAYER);
+		Game::CurrentScene->Add(this, RenderLayer::WEAPON);
 		m_collider = new Collider(this);
 		m_minDamage = 10;
 		m_maxDamage = 15;
+
+		m_id = s_nextID;
+		s_nextID++;
 		m_isInitialized = true;
 	}
-
 }
 
 void Bullet::Update(float deltaTime)
@@ -47,20 +49,20 @@ void Bullet::Update(float deltaTime)
 
 	if (m_pos.x <= 0)
 	{
-		Destroy();
+		Remove();
 	}
 	else if (m_pos.x >= g_WindowSettings.Width - m_sprite->GetRect().w)
 	{
-		Destroy();
+		Remove();
 	}
 
 	if (m_pos.y <= 0)
 	{
-		Destroy();
+		Remove();
 	}
 	else if (m_pos.y >= g_WindowSettings.Height - m_sprite->GetRect().h)
 	{
-		Destroy();
+		Remove();
 	}
 
 }
@@ -90,8 +92,8 @@ int Bullet::GetDamage()
 	return distribution(gen);
 }
 
-void Bullet::Destroy()
+void Bullet::Remove()
 {
 	m_isActive = false;
-	m_weapon->DestroyBullet(this);
+	m_weapon->ReleaseFromActivePool(this);
 }

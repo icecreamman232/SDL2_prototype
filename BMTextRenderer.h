@@ -11,8 +11,8 @@ using namespace Render;
 class BMTextRenderer : public UIBase
 { 
 public:
-	BMTextRenderer(TEXTURE_ID textureID, std::string text,
-					Pivot pivot, float x, float y);
+	void Initialize(TEXTURE_ID textureID, std::string text,
+		Pivot pivot, float x, float y);
 	void Render() override;
 
 	inline void SetSpacing(float spacing) { m_spacing = spacing; };
