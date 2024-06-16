@@ -51,7 +51,7 @@ void Game::Init(const char* title, int x, int y, int width, int height)
 			m_isRunning = false;
 		}
 	}
-
+	
 	Input::Instance().Initialize();
 
 	// Setup Dear ImGui context

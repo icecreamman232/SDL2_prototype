@@ -52,10 +52,10 @@ void EndWaveState::Initialize(GameStateManager* manager)
 
 	//Coin icon
 	m_coinIcon = new UIImage();
-	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 70, 60, 60);
+	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 40, 60, 60);
 
 	//Number coin text
-	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
+	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 60);
 	m_coinText.SetSpacing(14);
 	m_coinText.SetSize(24);
 

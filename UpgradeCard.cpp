@@ -1,6 +1,7 @@
 #include "UpgradeCard.h"
 #include "TweenManager.h"
 #include <iostream>
+#include "Logger.h"
 
 UpgradeCard::~UpgradeCard()
 {
@@ -24,14 +25,13 @@ void UpgradeCard::OnMouseExit()
 
 void UpgradeCard::OnSelect()
 {
-	std::cout << "SELECT\n";
 	TweenManager::Instance().CreateTween(Tween::TweenEase::OUT_QUINT,
 		this, m_pos.x, m_originalY - 20, 0.3f);
+	DebugLog("Select");
 }
 
 void UpgradeCard::OnDeselect()
 {
-	std::cout << "DE-SELECT\n";
 	TweenManager::Instance().CreateTween(Tween::TweenEase::OUT_QUINT,
 		this, m_pos.x, m_originalY + 20, 0.3f);
 }
