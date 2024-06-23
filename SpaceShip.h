@@ -25,6 +25,7 @@ public:
 	float GetPercentHealth();
 
 	Health& GetHealth();
+	void SetMaxHealth(int newMaxHP);
 
 	inline ExpController XPController() { return m_xpController; };
 

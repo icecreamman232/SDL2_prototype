@@ -1,6 +1,7 @@
 #pragma once
 #include "GameplayState.h"
 #include "EndWaveState.h"
+#include "PowerUpManager.h"
 #include "Global.h"
 
 class GameStateManager
@@ -17,6 +18,7 @@ public:
 	inline bool IsChangingState() { return m_isChangingState; };
 
 	void LevelGained();
+	PowerUpManager* GetPowerUpManager();
 private:
 	GameState* m_currentState;
 	int m_waveIndex;
@@ -25,5 +27,6 @@ private:
 	//IMPORTANT DATA BETWEEN SCENE//
 	//ToDo we should have data storage usage for this
 	Uint8 m_levelGainedDuringRun;
+	PowerUpManager m_powerUpManager;
 };
 

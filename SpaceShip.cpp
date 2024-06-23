@@ -223,4 +223,9 @@ Health& SpaceShip::GetHealth()
 	return m_health;
 }
 
+void SpaceShip::SetMaxHealth(int newMaxHP)
+{
+	m_health.SetMaxHealth(newMaxHP);
+}
+
 

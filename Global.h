@@ -106,3 +106,12 @@ namespace Render
 		BOTTOM,
 	};
 }
+
+enum PowerUpType
+{
+	Increase_MAX_HP,
+	Increase_MoveSpeed,
+	Increase_Damage,
+	Increase_HP,
+	COUNT,
+};

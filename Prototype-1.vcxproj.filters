@@ -58,6 +58,12 @@
     <Filter Include="Header Files\Gameplay">
       <UniqueIdentifier>{69e8cc95-45f5-40aa-9034-f97034e74a35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Gameplay\PowerUp">
+      <UniqueIdentifier>{5b617662-3846-4295-9fe8-676f11463fd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gameplay\PowerUp">
+      <UniqueIdentifier>{a1ab3b12-6af3-4917-9c33-ace375a29a1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetManager.cpp">
@@ -190,7 +196,19 @@
       <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="Logger.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="IncreaseHPPowerUp.cpp">
+      <Filter>Source Files\Gameplay\PowerUp</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUpManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUpBase.cpp">
+      <Filter>Source Files\Gameplay\PowerUp</Filter>
+    </ClCompile>
+    <ClCompile Include="PickUpgradeEventDispatcher.h">
+      <Filter>Header Files\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -351,7 +369,16 @@
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IncreaseHPPowerUp.h">
+      <Filter>Header Files\Gameplay\PowerUp</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUpManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUpBase.h">
+      <Filter>Header Files\Gameplay\PowerUp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

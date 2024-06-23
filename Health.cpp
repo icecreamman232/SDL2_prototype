@@ -26,6 +26,11 @@ int Health::GetMaxHealth()
 	return m_maxHealth;
 }
 
+void Health::SetMaxHealth(int maxHealth)
+{
+	m_maxHealth = maxHealth;
+}
+
 
 void Health::AfterInvulerableCallback()
 {

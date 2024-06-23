@@ -1,7 +1,6 @@
 #include "Global.h"
 #include "GameplayState.h"
 #include "Game.h"
-#include <iostream>
 #include "GameStateManager.h"
 #include <string>
 #include <sstream>

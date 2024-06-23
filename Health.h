@@ -8,6 +8,7 @@ public:
 
 	int GetCurrentHealth();
 	int GetMaxHealth();
+	void SetMaxHealth(int maxHealth);
 	void AfterInvulerableCallback(); //Can we set it to be private ?!
 	inline bool IsInvulernable() {return m_isInvulnerable; };
 

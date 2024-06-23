@@ -1,4 +1,6 @@
 #pragma once
+#include "Global.h"
+#include "Math/Vector2.h"
 
 struct EnemyHealthEvent
 {
@@ -20,4 +22,9 @@ struct LevelUpEvent
 struct CoinCollectEvent
 {
 	int CoinValue;
+};
+
+struct PickUpgradeEvent
+{
+	PowerUpType PowerUpType;
 };

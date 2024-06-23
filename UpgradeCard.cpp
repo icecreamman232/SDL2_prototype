@@ -8,6 +8,11 @@ UpgradeCard::~UpgradeCard()
 	m_state = nullptr;
 }
 
+void UpgradeCard::AssignCardValue(PowerUpType value)
+{
+	m_cardValue = value;
+}
+
 void UpgradeCard::AssignEndWaveStateRef(EndWaveState* state)
 {
 	m_state = state;

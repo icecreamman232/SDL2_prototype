@@ -53,3 +53,8 @@ void GameStateManager::LevelGained()
 {
 	m_levelGainedDuringRun++;
 }
+
+PowerUpManager* GameStateManager::GetPowerUpManager()
+{
+	return &m_powerUpManager;
+}

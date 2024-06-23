@@ -2,28 +2,68 @@
 #include "Game.h"
 #include "TweenManager.h"
 #include "Timer.h"
+#include "GameStateManager.h"
+#include "PickUpgradeEventDispatcher.h"
 
 void EndWaveState::Initialize(GameStateManager* manager)
+{
+	m_manager = manager;
+
+	InitializePowerUp();
+	InitializePowerUpCard();
+
+	//Coin icon
+	m_coinIcon = new UIImage();
+	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 40, 60, 60);
+
+	//Number coin text
+	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 60);
+	m_coinText.SetSpacing(14);
+	m_coinText.SetSize(24);
+
+	Game::CurrentScene->Add(m_coinIcon);
+	Game::CurrentScene->Add(&m_coinText);
+
+	m_isRunning = true;
+}
+
+void EndWaveState::InitializePowerUp()
+{
+	PowerUpType powerUpLeftType = m_manager->GetPowerUpManager()->GetRandomPowerUp();
+	m_powerUpLeft.Initialize(powerUpLeftType);
+
+	PowerUpType powerUpMidType = m_manager->GetPowerUpManager()->GetRandomPowerUp();
+	m_powerUpMid.Initialize(powerUpMidType);
+
+	PowerUpType powerUpRightType = m_manager->GetPowerUpManager()->GetRandomPowerUp();
+	m_powerUpRight.Initialize(powerUpRightType);
+}
+
+void EndWaveState::InitializePowerUpCard()
 {
 	int padding = 80;
 	int width = 300;
 	int height = 450;
 	int offsetToTween = 100;
 	m_upgradeCard_Left.Init(Render::TEXTURE_ID::WHITE_BAR_UI,
-		padding, g_WindowSettings.Height / 2 - height/2 - offsetToTween,
+		padding, g_WindowSettings.Height / 2 - height / 2 - offsetToTween,
 		width, height);
 
-	m_upgradeCard_Mid.Init(Render::TEXTURE_ID::WHITE_BAR_UI, 
-		g_WindowSettings.Width/2 - width /2, g_WindowSettings.Height / 2 - height/2 - offsetToTween,
+	m_upgradeCard_Mid.Init(Render::TEXTURE_ID::WHITE_BAR_UI,
+		g_WindowSettings.Width / 2 - width / 2, g_WindowSettings.Height / 2 - height / 2 - offsetToTween,
 		width, height);
 
 	m_upgradeCard_Right.Init(Render::TEXTURE_ID::WHITE_BAR_UI,
-		g_WindowSettings.Width - padding - width, g_WindowSettings.Height / 2 - height/2 - offsetToTween,
+		g_WindowSettings.Width - padding - width, g_WindowSettings.Height / 2 - height / 2 - offsetToTween,
 		width, height);
 
 	m_upgradeCard_Left.AssignEndWaveStateRef(this);
 	m_upgradeCard_Mid.AssignEndWaveStateRef(this);
 	m_upgradeCard_Right.AssignEndWaveStateRef(this);
+
+	m_upgradeCard_Left.AssignCardValue(m_powerUpLeft.GetPU_Type());
+	m_upgradeCard_Mid.AssignCardValue(m_powerUpMid.GetPU_Type());
+	m_upgradeCard_Right.AssignCardValue(m_powerUpRight.GetPU_Type());
 
 	m_upgradeCard_Left.SetInteract(false);
 	m_upgradeCard_Mid.SetInteract(false);
@@ -48,21 +88,11 @@ void EndWaveState::Initialize(GameStateManager* manager)
 	m_upgradeCard_Right.SetOriginal_Y(m_upgradeCard_Right.GetPosY() + offsetToTween);
 
 	Timer* timer = new Timer(1.5f, std::bind(&EndWaveState::OnFinishOpeningTween, this));
+}
 
+void EndWaveState::OnTriggerEvent(const PickUpgradeEvent& eventType)
+{
 
-	//Coin icon
-	m_coinIcon = new UIImage();
-	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 40, 60, 60);
-
-	//Number coin text
-	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 60);
-	m_coinText.SetSpacing(14);
-	m_coinText.SetSize(24);
-
-	Game::CurrentScene->Add(m_coinIcon);
-	Game::CurrentScene->Add(&m_coinText);
-
-	m_isRunning = true;
 }
 
 void EndWaveState::Update(float deltaTime)
