@@ -32,7 +32,6 @@ void UpgradeCard::OnSelect()
 {
 	TweenManager::Instance().CreateTween(Tween::TweenEase::OUT_QUINT,
 		this, m_pos.x, m_originalY - 20, 0.3f);
-	DebugLog("Select");
 }
 
 void UpgradeCard::OnDeselect()

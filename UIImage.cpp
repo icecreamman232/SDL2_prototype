@@ -38,3 +38,9 @@ void UIImage::SetPosition(float x, float y)
 	m_pos.x = x;
 	m_pos.y = y;
 }
+
+void UIImage::FillColor(SDL_Color color)
+{
+	m_color = color;
+	m_sprite->TintColor(m_color.r, m_color.g, m_color.b, m_color.a);
+}

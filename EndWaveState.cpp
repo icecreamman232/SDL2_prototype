@@ -48,14 +48,17 @@ void EndWaveState::InitializePowerUpCard()
 	m_upgradeCard_Left.Init(Render::TEXTURE_ID::WHITE_BAR_UI,
 		padding, g_WindowSettings.Height / 2 - height / 2 - offsetToTween,
 		width, height);
+	m_upgradeCard_Left.FillColor(SDL_Color{0,162,232,255});
 
 	m_upgradeCard_Mid.Init(Render::TEXTURE_ID::WHITE_BAR_UI,
 		g_WindowSettings.Width / 2 - width / 2, g_WindowSettings.Height / 2 - height / 2 - offsetToTween,
 		width, height);
+	m_upgradeCard_Mid.FillColor(SDL_Color{ 0,162,232,255});
 
 	m_upgradeCard_Right.Init(Render::TEXTURE_ID::WHITE_BAR_UI,
 		g_WindowSettings.Width - padding - width, g_WindowSettings.Height / 2 - height / 2 - offsetToTween,
 		width, height);
+	m_upgradeCard_Right.FillColor(SDL_Color{ 0,162,232,255});
 
 	m_upgradeCard_Left.AssignEndWaveStateRef(this);
 	m_upgradeCard_Mid.AssignEndWaveStateRef(this);
