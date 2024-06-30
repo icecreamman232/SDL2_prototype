@@ -10,9 +10,9 @@ class UIImage : public UIBase, public Selectable
 {
 public:
 	UIImage();
-	virtual void Init(Render::TEXTURE_ID textureID, int x, int y, int width, int heigh);
+	virtual void Init(Render::TEXTURE_ID textureID, int x, int y, int width, int heigh, int spriteFrame = 0);
 	void Render() override;
-	void Update() override;
+	virtual void Update() override;
 	void SetPosition(float x, float y);
 	void FillColor(SDL_Color color);
 	inline float GetPosX() { return m_pos.x; };

@@ -8,9 +8,10 @@ UIImage::UIImage()
 	m_height = 0;
 }
 
-void UIImage::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height)
+void UIImage::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height,int spriteFrame)
 {
 	m_sprite = new Sprite(AssetManager::Instance().LoadTexture(textureID), x, y, width, height, 0, true);
+	m_sprite->SetFrame(spriteFrame);
 	m_pos.x = x;
 	m_pos.y = y;
 	m_width = width;

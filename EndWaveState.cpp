@@ -64,10 +64,6 @@ void EndWaveState::InitializePowerUpCard()
 	m_upgradeCard_Mid.AssignEndWaveStateRef(this);
 	m_upgradeCard_Right.AssignEndWaveStateRef(this);
 
-	m_upgradeCard_Left.AssignCardValue(m_powerUpLeft.GetPU_Type());
-	m_upgradeCard_Mid.AssignCardValue(m_powerUpMid.GetPU_Type());
-	m_upgradeCard_Right.AssignCardValue(m_powerUpRight.GetPU_Type());
-
 	m_upgradeCard_Left.SetInteract(false);
 	m_upgradeCard_Mid.SetInteract(false);
 	m_upgradeCard_Right.SetInteract(false);
@@ -75,6 +71,10 @@ void EndWaveState::InitializePowerUpCard()
 	Game::CurrentScene->Add(&m_upgradeCard_Left);
 	Game::CurrentScene->Add(&m_upgradeCard_Mid);
 	Game::CurrentScene->Add(&m_upgradeCard_Right);
+
+	m_upgradeCard_Left.AssignCardValue(m_powerUpLeft.GetPU_Type());
+	m_upgradeCard_Mid.AssignCardValue(m_powerUpMid.GetPU_Type());
+	m_upgradeCard_Right.AssignCardValue(m_powerUpRight.GetPU_Type());
 
 	m_leftOpeningTween = TweenManager::Instance().CreateTween(Tween::TweenEase::OUT_QUINT,
 		&m_upgradeCard_Left, padding, m_upgradeCard_Left.GetPosY() + offsetToTween, 1.0f);
@@ -120,6 +120,12 @@ void EndWaveState::ExitState()
 void EndWaveState::OnFinishOpeningTween()
 {
 	m_upgradeCard_Left.SetInteract(true);
+	m_upgradeCard_Left.OnFinishTween();
+	
+
 	m_upgradeCard_Mid.SetInteract(true);
+	m_upgradeCard_Mid.OnFinishTween();
+
 	m_upgradeCard_Right.SetInteract(true);
+	m_upgradeCard_Right.OnFinishTween();
 }
