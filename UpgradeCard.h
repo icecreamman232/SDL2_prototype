@@ -1,17 +1,17 @@
 #pragma once
 #include "UIImage.h"
+#include "Selectable.h"
 #include "Global.h"
 class EndWaveState;
 
-class UpgradeCard : public UIImage
+class UpgradeCard : public UIImage, public Selectable
 {
 public:
 	~UpgradeCard();
+	void Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame = 0) override;
 	void Update() override;
 	void AssignCardValue(PowerUpType value);
 	void AssignEndWaveStateRef(EndWaveState* state);
-	void OnMouseEnter() override;
-	void OnMouseExit() override;
 	void OnSelect() override;
 	void OnDeselect() override;
 	void SetOriginal_Y(float value);

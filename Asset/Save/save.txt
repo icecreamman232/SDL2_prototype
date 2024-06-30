@@ -1,2 +1,2 @@
-EnemyKilled,0
-CoinAmount,1028
+EnemyKilled,4
+CoinAmount,1031

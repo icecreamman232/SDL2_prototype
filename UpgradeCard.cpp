@@ -8,11 +8,19 @@ UpgradeCard::~UpgradeCard()
 	m_state = nullptr;
 }
 
+void UpgradeCard::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame)
+{
+	InitSelectable(x, y, width, height);
+	UIImage::Init(textureID, x, y, width, height, spriteFrame);
+}
+
 void UpgradeCard::Update()
 {
 	if (m_state == nullptr) return;
 	m_icon.SetPosition(m_pos.x + m_width/2 - m_icon.GetWidth()/2, m_pos.y + m_topPadding);
 	m_icon.Update();
+
+	UpdateSelectable();
 	UIImage::Update();
 }
 
@@ -47,16 +55,6 @@ void UpgradeCard::AssignCardValue(PowerUpType powerUpType)
 void UpgradeCard::AssignEndWaveStateRef(EndWaveState* state)
 {
 	m_state = state;
-}
-
-void UpgradeCard::OnMouseEnter()
-{
-	
-}
-
-void UpgradeCard::OnMouseExit()
-{
-	
 }
 
 void UpgradeCard::OnSelect()
