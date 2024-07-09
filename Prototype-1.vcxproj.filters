@@ -210,6 +210,9 @@
     <ClCompile Include="PickUpgradeEventDispatcher.h">
       <Filter>Header Files\Events</Filter>
     </ClCompile>
+    <ClCompile Include="ChooseUpgradeButton.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -379,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="PowerUpBase.h">
       <Filter>Header Files\Gameplay\PowerUp</Filter>
+    </ClInclude>
+    <ClInclude Include="ChooseUpgradeButton.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@
 #include "UIImage.h"
 #include "TweenEffect.h"
 #include "UpgradeCard.h"
+#include "ChooseUpgradeButton.h"
 #include "PowerUpBase.h"
 #include "ISubscriber.h"
 #include "PickUpgradeEventDispatcher.h"
@@ -29,6 +30,7 @@ private:
 	UpgradeCard m_upgradeCard_Mid;
 	UpgradeCard m_upgradeCard_Right;
 
+	ChooseUpgradeButton m_chooseUpgradeBtn;
 
 	BMTextRenderer m_coinText;
 	UIImage* m_coinIcon;

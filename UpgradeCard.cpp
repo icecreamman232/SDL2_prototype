@@ -6,12 +6,23 @@
 UpgradeCard::~UpgradeCard()
 {
 	m_state = nullptr;
+	m_chooseUpgradeBtn = nullptr;
 }
 
 void UpgradeCard::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame)
 {
 	InitSelectable(x, y, width, height);
 	UIImage::Init(textureID, x, y, width, height, spriteFrame);
+}
+
+void UpgradeCard::AssignChooseUpgradeButton(ChooseUpgradeButton* buttonRef)
+{
+	m_chooseUpgradeBtn = buttonRef;
+}
+
+void UpgradeCard::SetUpgradeCardIndex(Uint8 index)
+{
+	m_cardIndex = index;
 }
 
 void UpgradeCard::Update()
@@ -61,6 +72,7 @@ void UpgradeCard::OnSelect()
 {
 	TweenManager::Instance().CreateTween(Tween::TweenEase::OUT_QUINT,
 		this, m_pos.x, m_originalY - 20, 0.3f);
+	m_chooseUpgradeBtn->SetSelectedCard(m_cardIndex);
 }
 
 void UpgradeCard::OnDeselect()

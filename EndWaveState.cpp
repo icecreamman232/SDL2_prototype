@@ -9,6 +9,12 @@ void EndWaveState::Initialize(GameStateManager* manager)
 {
 	m_manager = manager;
 
+	m_chooseUpgradeBtn.Init(Render::TEXTURE_ID::WHITE_BAR_UI
+		,g_WindowSettings.Width/2-200/2, g_WindowSettings.Height - 50/2-80, 200, 50);
+	m_chooseUpgradeBtn.FillColor(SDL_Color{ 0,255,0,255 });
+	
+	//Game::CurrentScene->Add(&m_chooseUpgradeBtn);
+
 	InitializePowerUp();
 	InitializePowerUpCard();
 
@@ -60,6 +66,11 @@ void EndWaveState::InitializePowerUpCard()
 		width, height);
 	m_upgradeCard_Right.FillColor(SDL_Color{ 0,162,232,255});
 
+
+	m_upgradeCard_Left.SetUpgradeCardIndex(0);
+	m_upgradeCard_Mid.SetUpgradeCardIndex(1);
+	m_upgradeCard_Right.SetUpgradeCardIndex(2);
+
 	m_upgradeCard_Left.AssignEndWaveStateRef(this);
 	m_upgradeCard_Mid.AssignEndWaveStateRef(this);
 	m_upgradeCard_Right.AssignEndWaveStateRef(this);
@@ -67,6 +78,11 @@ void EndWaveState::InitializePowerUpCard()
 	m_upgradeCard_Left.SetInteract(false);
 	m_upgradeCard_Mid.SetInteract(false);
 	m_upgradeCard_Right.SetInteract(false);
+
+
+	m_upgradeCard_Left.AssignChooseUpgradeButton(&m_chooseUpgradeBtn);
+	m_upgradeCard_Mid.AssignChooseUpgradeButton(&m_chooseUpgradeBtn);
+	m_upgradeCard_Right.AssignChooseUpgradeButton(&m_chooseUpgradeBtn);
 
 	Game::CurrentScene->Add(&m_upgradeCard_Left);
 	Game::CurrentScene->Add(&m_upgradeCard_Mid);
@@ -104,6 +120,8 @@ void EndWaveState::Update(float deltaTime)
 	m_upgradeCard_Mid.Update();
 	m_upgradeCard_Right.Update();
 
+	m_chooseUpgradeBtn.Update();
+
 	m_coinIcon->Update();
 }
 
@@ -119,6 +137,9 @@ void EndWaveState::ExitState()
 
 void EndWaveState::OnFinishOpeningTween()
 {
+
+	m_chooseUpgradeBtn.SetInteract(true);
+
 	m_upgradeCard_Left.SetInteract(true);
 	m_upgradeCard_Left.OnFinishTween();
 	
