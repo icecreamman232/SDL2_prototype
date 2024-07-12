@@ -6,7 +6,7 @@
 class IncreaseHPPowerUp : public PowerUpBase
 {
 public:
-	void Apply() override;
+	void Apply(SpaceShip* player) override;
 	void AssignPlayer(SpaceShip* player);
 private:
 	float m_percentIncrease;

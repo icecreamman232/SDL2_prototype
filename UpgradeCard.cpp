@@ -9,10 +9,10 @@ UpgradeCard::~UpgradeCard()
 	m_chooseUpgradeBtn = nullptr;
 }
 
-void UpgradeCard::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame)
+void UpgradeCard::Init(std::string name, Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame)
 {
 	InitSelectable(x, y, width, height);
-	UIImage::Init(textureID, x, y, width, height, spriteFrame);
+	UIImage::Init("UpgradeCard", textureID, x, y, width, height, spriteFrame);
 }
 
 void UpgradeCard::AssignChooseUpgradeButton(ChooseUpgradeButton* buttonRef)
@@ -20,10 +20,6 @@ void UpgradeCard::AssignChooseUpgradeButton(ChooseUpgradeButton* buttonRef)
 	m_chooseUpgradeBtn = buttonRef;
 }
 
-void UpgradeCard::SetUpgradeCardIndex(Uint8 index)
-{
-	m_cardIndex = index;
-}
 
 void UpgradeCard::Update()
 {
@@ -48,16 +44,16 @@ void UpgradeCard::AssignCardValue(PowerUpType powerUpType)
 	switch (powerUpType)
 	{
 		case PowerUpType::Increase_HP:
-			m_icon.Init(textureID, x, y, width, height, 0);
+			m_icon.Init("IconPU",textureID, x, y, width, height, 0);
 			break;
 		case PowerUpType::Increase_Damage:
-			m_icon.Init(textureID, x, y, width, height, 0);
+			m_icon.Init("IconPU",textureID, x, y, width, height, 0);
 			break;
 		case PowerUpType::Increase_MAX_HP:
-			m_icon.Init(textureID, x, y, width, height, 0);
+			m_icon.Init("IconPU",textureID, x, y, width, height, 0);
 			break;
 		case PowerUpType::Increase_MoveSpeed:
-			m_icon.Init(textureID, x, y, width, height, 0);
+			m_icon.Init("IconPU",textureID, x, y, width, height, 0);
 			break;
 	}
 	Game::CurrentScene->Add(&m_icon);
@@ -72,7 +68,7 @@ void UpgradeCard::OnSelect()
 {
 	TweenManager::Instance().CreateTween(Tween::TweenEase::OUT_QUINT,
 		this, m_pos.x, m_originalY - 20, 0.3f);
-	m_chooseUpgradeBtn->SetSelectedCard(m_cardIndex);
+	m_chooseUpgradeBtn->SetSelectedCard(m_cardValue);
 }
 
 void UpgradeCard::OnDeselect()

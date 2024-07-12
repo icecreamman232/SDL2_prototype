@@ -3,6 +3,7 @@
 void GameStateManager::Initialize()
 {
 	m_waveIndex = 1; //Start at wave 1, absolutely!
+	m_powerUpManager.Initialize();
 
 	m_currentState = new GameplayState();
 	m_currentState->Initialize(this);

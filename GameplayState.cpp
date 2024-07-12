@@ -15,13 +15,15 @@ void GameplayState::Initialize(GameStateManager* manager)
 {
 	m_manager = manager;
 
-
+	
 	m_minute = 0;
 	m_seconds = 6;
 	m_secondsCounter = 0.0;
 
 	m_player = new SpaceShip("Ship", PLAYER_TEX, g_WindowSettings.Width / 2, g_WindowSettings.Height / 2, 18, 16, 9);
 	m_player->SetLayer(Layer::PLAYER);
+	m_manager->GetPowerUpManager()->AssignPlayer(m_player);
+	m_manager->GetPowerUpManager()->ApplyPowerUp();
 
 
 	Game::m_quadTreev2->Insert(m_player);
@@ -118,6 +120,8 @@ void GameplayState::Render()
 
 void GameplayState::ExitState()
 {
+	m_manager->GetPowerUpManager()->AssignPlayer(nullptr);
+
 	//Detach all events
 	EnemyHealthEventDispatcher::Detach(this);
 	PlayerLevelUpEventDispatcher::Detach(this);
@@ -218,7 +222,7 @@ void GameplayState::InitializeUI()
 
 	//Coin icon
 	m_coinIcon = new UIImage();
-	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 70, 60, 60);
+	m_coinIcon->Init("CoinIcon", Render::TEXTURE_ID::COIN, 15, 70, 60, 60);
 
 	//Number coin text
 	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
@@ -226,7 +230,7 @@ void GameplayState::InitializeUI()
 	m_coinText.SetSize(24);
 
 	m_lvlUpIcon = new UIImage();
-	m_lvlUpIcon->Init(Render::TEXTURE_ID::LVL_UP_ICON, g_WindowSettings.Width - 100, 30, 24, 24);
+	m_lvlUpIcon->Init("LvlUpIcon", Render::TEXTURE_ID::LVL_UP_ICON, g_WindowSettings.Width - 100, 30, 24, 24);
 
 
 	TweenManager::Instance().CreateTween(Tween::TweenEase::IN_OUT_BOUNCE,

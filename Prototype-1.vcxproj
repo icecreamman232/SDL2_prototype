@@ -235,6 +235,7 @@
     <ClInclude Include="PlayerLevelUpEventDispatcher.h" />
     <ClInclude Include="PlayerUIBar.h" />
     <ClInclude Include="PowerUpBase.h" />
+    <ClInclude Include="PowerUpEventDispatcher.h" />
     <ClInclude Include="PowerUpManager.h" />
     <ClInclude Include="QuadTreev2.h" />
     <ClInclude Include="SaveManager.h" />

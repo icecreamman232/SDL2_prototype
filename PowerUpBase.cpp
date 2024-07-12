@@ -5,7 +5,7 @@ void PowerUpBase::Initialize(PowerUpType type)
 	m_type = type;
 }
 
-void PowerUpBase::Apply()
+void PowerUpBase::Apply(SpaceShip* player)
 {
 }
 

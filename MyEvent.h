@@ -28,3 +28,8 @@ struct PickUpgradeEvent
 {
 	PowerUpType PowerUpType;
 };
+
+struct PowerUpEvent
+{
+	PowerUpType PowerUpType;
+};

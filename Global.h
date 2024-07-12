@@ -110,6 +110,7 @@ namespace Render
 
 enum PowerUpType
 {
+	None,
 	Increase_MAX_HP,
 	Increase_MoveSpeed,
 	Increase_Damage,

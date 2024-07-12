@@ -9,9 +9,8 @@ class UpgradeCard : public UIImage, public Selectable
 {
 public:
 	~UpgradeCard();
-	void Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame = 0) override;
+	void Init(std::string name, Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame = 0) override;
 	void AssignChooseUpgradeButton(ChooseUpgradeButton* buttonRef);
-	void SetUpgradeCardIndex(Uint8 index);
 	void Update() override;
 	void AssignCardValue(PowerUpType value);
 	void AssignEndWaveStateRef(EndWaveState* state);
@@ -20,7 +19,6 @@ public:
 	void SetOriginal_Y(float value);
 	void OnFinishTween();
 private:
-	Uint8 m_cardIndex;
 	EndWaveState* m_state;
 	float m_originalY;
 	//Represent for which powerup index that got random in game state

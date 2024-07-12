@@ -8,8 +8,9 @@ UIImage::UIImage()
 	m_height = 0;
 }
 
-void UIImage::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height,int spriteFrame)
+void UIImage::Init(std::string name, Render::TEXTURE_ID textureID, int x, int y, int width, int height,int spriteFrame)
 {
+	m_name = name;
 	m_sprite = new Sprite(AssetManager::Instance().LoadTexture(textureID), x, y, width, height, 0, true);
 	m_sprite->SetFrame(spriteFrame);
 	m_pos.x = x;
@@ -23,6 +24,10 @@ void UIImage::Init(Render::TEXTURE_ID textureID, int x, int y, int width, int he
 
 void UIImage::Render()
 {
+	if (m_sprite == nullptr)
+	{
+		return;
+	}
 	m_sprite->Render(0);
 }
 

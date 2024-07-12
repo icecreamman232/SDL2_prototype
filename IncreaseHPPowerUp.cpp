@@ -1,15 +1,15 @@
 #include "IncreaseHPPowerUp.h"
 #include "Logger.h"
 
-void IncreaseHPPowerUp::Apply()
+void IncreaseHPPowerUp::Apply(SpaceShip* player)
 {
-	if (m_playerRef == nullptr)
+	if (player == nullptr)
 	{
 		DebugLog("Player Ref is NULL");
 	}
-	auto curMaxHealth = m_playerRef->GetHealth().GetMaxHealth();
+	auto curMaxHealth = player->GetHealth().GetMaxHealth();
 	curMaxHealth = curMaxHealth * (m_percentIncrease / 100.0f + 1.0f);
-	m_playerRef->SetMaxHealth(curMaxHealth);
+	player->SetMaxHealth(curMaxHealth);
 }
 
 void IncreaseHPPowerUp::AssignPlayer(SpaceShip* player)

@@ -386,6 +386,9 @@
     <ClInclude Include="ChooseUpgradeButton.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="PowerUpEventDispatcher.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Asset\blue-starship.png">

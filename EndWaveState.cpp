@@ -9,7 +9,7 @@ void EndWaveState::Initialize(GameStateManager* manager)
 {
 	m_manager = manager;
 
-	m_chooseUpgradeBtn.Init(Render::TEXTURE_ID::WHITE_BAR_UI
+	m_chooseUpgradeBtn.Init("ChooseUpgradeBtn",Render::TEXTURE_ID::WHITE_BAR_UI
 		,g_WindowSettings.Width/2-200/2, g_WindowSettings.Height - 50/2-80, 200, 50);
 	m_chooseUpgradeBtn.FillColor(SDL_Color{ 0,255,0,255 });
 	
@@ -20,7 +20,7 @@ void EndWaveState::Initialize(GameStateManager* manager)
 
 	//Coin icon
 	m_coinIcon = new UIImage();
-	m_coinIcon->Init(Render::TEXTURE_ID::COIN, 15, 40, 60, 60);
+	m_coinIcon->Init("CoinIcon",Render::TEXTURE_ID::COIN, 15, 40, 60, 60);
 
 	//Number coin text
 	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 60);
@@ -51,25 +51,20 @@ void EndWaveState::InitializePowerUpCard()
 	int width = 300;
 	int height = 450;
 	int offsetToTween = 100;
-	m_upgradeCard_Left.Init(Render::TEXTURE_ID::WHITE_BAR_UI,
+	m_upgradeCard_Left.Init("UpgradeCardLeft", Render::TEXTURE_ID::WHITE_BAR_UI,
 		padding, g_WindowSettings.Height / 2 - height / 2 - offsetToTween,
 		width, height);
 	m_upgradeCard_Left.FillColor(SDL_Color{0,162,232,255});
 
-	m_upgradeCard_Mid.Init(Render::TEXTURE_ID::WHITE_BAR_UI,
+	m_upgradeCard_Mid.Init("UpgradeCardMid",Render::TEXTURE_ID::WHITE_BAR_UI,
 		g_WindowSettings.Width / 2 - width / 2, g_WindowSettings.Height / 2 - height / 2 - offsetToTween,
 		width, height);
 	m_upgradeCard_Mid.FillColor(SDL_Color{ 0,162,232,255});
 
-	m_upgradeCard_Right.Init(Render::TEXTURE_ID::WHITE_BAR_UI,
+	m_upgradeCard_Right.Init("UpgradeCardRight",Render::TEXTURE_ID::WHITE_BAR_UI,
 		g_WindowSettings.Width - padding - width, g_WindowSettings.Height / 2 - height / 2 - offsetToTween,
 		width, height);
 	m_upgradeCard_Right.FillColor(SDL_Color{ 0,162,232,255});
-
-
-	m_upgradeCard_Left.SetUpgradeCardIndex(0);
-	m_upgradeCard_Mid.SetUpgradeCardIndex(1);
-	m_upgradeCard_Right.SetUpgradeCardIndex(2);
 
 	m_upgradeCard_Left.AssignEndWaveStateRef(this);
 	m_upgradeCard_Mid.AssignEndWaveStateRef(this);

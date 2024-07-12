@@ -10,7 +10,7 @@ class UIImage : public UIBase
 {
 public:
 	UIImage();
-	virtual void Init(Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame = 0);
+	virtual void Init(std::string name, Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame = 0);
 	void Render() override;
 	virtual void Update() override;
 	void SetPosition(float x, float y);
