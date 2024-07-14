@@ -58,7 +58,7 @@ private:
 	BMTextRenderer m_waveTimerText;
 
 	UIImage* m_coinIcon;
-	UIImage* m_lvlUpIcon;
+	//UIImage* m_lvlUpIcon;
 
 	//====Drops===//
 	DropsManager* m_moneyDropsMnger;

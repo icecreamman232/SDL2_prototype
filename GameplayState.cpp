@@ -42,7 +42,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 	Game::CurrentScene->Add(&m_levelText);
 	Game::CurrentScene->Add(m_coinIcon);
 	Game::CurrentScene->Add(&m_coinText);
-	Game::CurrentScene->Add(m_lvlUpIcon);
+	//Game::CurrentScene->Add(m_lvlUpIcon);
 
 	m_healthBar->FadeIn(0.5f);
 	m_expBar->FadeIn(0.5f);
@@ -143,12 +143,12 @@ void GameplayState::ExitState()
 	Game::CurrentScene->Remove(&m_levelText);
 	Game::CurrentScene->Remove(m_coinIcon);
 	Game::CurrentScene->Remove(&m_coinText);
-	Game::CurrentScene->Remove(m_lvlUpIcon);
+	//Game::CurrentScene->Remove(m_lvlUpIcon);
 
 	delete m_healthBar;
 	delete m_expBar;
 	delete m_coinIcon;
-	delete m_lvlUpIcon;
+	//delete m_lvlUpIcon;
 	delete m_moneyDropsMnger;
 
 	m_enemySpawner.StopAndClear();
@@ -229,12 +229,12 @@ void GameplayState::InitializeUI()
 	m_coinText.SetSpacing(14);
 	m_coinText.SetSize(24);
 
-	m_lvlUpIcon = new UIImage();
+	/*m_lvlUpIcon = new UIImage();
 	m_lvlUpIcon->Init("LvlUpIcon", Render::TEXTURE_ID::LVL_UP_ICON, g_WindowSettings.Width - 100, 30, 24, 24);
 
 
 	TweenManager::Instance().CreateTween(Tween::TweenEase::IN_OUT_BOUNCE,
-		m_lvlUpIcon, g_WindowSettings.Width - 100, 200, 2);
+		m_lvlUpIcon, g_WindowSettings.Width - 100, 200, 2);*/
 	
 }
 
@@ -286,7 +286,7 @@ void GameplayState::UpdateUI()
 	m_coinIcon->Update();
 	m_coinText.SetText(std::to_string(m_coinAmount));
 
-	m_lvlUpIcon->Update();
+	//m_lvlUpIcon->Update();
 }
 
 

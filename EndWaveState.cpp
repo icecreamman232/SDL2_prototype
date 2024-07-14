@@ -31,6 +31,7 @@ void EndWaveState::Initialize(GameStateManager* manager)
 	Game::CurrentScene->Add(&m_coinText);
 
 	m_isRunning = true;
+	std::cout << "Enter:EndWaveState" << std::endl;
 }
 
 void EndWaveState::InitializePowerUp()
@@ -111,18 +112,25 @@ void EndWaveState::OnTriggerEvent(const PickUpgradeEvent& eventType)
 
 void EndWaveState::Update(float deltaTime)
 {
-	if (!m_isRunning) return;
+	if (m_exitNextFrame)
+	{
+		ExitState();
+		m_exitNextFrame = false;
+		return;
+	}
+
+
+	if (!m_isRunning)
+	{
+		return;
+	}
 	m_upgradeCard_Left.Update();
 	m_upgradeCard_Mid.Update();
 	m_upgradeCard_Right.Update();
 
 	m_chooseUpgradeBtn.Update();
 
-	if (m_coinIcon != nullptr)
-	{
-		m_coinIcon->Update();
-	}
-
+	m_coinIcon->Update();
 }
 
 void EndWaveState::Render()
@@ -137,8 +145,6 @@ void EndWaveState::ExitState()
 	m_isRunning = false;
 
 	m_chooseUpgradeBtn.CleanUp();
-
-	PickUpgradeEventDispatcher::Detach(this);
 
 	//Prevent unexpected interaction while exiting
 	m_upgradeCard_Left.SetInteract(false);
@@ -159,6 +165,9 @@ void EndWaveState::ExitState()
 
 	delete m_coinIcon;
 	m_coinIcon = nullptr;
+
+	m_manager->BeginChangeState();
+	m_manager->ChangeState(General::GameStateType::GAMEPLAY);
 }
 
 void EndWaveState::OnFinishOpeningTween()
@@ -180,5 +189,5 @@ void EndWaveState::OnFinishOpeningTween()
 void EndWaveState::OnChosenPowerUp()
 {
 	std::cout << "Player's chosen powerup:" << std::endl;
-	ExitState();
+	m_exitNextFrame = true;
 }

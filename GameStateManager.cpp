@@ -12,6 +12,8 @@ void GameStateManager::Initialize()
 
 void GameStateManager::Update(float deltaTime)
 {
+	if (m_isChangingState) return;
+
 	if (m_currentState == nullptr) return;
 
 	if (!m_currentState->IsRunning()) return;
@@ -33,15 +35,26 @@ void GameStateManager::ChangeState(GameStateType nextState)
 {
 	if (!m_isChangingState) return;
 
+	GameState* newState = nullptr;
+
 	switch (nextState)
 	{
-		case GameStateType::ENDWAVE:
-			delete m_currentState;
-			m_currentState = new EndWaveState();
-			m_currentState->Initialize(this);
-
-			m_isChangingState = false;
+		case GameStateType::GAMEPLAY:
+			m_waveIndex = 1;
+			newState = new GameplayState();
 			break;
+		case GameStateType::ENDWAVE:
+			newState = new EndWaveState();
+
+			break;
+	}
+
+	if (newState)
+	{
+		newState->Initialize(this);
+		delete m_currentState;
+		m_isChangingState = false;
+		m_currentState = newState;
 	}
 }
 

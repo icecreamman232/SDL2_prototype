@@ -18,6 +18,7 @@ public:
 	void SetCallBack(CallbackFunction callback);
 	
 private:
+	bool m_shouldUpdate = false;
 
 	void TriggerCallBack();
 	void ChooseUpgrade();

@@ -15,11 +15,13 @@ void ChooseUpgradeButton::Init(std::string name, Render::TEXTURE_ID textureID, i
 
 	Game::CurrentScene->Add(this);
 	Game::CurrentScene->Add(&m_btnText);
-
+	m_shouldUpdate = true;
 }
 
 void ChooseUpgradeButton::CleanUp()
 {
+	m_shouldUpdate = false;
+
 	Game::CurrentScene->Remove(this);
 	Game::CurrentScene->Remove(&m_btnText);
 	m_callback = nullptr;
@@ -27,6 +29,7 @@ void ChooseUpgradeButton::CleanUp()
 
 void ChooseUpgradeButton::Update()
 {
+	if (!m_shouldUpdate) return;
 	UpdateSelectable();
 	m_btnText.Update();
 }

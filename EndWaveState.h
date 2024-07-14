@@ -29,6 +29,8 @@ private:
 
 	void OnChosenPowerUp();
 	
+	bool m_exitNextFrame = false;
+
 	GameStateManager* m_manager;
 
 	UpgradeCard m_upgradeCard_Left;
