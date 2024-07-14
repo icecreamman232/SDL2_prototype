@@ -8,6 +8,11 @@ UIImage::UIImage()
 	m_height = 0;
 }
 
+UIImage::~UIImage()
+{
+	m_sprite = nullptr;
+}
+
 void UIImage::Init(std::string name, Render::TEXTURE_ID textureID, int x, int y, int width, int height,int spriteFrame)
 {
 	m_name = name;
