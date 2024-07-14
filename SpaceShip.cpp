@@ -45,6 +45,9 @@ SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, float initX, float i
 SpaceShip::~SpaceShip()
 {
 	m_isActive = false;
+
+	XPEventDispatcher::Detach(this);
+
 	if (m_primaryWeapon != nullptr)
 	{
 		m_primaryWeapon->CleanUp();
