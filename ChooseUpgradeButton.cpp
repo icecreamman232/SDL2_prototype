@@ -15,6 +15,14 @@ void ChooseUpgradeButton::Init(std::string name, Render::TEXTURE_ID textureID, i
 
 	Game::CurrentScene->Add(this);
 	Game::CurrentScene->Add(&m_btnText);
+
+}
+
+void ChooseUpgradeButton::CleanUp()
+{
+	Game::CurrentScene->Remove(this);
+	Game::CurrentScene->Remove(&m_btnText);
+	m_callback = nullptr;
 }
 
 void ChooseUpgradeButton::Update()
@@ -34,9 +42,23 @@ void ChooseUpgradeButton::SetSelectedCard(PowerUpType type)
 	m_cardSelectedValue = type;
 }
 
+void ChooseUpgradeButton::SetCallBack(CallbackFunction callback)
+{
+	m_callback = callback;
+}
+
+void ChooseUpgradeButton::TriggerCallBack()
+{
+	if (m_callback)
+	{
+		m_callback();
+	}
+}
+
 void ChooseUpgradeButton::ChooseUpgrade()
 {
 	if (m_cardSelectedValue < 0) return;
 
+	TriggerCallBack();
 	PowerUpEventDispatcher::Trigger(PowerUpEvent{ m_cardSelectedValue });
 }

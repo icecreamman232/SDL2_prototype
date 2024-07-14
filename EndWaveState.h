@@ -23,7 +23,12 @@ public:
 	void Render() override;
 	void ExitState() override;
 	void OnFinishOpeningTween();
+
+
 private:
+
+	void OnChosenPowerUp();
+	
 	GameStateManager* m_manager;
 
 	UpgradeCard m_upgradeCard_Left;

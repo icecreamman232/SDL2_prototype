@@ -9,6 +9,11 @@ UpgradeCard::~UpgradeCard()
 	m_chooseUpgradeBtn = nullptr;
 }
 
+void UpgradeCard::CleanUp()
+{
+	Game::CurrentScene->Remove(&m_icon);
+}
+
 void UpgradeCard::Init(std::string name, Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame)
 {
 	InitSelectable(x, y, width, height);

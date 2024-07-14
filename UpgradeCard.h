@@ -9,6 +9,7 @@ class UpgradeCard : public UIImage, public Selectable
 {
 public:
 	~UpgradeCard();
+	void CleanUp();
 	void Init(std::string name, Render::TEXTURE_ID textureID, int x, int y, int width, int height, int spriteFrame = 0) override;
 	void AssignChooseUpgradeButton(ChooseUpgradeButton* buttonRef);
 	void Update() override;

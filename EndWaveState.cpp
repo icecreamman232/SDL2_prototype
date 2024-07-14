@@ -13,7 +13,7 @@ void EndWaveState::Initialize(GameStateManager* manager)
 		,g_WindowSettings.Width/2-200/2, g_WindowSettings.Height - 50/2-80, 200, 50);
 	m_chooseUpgradeBtn.FillColor(SDL_Color{ 0,255,0,255 });
 	
-	//Game::CurrentScene->Add(&m_chooseUpgradeBtn);
+	m_chooseUpgradeBtn.SetCallBack(std::bind(&EndWaveState::OnChosenPowerUp, this));
 
 	InitializePowerUp();
 	InitializePowerUpCard();
@@ -111,13 +111,18 @@ void EndWaveState::OnTriggerEvent(const PickUpgradeEvent& eventType)
 
 void EndWaveState::Update(float deltaTime)
 {
+	if (!m_isRunning) return;
 	m_upgradeCard_Left.Update();
 	m_upgradeCard_Mid.Update();
 	m_upgradeCard_Right.Update();
 
 	m_chooseUpgradeBtn.Update();
 
-	m_coinIcon->Update();
+	if (m_coinIcon != nullptr)
+	{
+		m_coinIcon->Update();
+	}
+
 }
 
 void EndWaveState::Render()
@@ -127,7 +132,33 @@ void EndWaveState::Render()
 
 void EndWaveState::ExitState()
 {
+	std::cout << "Exit:EndWaveState" << std::endl;
 
+	m_isRunning = false;
+
+	m_chooseUpgradeBtn.CleanUp();
+
+	PickUpgradeEventDispatcher::Detach(this);
+
+	//Prevent unexpected interaction while exiting
+	m_upgradeCard_Left.SetInteract(false);
+	m_upgradeCard_Mid.SetInteract(false);
+	m_upgradeCard_Right.SetInteract(false);
+
+
+	Game::CurrentScene->Remove(&m_upgradeCard_Left);
+	Game::CurrentScene->Remove(&m_upgradeCard_Mid);
+	Game::CurrentScene->Remove(&m_upgradeCard_Right);
+
+	m_upgradeCard_Left.CleanUp();
+	m_upgradeCard_Mid.CleanUp();
+	m_upgradeCard_Right.CleanUp();
+
+	Game::CurrentScene->Remove(m_coinIcon);
+	Game::CurrentScene->Remove(&m_coinText);
+
+	delete m_coinIcon;
+	m_coinIcon = nullptr;
 }
 
 void EndWaveState::OnFinishOpeningTween()
@@ -144,4 +175,10 @@ void EndWaveState::OnFinishOpeningTween()
 
 	m_upgradeCard_Right.SetInteract(true);
 	m_upgradeCard_Right.OnFinishTween();
+}
+
+void EndWaveState::OnChosenPowerUp()
+{
+	std::cout << "Player's chosen powerup:" << std::endl;
+	ExitState();
 }
