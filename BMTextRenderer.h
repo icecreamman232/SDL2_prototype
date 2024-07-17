@@ -24,6 +24,8 @@ public:
 		return ascii == 32 ? m_spacing/2 : m_spacing;
 	};
 
+	void SetPosition(float x, float y);
+
 private:
 
 	void ComputeTextSize();

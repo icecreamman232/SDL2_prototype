@@ -31,6 +31,7 @@ private:
 	void InitializeUI();
 	std::string GetFormatedTime();
 	void UpdateUI();
+	void OnFinishShowLevelUpText();
 
 	GameStateManager* m_manager;
 	SpaceShip* m_player;
@@ -56,6 +57,7 @@ private:
 	BMTextRenderer m_levelText;
 	BMTextRenderer m_waveTitle;
 	BMTextRenderer m_waveTimerText;
+	BMTextRenderer m_levelUpText;
 
 	UIImage* m_coinIcon;
 	//UIImage* m_lvlUpIcon;

@@ -29,6 +29,8 @@ void BMTextRenderer::Initialize(TEXTURE_ID textureID, std::string text, Pivot pi
 
 void BMTextRenderer::Render()
 {
+	if (!m_isActive) return;
+
 	int charCount = 0;
 	int prevSpacing = 0;
 	for (auto character : m_text)
@@ -41,6 +43,7 @@ void BMTextRenderer::Render()
 		m_srcRect.y = y * 16;
 
 		m_destRect.x = m_pos.x + GetOffSetX() + charCount * GetSpacing(ascii) ;
+		m_destRect.y = m_pos.y;
 
 		m_destRect.w = m_size;
 		m_destRect.h = m_size;
@@ -48,6 +51,12 @@ void BMTextRenderer::Render()
 		charCount++;
 		SDL_RenderCopyF(Game::Renderer, m_texture, &m_srcRect, &m_destRect);
 	}
+}
+
+void BMTextRenderer::SetPosition(float x, float y)
+{
+	m_pos.x = x;
+	m_pos.y = y;
 }
 
 void BMTextRenderer::ComputeTextSize()

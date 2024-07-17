@@ -10,6 +10,7 @@
 #include "CoinCollectEventDispatcher.h"
 #include "TweenManager.h"
 #include "SaveManager.h"
+#include "Timer.h"
 
 void GameplayState::Initialize(GameStateManager* manager)
 {
@@ -17,7 +18,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	
 	m_minute = 0;
-	m_seconds = 6;
+	m_seconds = 50;
 	m_secondsCounter = 0.0;
 
 	m_player = new SpaceShip("Ship", PLAYER_TEX, g_WindowSettings.Width / 2, g_WindowSettings.Height / 2, 18, 16, 9);
@@ -42,7 +43,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 	Game::CurrentScene->Add(&m_levelText);
 	Game::CurrentScene->Add(m_coinIcon);
 	Game::CurrentScene->Add(&m_coinText);
-	//Game::CurrentScene->Add(m_lvlUpIcon);
+	Game::CurrentScene->Add(&m_levelUpText);
 
 	m_healthBar->FadeIn(0.5f);
 	m_expBar->FadeIn(0.5f);
@@ -143,12 +144,11 @@ void GameplayState::ExitState()
 	Game::CurrentScene->Remove(&m_levelText);
 	Game::CurrentScene->Remove(m_coinIcon);
 	Game::CurrentScene->Remove(&m_coinText);
-	//Game::CurrentScene->Remove(m_lvlUpIcon);
+	Game::CurrentScene->Remove(&m_levelUpText);
 
 	delete m_healthBar;
 	delete m_expBar;
 	delete m_coinIcon;
-	//delete m_lvlUpIcon;
 	delete m_moneyDropsMnger;
 
 	m_enemySpawner.StopAndClear();
@@ -164,6 +164,11 @@ void GameplayState::ExitState()
 void GameplayState::OnTriggerEvent(const LevelUpEvent& eventType)
 {
 	m_levelTxtValue = "Lv " + std::to_string(m_player->XPController().GetCurrentLv());
+
+
+	Timer* lvlupTimer = new Timer(0.8f, std::bind(&GameplayState::OnFinishShowLevelUpText, this));
+	m_levelUpText.SetActive(true);
+	m_levelUpText.SetPosition(m_player->GetPosition().x, m_player->GetPosition().y);
 	m_manager->LevelGained();
 }
 
@@ -229,12 +234,11 @@ void GameplayState::InitializeUI()
 	m_coinText.SetSpacing(14);
 	m_coinText.SetSize(24);
 
-	/*m_lvlUpIcon = new UIImage();
-	m_lvlUpIcon->Init("LvlUpIcon", Render::TEXTURE_ID::LVL_UP_ICON, g_WindowSettings.Width - 100, 30, 24, 24);
-
-
-	TweenManager::Instance().CreateTween(Tween::TweenEase::IN_OUT_BOUNCE,
-		m_lvlUpIcon, g_WindowSettings.Width - 100, 200, 2);*/
+	//Level up text show at player position once they got level up
+	m_levelUpText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, "Level Up!", Render::Pivot::CENTER, 0, 0);
+	m_levelUpText.SetSpacing(14);
+	m_levelUpText.SetSize(24);
+	m_levelUpText.SetActive(false);
 	
 }
 
@@ -286,7 +290,11 @@ void GameplayState::UpdateUI()
 	m_coinIcon->Update();
 	m_coinText.SetText(std::to_string(m_coinAmount));
 
-	//m_lvlUpIcon->Update();
+}
+
+void GameplayState::OnFinishShowLevelUpText()
+{
+	m_levelUpText.SetActive(false);
 }
 
 

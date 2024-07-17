@@ -29,6 +29,8 @@ void UIImage::Init(std::string name, Render::TEXTURE_ID textureID, int x, int y,
 
 void UIImage::Render()
 {
+	if (!m_isActive) return;
+
 	if (m_sprite == nullptr)
 	{
 		return;
@@ -38,6 +40,7 @@ void UIImage::Render()
 
 void UIImage::Update()
 {
+	if (!m_isActive) return;
 	m_sprite->Update(m_pos.x, m_pos.y);
 }
 

@@ -52,6 +52,8 @@ void PlayerUIBar::SetBackgroundColor(SDL_Color color)
 
 void PlayerUIBar::UpdateBar(float fillAmount)
 {
+	if (!m_isActive) return;
+
 	switch (m_renderBarState)
 	{
 		case BarState::FADE_IN:
@@ -92,6 +94,8 @@ void PlayerUIBar::UpdateBar(float fillAmount)
 
 void PlayerUIBar::Render()
 {
+	if (!m_isActive) return;
+
 	switch (m_renderBarState)
 	{
 		case BarState::FADE_IN:
