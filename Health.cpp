@@ -29,6 +29,7 @@ int Health::GetMaxHealth()
 void Health::SetMaxHealth(int maxHealth)
 {
 	m_maxHealth = maxHealth;
+	m_curHealth = m_maxHealth;
 }
 
 

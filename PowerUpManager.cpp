@@ -1,11 +1,18 @@
 #include "PowerUpManager.h"
 #include <random>
 #include "PowerUpEventDispatcher.h"
+#include "IncreaseHPPowerUp.h"
 
 
 void PowerUpManager::Initialize()
 {
 	PowerUpEventDispatcher::Attach(this);
+
+	//TODO: Set correct class of powerup here. This is just for testing
+	m_powerUpContainer.insert(std::make_pair(PowerUpType::Increase_HP, new IncreaseHPPowerUp()));
+	m_powerUpContainer.insert(std::make_pair(PowerUpType::Increase_Damage, new IncreaseHPPowerUp()));
+	m_powerUpContainer.insert(std::make_pair(PowerUpType::Increase_MAX_HP, new IncreaseHPPowerUp()));
+	m_powerUpContainer.insert(std::make_pair(PowerUpType::Increase_MoveSpeed, new IncreaseHPPowerUp()));
 }
 
 PowerUpManager::~PowerUpManager()
@@ -36,7 +43,6 @@ void PowerUpManager::ApplyPowerUp()
 
 void PowerUpManager::OnTriggerEvent(const PowerUpEvent& eventType)
 {
-	if (m_player == nullptr) return;
 	AddPowerUp(eventType.PowerUpType);
 }
 

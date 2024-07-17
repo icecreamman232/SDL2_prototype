@@ -9,7 +9,7 @@ void IncreaseHPPowerUp::Apply(SpaceShip* player)
 	}
 	auto curMaxHealth = player->GetHealth().GetMaxHealth();
 	curMaxHealth = curMaxHealth * (m_percentIncrease / 100.0f + 1.0f);
-	player->SetMaxHealth(curMaxHealth);
+	player->SetMaxHealth(200);
 }
 
 void IncreaseHPPowerUp::AssignPlayer(SpaceShip* player)
