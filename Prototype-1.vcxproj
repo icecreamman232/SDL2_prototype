@@ -247,6 +247,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TweenEffect.h" />
+    <ClInclude Include="TweenFormula.h" />
     <ClInclude Include="TweenManager.h" />
     <ClInclude Include="UIBase.h" />
     <ClInclude Include="UIImage.h" />

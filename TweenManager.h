@@ -8,10 +8,10 @@
 class TweenManager : public Singleton<TweenManager>
 {
 public:
-	TweenEffect* CreateTween(Tween::TweenEase ease, UIImage* image, float targetX, float targetY, float duration);
+	TweenUIPosition* CreateTween(Tween::TweenEase ease, UIImage* image, float targetX, float targetY, float duration);
 	void Update(float deltaTime);
 private:
-	std::vector<TweenEffect*> m_tweenContainer;
+	std::vector<TweenEffectBase*> m_tweenContainer;
 	std::vector<int> m_toBeRemovedContainer;
 };
 

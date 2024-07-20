@@ -42,9 +42,9 @@ private:
 	BMTextRenderer m_coinText;
 	UIImage* m_coinIcon;
 
-	TweenEffect* m_leftOpeningTween;
-	TweenEffect* m_midOpeningTween;
-	TweenEffect* m_rightOpeningTween;
+	TweenUIPosition* m_leftOpeningTween;
+	TweenUIPosition* m_midOpeningTween;
+	TweenUIPosition* m_rightOpeningTween;
 
 	int m_coinAmount;
 	PowerUpBase m_powerUpLeft;

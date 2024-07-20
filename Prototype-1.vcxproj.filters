@@ -389,6 +389,9 @@
     <ClInclude Include="PowerUpEventDispatcher.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
+    <ClInclude Include="TweenFormula.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Asset\blue-starship.png">

@@ -18,7 +18,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	
 	m_minute = 0;
-	m_seconds = 50;
+	m_seconds = 5;
 	m_secondsCounter = 0.0;
 
 	m_player = new SpaceShip("Ship", PLAYER_TEX, g_WindowSettings.Width / 2, g_WindowSettings.Height / 2, 18, 16, 9);
