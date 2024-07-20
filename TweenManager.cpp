@@ -8,6 +8,13 @@ TweenUIPosition* TweenManager::CreateTween(Tween::TweenEase ease, UIImage* image
     return tweenUIPos;
 }
 
+TweenUIAlpha* TweenManager::CreateTween(Tween::TweenEase ease, UIImage* image, float targetAlpha, float duration)
+{
+    auto tweenUIAlpha = new TweenUIAlpha(ease, image, targetAlpha, duration);
+    m_tweenContainer.push_back(tweenUIAlpha);
+    return tweenUIAlpha;
+}
+
 void TweenManager::Update(float deltaTime)
 {
     for (size_t i = 0; i< m_tweenContainer.size();i++)

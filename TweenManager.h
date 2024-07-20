@@ -9,6 +9,7 @@ class TweenManager : public Singleton<TweenManager>
 {
 public:
 	TweenUIPosition* CreateTween(Tween::TweenEase ease, UIImage* image, float targetX, float targetY, float duration);
+	TweenUIAlpha* CreateTween(Tween::TweenEase ease, UIImage* image, float targetAlpha, float duration);
 	void Update(float deltaTime);
 private:
 	std::vector<TweenEffectBase*> m_tweenContainer;

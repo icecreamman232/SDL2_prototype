@@ -63,6 +63,48 @@ protected:
 	float m_targetY;
 };
 
+class TweenUIAlpha : public TweenEffectBase
+{
+public:
+	TweenUIAlpha(TweenEase ease, UIImage* image, float targetAlpha, float duration)
+	{
+		m_tweenType = ease;
+		m_image = image;
+		m_targetAlpha = targetAlpha;
+		m_duration = duration;
+		m_elapsedTime = 0;
+
+		m_startAlpha = m_image->GetAlpha();
+	}
+
+	void Update(float deltaTime) override
+	{
+		if (m_elapsedTime >= m_duration)
+		{
+			return;
+		}
+		m_elapsedTime += deltaTime;
+		float t = m_elapsedTime / m_duration;
+
+		m_image->SetAlpha(
+				m_startAlpha + (m_targetAlpha - m_startAlpha) 
+			* (GetTweenValue(m_tweenType, t) > 1 ? 1 : GetTweenValue(m_tweenType, t)));
+	
+	}
+
+	bool IsFinished() override
+	{
+		return m_elapsedTime >= m_duration;
+	}
+
+protected:
+
+	UIImage* m_image;
+
+	float m_startAlpha;
+	float m_targetAlpha;
+};
+
 #pragma endregion
 
 #pragma region Tween For Values
