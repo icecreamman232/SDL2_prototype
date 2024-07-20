@@ -15,6 +15,8 @@ public:
 	void ResetColor();
 
 	inline SDL_Color GetColor() { return m_tintColor; };
+	inline float GetAlpha() { return m_curAlpha; };
+	inline void SetAlpha(float a) { m_curAlpha = a; };
 	inline int GetOrder() { return m_order; };
 private:
 

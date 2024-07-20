@@ -18,7 +18,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	
 	m_minute = 0;
-	m_seconds = 5;
+	m_seconds = 50;
 	m_secondsCounter = 0.0;
 
 	m_player = new SpaceShip("Ship", PLAYER_TEX, g_WindowSettings.Width / 2, g_WindowSettings.Height / 2, 18, 16, 9);
@@ -42,6 +42,7 @@ void GameplayState::Initialize(GameStateManager* manager)
 	Game::CurrentScene->Add(&m_hpText);
 	Game::CurrentScene->Add(&m_levelText);
 	Game::CurrentScene->Add(m_coinIcon);
+	Game::CurrentScene->Add(m_fullScreenFadeBG);
 	Game::CurrentScene->Add(&m_coinText);
 	Game::CurrentScene->Add(&m_levelUpText);
 
@@ -60,6 +61,9 @@ void GameplayState::Initialize(GameStateManager* manager)
 	SaveManager::Instance().LoadFromFile();
 
 	m_coinAmount = SaveManager::Instance().GetData()->CoinAmount;
+
+
+	TweenManager::Instance().CreateTween(TweenEase::OUT_SIN, m_fullScreenFadeBG, 0, 3.0f);
 
 	m_isRunning = true;
 }
@@ -143,12 +147,14 @@ void GameplayState::ExitState()
 	Game::CurrentScene->Remove(&m_hpText);
 	Game::CurrentScene->Remove(&m_levelText);
 	Game::CurrentScene->Remove(m_coinIcon);
+	Game::CurrentScene->Remove(m_fullScreenFadeBG);
 	Game::CurrentScene->Remove(&m_coinText);
 	Game::CurrentScene->Remove(&m_levelUpText);
 
 	delete m_healthBar;
 	delete m_expBar;
 	delete m_coinIcon;
+	delete m_fullScreenFadeBG;
 	delete m_moneyDropsMnger;
 
 	m_enemySpawner.StopAndClear();
@@ -229,6 +235,10 @@ void GameplayState::InitializeUI()
 	m_coinIcon = new UIImage();
 	m_coinIcon->Init("CoinIcon", Render::TEXTURE_ID::COIN, 15, 70, 60, 60);
 
+	m_fullScreenFadeBG = new UIImage();
+	m_fullScreenFadeBG->Init("FadeBG", Render::TEXTURE_ID::WHITE_BAR_UI, 0, 0, g_WindowSettings.Width, g_WindowSettings.Height);
+	m_fullScreenFadeBG->FillColor({ 0,0,0,255 });
+
 	//Number coin text
 	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
 	m_coinText.SetSpacing(14);
@@ -288,6 +298,8 @@ void GameplayState::UpdateUI()
 	m_levelText.SetText(m_levelTxtValue);
 
 	m_coinIcon->Update();
+	m_fullScreenFadeBG->Update();
+
 	m_coinText.SetText(std::to_string(m_coinAmount));
 
 }

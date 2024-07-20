@@ -20,13 +20,8 @@ public:
 	inline float GetPosY() { return m_pos.y; };
 	inline int GetWidth() { return m_width; };
 	inline int GetHeight() { return m_height; };
-	inline float GetAlpha() { return m_sprite->GetColor().a; };
-	inline void SetAlpha(float a)
-	{
-		auto color = m_sprite->GetColor();
-		color.a = a;
-		m_sprite->TintColor(color.r, color.g, color.b, color.a);
-	};
+	inline float GetAlpha() { return m_sprite->GetAlpha(); };
+	inline void SetAlpha(float a){m_sprite->SetAlpha(a);};
 	inline SDL_FRect* GetRect() { return m_sprite->GetRectPointer(); };
 protected:
 	SDL_Color m_color;

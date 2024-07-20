@@ -26,6 +26,10 @@ Sprite::Sprite(SDL_Texture* texture, float x, float y, int width, int height, in
 	//If texture hasnt been color modified, the alpha will be 0, 
 	// so here we force it to be 255(1) for later usage
 	m_originalAlpha = 255; 
+	m_tintColor.a = m_originalAlpha;
+	m_originalColor.a = m_originalAlpha;
+	SDL_SetTextureColorMod(m_texture, m_originalColor.r, m_originalColor.g, m_originalColor.b);
+
 	m_curAlpha = m_originalAlpha;
 }
 
