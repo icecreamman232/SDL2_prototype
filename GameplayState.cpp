@@ -23,6 +23,8 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	m_player = new SpaceShip("Ship", PLAYER_TEX, g_WindowSettings.Width / 2, g_WindowSettings.Height / 2, 18, 16, 9);
 	m_player->SetLayer(Layer::PLAYER);
+	m_player->SetActive(false);
+
 	m_manager->GetPowerUpManager()->AssignPlayer(m_player);
 	m_manager->GetPowerUpManager()->ApplyPowerUp();
 
@@ -83,6 +85,7 @@ void GameplayState::InitializeUI()
 	m_hpText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 115, 22);
 	m_hpText.SetSpacing(8);
 	m_hpText.SetSize(16);
+	m_hpText.SetActive(false);
 
 	//Exp bar
 	m_expBar = new PlayerUIBar(20, 50, 200, 20);
@@ -95,21 +98,25 @@ void GameplayState::InitializeUI()
 	m_levelText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, m_levelTxtValue, Render::Pivot::CENTER, 120, 52);
 	m_levelText.SetSpacing(8);
 	m_levelText.SetSize(16);
+	m_levelText.SetActive(false);
 
 	//Wave title text
 	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
 	m_waveTitle.Initialize(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f, 10);
 	m_waveTitle.SetSpacing(20);
 	m_waveTitle.SetSize(32);
+	m_waveTitle.SetActive(false);
 
 	//Wave timer text
 	m_waveTimerText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, GetFormatedTime(), Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f + 15, 50);
 	m_waveTimerText.SetSpacing(16);
 	m_waveTimerText.SetSize(24);
+	m_waveTimerText.SetActive(false);
 
 	//Coin icon
 	m_coinIcon = new UIImage();
 	m_coinIcon->Init("CoinIcon", Render::TEXTURE_ID::COIN, 15, 70, 60, 60);
+	m_coinIcon->SetActive(false);
 
 	m_fullScreenFadeBG = new UIImage();
 	m_fullScreenFadeBG->Init("FadeBG", Render::TEXTURE_ID::WHITE_BAR_UI, 0, 0, g_WindowSettings.Width, g_WindowSettings.Height);
@@ -119,6 +126,7 @@ void GameplayState::InitializeUI()
 	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
 	m_coinText.SetSpacing(14);
 	m_coinText.SetSize(24);
+	m_coinText.SetActive(false);
 
 	//Level up text show at player position once they got level up
 	m_levelUpText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, "Level Up!", Render::Pivot::CENTER, 0, 0);
@@ -328,6 +336,18 @@ void GameplayState::OnFinishShowLevelUpText()
 void GameplayState::OnFinishPrevStateTween()
 {
 	m_internalState = MAIN_STATE;
+	m_waveTitle.SetActive(true);
+	m_waveTimerText.SetActive(true);
+	Timer* timer = new Timer(m_hudFadeInDuration, std::bind(&GameplayState::OnAfterShowHUD, this));
+}
+
+void GameplayState::OnAfterShowHUD()
+{
+	m_coinIcon->SetActive(true);
+	m_coinText.SetActive(true);
+	m_hpText.SetActive(true);
+	m_levelText.SetActive(true);
+	m_player->SetActive(true);
 }
 
 

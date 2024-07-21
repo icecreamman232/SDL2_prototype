@@ -40,6 +40,7 @@ private:
 	void UpdateMainState(float deltaTime);
 	void OnFinishShowLevelUpText();
 	void OnFinishPrevStateTween();
+	void OnAfterShowHUD();
 
 	GameplayInternalState m_internalState;
 	GameStateManager* m_manager;
