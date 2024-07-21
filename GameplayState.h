@@ -27,12 +27,21 @@ public:
 
 	inline SpaceShip* GetPlayer() { return m_player; };
 private:
+	enum GameplayInternalState
+	{
+		PREV_STATE = 0,
+		MAIN_STATE = 1,
+	};
+
 
 	void InitializeUI();
 	std::string GetFormatedTime();
 	void UpdateUI();
+	void UpdateMainState(float deltaTime);
 	void OnFinishShowLevelUpText();
+	void OnFinishPrevStateTween();
 
+	GameplayInternalState m_internalState;
 	GameStateManager* m_manager;
 	SpaceShip* m_player;
 	EnemySpawner m_enemySpawner;
@@ -65,5 +74,9 @@ private:
 	//====Drops===//
 	DropsManager* m_moneyDropsMnger;
 
+	//===CONSTANT===//
+	const float m_prevStateTweenDuration = 1.5f;
+	const float m_hudFadeInDuration = 0.3f;
+	const int m_firstWaveDuration = 50;
 };
 
