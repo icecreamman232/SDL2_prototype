@@ -60,6 +60,13 @@ namespace General
 	{
 		GAMEPLAY,
 		ENDWAVE,
+		GAMEOVER,
+	};
+
+	enum PlayerState
+	{
+		ALIVE,
+		DEAD,
 	};
 }
 

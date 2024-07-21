@@ -156,6 +156,7 @@
     <ClCompile Include="ExpController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameplayState.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="DropsManager.h" />
     <ClInclude Include="EndWaveState.h" />
     <ClInclude Include="ExpController.h" />
+    <ClInclude Include="GameOverState.h" />
     <ClInclude Include="IncreaseHPPowerUp.h" />
     <ClInclude Include="IItem.h" />
     <ClInclude Include="Logger.h" />
@@ -233,6 +235,7 @@
     <ClInclude Include="ISubscriber.h" />
     <ClInclude Include="IDispatcher.h" />
     <ClInclude Include="PlayerLevelUpEventDispatcher.h" />
+    <ClInclude Include="PlayerStateEventDispatcher.h" />
     <ClInclude Include="PlayerUIBar.h" />
     <ClInclude Include="PowerUpBase.h" />
     <ClInclude Include="PowerUpEventDispatcher.h" />

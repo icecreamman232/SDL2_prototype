@@ -6,6 +6,7 @@
 #include "Math/MathHelper.h"
 #include "XPEventDispatcher.h"
 #include "PlayerLevelUpEventDispatcher.h"
+#include "PlayerStateEventDispatcher.h"
 
 
 SpaceShip::SpaceShip(const char* name,TEXTURE_ID textureID, float initX, float initY,int width, int height, int order)
@@ -214,6 +215,12 @@ void SpaceShip::UpdateMovement(float deltaTime)
 void SpaceShip::TakeDamage(int damage)
 {
 	m_health.TakeDamage(damage);
+
+	if (m_health.GetCurrentHealth() <= 0)
+	{
+		m_isActive = false;
+		PlayerStateEventDispatcher::Trigger({ PlayerState::DEAD });
+	}
 }
 
 float SpaceShip::GetPercentHealth()

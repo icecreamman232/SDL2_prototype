@@ -13,7 +13,8 @@ class GameStateManager;
 class GameplayState : public GameState,
 	public ISubscriber<LevelUpEvent>,
 	public ISubscriber<EnemyHealthEvent>,
-	public ISubscriber<CoinCollectEvent>
+	public ISubscriber<CoinCollectEvent>,
+	public ISubscriber<PlayerStateEvent>
 {
 public:
 	void Initialize(GameStateManager* manager) override;
@@ -24,6 +25,7 @@ public:
 	void OnTriggerEvent(const LevelUpEvent& eventType) override;
 	void OnTriggerEvent(const EnemyHealthEvent& eventType) override;
 	void OnTriggerEvent(const CoinCollectEvent& eventType) override;
+	void OnTriggerEvent(const PlayerStateEvent& eventType) override;
 
 	inline SpaceShip* GetPlayer() { return m_player; };
 private:
@@ -31,11 +33,14 @@ private:
 	{
 		PREV_STATE = 0,
 		MAIN_STATE = 1,
+		END_WAVE = 2,
+		GAME_OVER = 3,
 	};
 
 
 	void InitializeUI();
 	std::string GetFormatedTime();
+
 	void UpdateUI();
 	void UpdateMainState(float deltaTime);
 	void OnFinishShowLevelUpText();

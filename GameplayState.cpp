@@ -8,6 +8,7 @@
 #include "PlayerLevelUpEventDispatcher.h"
 #include "EnemyHealthEventDispatcher.h"
 #include "CoinCollectEventDispatcher.h"
+#include "PlayerStateEventDispatcher.h"
 #include "TweenManager.h"
 #include "SaveManager.h"
 #include "Timer.h"
@@ -56,7 +57,8 @@ void GameplayState::Initialize(GameStateManager* manager)
 
 	EnemyHealthEventDispatcher::Attach(this);
 	PlayerLevelUpEventDispatcher::Attach(this);
-	CoinCollectEventDistpacher::Attach(this);
+	CoinCollectEventDispatcher::Attach(this);
+	PlayerStateEventDispatcher::Attach(this);
 
 	m_numEnemyKilled = 0;
 
@@ -147,6 +149,16 @@ void GameplayState::Update(float deltaTime)
 		case MAIN_STATE:
 			UpdateMainState(deltaTime);
 			break;
+		case END_WAVE:
+			ExitState();
+			m_manager->BeginChangeState();
+			m_manager->ChangeState(General::GameStateType::ENDWAVE);
+			break;
+		case GAME_OVER:
+			ExitState();
+			m_manager->BeginChangeState();
+			m_manager->ChangeState(General::GameStateType::GAMEOVER);
+			break;
 	}
 
 }
@@ -169,7 +181,7 @@ void GameplayState::UpdateMainState(float deltaTime)
 
 				//Time is over and we stop gameplay 
 				// and ready to start end wave screen
-				ExitState();
+				m_internalState = END_WAVE;
 				return;
 			}
 		}
@@ -231,7 +243,8 @@ void GameplayState::ExitState()
 	//Detach all events
 	EnemyHealthEventDispatcher::Detach(this);
 	PlayerLevelUpEventDispatcher::Detach(this);
-	CoinCollectEventDistpacher::Detach(this);
+	CoinCollectEventDispatcher::Detach(this);
+	PlayerStateEventDispatcher::Detach(this);
 
 	m_isRunning = false;
 
@@ -262,10 +275,6 @@ void GameplayState::ExitState()
 	m_player->SetActive(false);
 
 	delete m_player;
-
-	m_manager->BeginChangeState();
-	m_manager->ChangeState(General::GameStateType::ENDWAVE);
-	//m_manager->EndChangeState();
 }
 
 void GameplayState::OnTriggerEvent(const LevelUpEvent& eventType)
@@ -292,6 +301,15 @@ void GameplayState::OnTriggerEvent(const EnemyHealthEvent& eventType)
 void GameplayState::OnTriggerEvent(const CoinCollectEvent& eventType)
 {
 	m_coinAmount++;
+}
+
+void GameplayState::OnTriggerEvent(const PlayerStateEvent& eventType)
+{
+	if (eventType.PlayerState == General::PlayerState::DEAD)
+	{
+		std::cout << "GAME OVER" << std::endl;
+		m_internalState = GAME_OVER;
+	}
 }
 
 

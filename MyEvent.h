@@ -33,3 +33,8 @@ struct PowerUpEvent
 {
 	PowerUpType PowerUpType;
 };
+
+struct PlayerStateEvent
+{
+	General::PlayerState PlayerState;
+};
