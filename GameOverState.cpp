@@ -15,20 +15,22 @@ void GameOverState::Initialize(GameStateManager* manager)
 	Game::CurrentScene->Add(&m_gameoverTitleTxt);
 
 
-	/*m_backToMainMenuBtn.Init("MAIN MENU", Render::TEXTURE_ID::WHITE_BAR_UI
+	m_backToMainMenuBtn.Init("Main Menu", Render::TEXTURE_ID::WHITE_BAR_UI
 		, 200, g_WindowSettings.Height - 200, 300, 60);
-	m_backToMainMenuBtn.SetButtonTextSize(30);
-	m_backToMainMenuBtn.SetButtonTextSpacing(-10);
+	m_backToMainMenuBtn.SetTextPosition(200 + 130, g_WindowSettings.Height - 200 + 40);
+	m_backToMainMenuBtn.SetButtonTextSize(16*2);
+	m_backToMainMenuBtn.SetButtonTextSpacing(5);
 	m_backToMainMenuBtn.FillColor(SDL_Color{ 0,0,0,255 });
-	m_backToMainMenuBtn.SetCallBack(std::bind(&GameOverState::OnBackToMainMenu, this));*/
+	m_backToMainMenuBtn.SetCallBack(std::bind(&GameOverState::OnBackToMainMenu, this));
 
 
-	/*m_newGameBtn.Init("New Game", Render::TEXTURE_ID::WHITE_BAR_UI
-		, g_WindowSettings.Width - 300, g_WindowSettings.Height - 200, 200, 50);
-	m_newGameBtn.SetButtonTextSize(40);
-	m_newGameBtn.SetButtonTextSpacing(20);
-	m_newGameBtn.FillColor(SDL_Color{ 0,255,0,255 });
-	m_backToMainMenuBtn.SetCallBack(std::bind(&GameOverState::OnStartNewGame, this));*/
+	m_newGameBtn.Init("New Game", Render::TEXTURE_ID::WHITE_BAR_UI
+		, g_WindowSettings.Width - 300 - 200, g_WindowSettings.Height - 200, 300, 60);
+	m_newGameBtn.SetTextPosition(g_WindowSettings.Width - 365, g_WindowSettings.Height - 200 + 40);
+	m_newGameBtn.SetButtonTextSize(16 * 2);
+	m_newGameBtn.SetButtonTextSpacing(5);
+	m_newGameBtn.FillColor(SDL_Color{ 34,177,76,255 });
+	m_backToMainMenuBtn.SetCallBack(std::bind(&GameOverState::OnStartNewGame, this));
 
 
 	m_isRunning = true;
@@ -39,8 +41,8 @@ void GameOverState::Update(float deltaTime)
 	if (!m_isRunning) return;
 
 	m_gameoverTitleTxt.Update();
-	//m_backToMainMenuBtn.Update();
-	//m_newGameBtn.Update();
+	m_backToMainMenuBtn.Update();
+	m_newGameBtn.Update();
 
 }
 
@@ -52,8 +54,8 @@ void GameOverState::Render()
 void GameOverState::ExitState()
 {
 	Game::CurrentScene->Remove(&m_gameoverTitleTxt);
-	//m_backToMainMenuBtn.CleanUp();
-	//m_newGameBtn.CleanUp();
+	m_backToMainMenuBtn.CleanUp();
+	m_newGameBtn.CleanUp();
 
 }
 
