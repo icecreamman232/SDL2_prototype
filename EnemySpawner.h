@@ -8,6 +8,7 @@ class EnemySpawner
 public:
 	void Initialize();
 	void Update(float deltaTime);
+	void Stop();
 	void StopAndClear();
 private:
 	void UpdateTimer(float deltaTime);

@@ -4,7 +4,7 @@
 
 void BMTextRenderer::Initialize(TEXTURE_ID textureID, std::string text, Pivot pivot, float x, float y)
 {
-	m_texture = AssetManager::Instance().LoadTexture(textureID);
+	m_texture = AssetManager::Instance().GetTexture(textureID, false);
 	m_text = text;
 	m_pivot = pivot;
 
@@ -33,24 +33,69 @@ void BMTextRenderer::Render()
 
 	int charCount = 0;
 	int prevSpacing = 0;
+	float prevW = 0;
+
 	for (auto character : m_text)
 	{
 		auto ascii = static_cast<int>(character);
 		auto index = ascii - m_startAsciiValue;
 		auto x = index - ((index / m_maxCol) * m_maxCol);
 		auto y = index / m_maxCol;
-		m_srcRect.x = x * 16;
-		m_srcRect.y = y * 16;
 
-		m_destRect.x = m_pos.x + GetOffSetX() + charCount * GetSpacing(ascii) ;
-		m_destRect.y = m_pos.y;
+		auto charInfo = AssetManager::Instance().GetCharacterInfo(ascii);
 
-		m_destRect.w = m_size;
-		m_destRect.h = m_size;
+		m_srcRect.x = charInfo.XCoord;
+		m_srcRect.y = charInfo.YCoord;
+		m_srcRect.w = charInfo.Width;
+		m_srcRect.h = charInfo.Height;
+
+		m_destRect.w = m_srcRect.w * (m_size / 16.0f);
+		m_destRect.h = m_srcRect.h * (m_size / 16.0f);
+		
+
+		m_destRect.x = m_pos.x + charCount * m_spacing + prevW;
+		//std::cout << "X " << m_destRect.x << std::endl;
+
+		m_destRect.y = m_pos.y - m_destRect.h;
+
+		prevW += m_destRect.w;
 
 		charCount++;
+		
+		SDL_SetRenderDrawColor(Game::Renderer, 255, 0, 0, 255);
+		SDL_RenderDrawRectF(Game::Renderer, &m_destRect);
 		SDL_RenderCopyF(Game::Renderer, m_texture, &m_srcRect, &m_destRect);
 	}
+}
+
+void BMTextRenderer::SetSpacing(float spacing)
+{
+	m_spacing = spacing;
+	ComputeTextSize();
+}
+
+void BMTextRenderer::SetSize(float size)
+{
+	m_size = size;
+	ComputeTextSize();
+}
+
+/// <summary>
+/// Get size of character
+/// </summary>
+/// <returns></returns>
+float BMTextRenderer::GetSize()
+{
+	return m_size;
+}
+
+/// <summary>
+/// Get size of whole text
+/// </summary>
+/// <returns></returns>
+float BMTextRenderer::GetTextSize()
+{
+	return m_textSize;
 }
 
 void BMTextRenderer::SetPosition(float x, float y)
@@ -61,10 +106,14 @@ void BMTextRenderer::SetPosition(float x, float y)
 
 void BMTextRenderer::ComputeTextSize()
 {
+	m_textSize = 0;
+	auto charCount = 0;
 	for (auto character : m_text)
 	{
 		auto ascii = static_cast<int>(character);
-		m_textSize += ascii == 32 ? m_size : m_size / 2;
+		//m_textSize += ascii == 32 ? m_size : m_size / 2;
+		m_textSize += m_size + m_spacing;
+		charCount++;
 	}
 }
 

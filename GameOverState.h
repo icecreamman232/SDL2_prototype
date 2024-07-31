@@ -1,5 +1,7 @@
 #pragma once
 #include "GameState.h"
+#include "BMTextRenderer.h"
+#include "MenuButton.h"
 
 class GameStateManager;
 
@@ -12,6 +14,13 @@ public:
 	void ExitState() override;
 
 private:
+	void OnBackToMainMenu();
+	void OnStartNewGame();
 
+
+	BMTextRenderer m_gameoverTitleTxt;
+
+	MenuButton m_backToMainMenuBtn;
+	MenuButton m_newGameBtn;
 };
 

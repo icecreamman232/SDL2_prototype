@@ -321,22 +321,22 @@ std::string GameplayState::GetFormatedTime()
 	if (m_minute < 10)
 	{
 		ss << '0';
-		ss << m_minute;
+		ss << std::to_string(m_minute);
 	}
 	else
 	{
-		ss << m_minute;
+		ss << std::to_string(m_minute);
 	}
 	ss << ":";
 
 	if (m_seconds < 10)
 	{
 		ss << '0';
-		ss << m_seconds;
+		ss << std::to_string(m_seconds);
 	}
 	else
 	{
-		ss << m_seconds;
+		ss << std::to_string(m_seconds);
 	}
 
 

@@ -33,6 +33,11 @@ void EnemySpawner::Update(float deltaTime)
 	UpdateEnemy(deltaTime);
 }
 
+void EnemySpawner::Stop()
+{
+	m_shouldUpdate = false;
+}
+
 /// <summary>
 /// Stop and kill all enemies in the screen
 /// </summary>

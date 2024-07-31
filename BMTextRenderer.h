@@ -15,13 +15,17 @@ public:
 		Pivot pivot, float x, float y);
 	void Render() override;
 
-	inline void SetSpacing(float spacing) { m_spacing = spacing; };
-	inline void SetSize(float size) { m_size = size; };
+	void SetSpacing(float spacing);
+	void SetSize(float size);
+	float GetSize();
+	float GetTextSize();
 	inline void SetText(std::string newText) { m_text = newText; };
 
-	inline float GetSpacing(int ascii) 
+	inline float GetSpacing() 
 	{ 
-		return ascii == 32 ? m_spacing/2 : m_spacing;
+		return m_spacing;
+		//32 is blank space
+		//return ascii == 32 ? m_spacing/2 : m_spacing; 
 	};
 
 	void SetPosition(float x, float y);

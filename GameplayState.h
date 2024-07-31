@@ -56,8 +56,8 @@ private:
 	int m_numEnemyKilled; //Testing
 
 	//===== WAVE====//
-	int m_minute;
-	int m_seconds;
+	Uint8 m_minute;
+	Uint8 m_seconds;
 	float m_secondsCounter;
 
 	//===== UI =====//

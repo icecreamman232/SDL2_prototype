@@ -175,6 +175,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\MathHelper.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="ObjectPooler.cpp" />
     <ClCompile Include="PickUpgradeEventDispatcher.h" />
     <ClCompile Include="PlayerUIBar.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="IncreaseHPPowerUp.h" />
     <ClInclude Include="IItem.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="MenuButton.h" />
     <ClInclude Include="MyEvent.h" />
     <ClInclude Include="EnemyHealthEventDispatcher.h" />
     <ClInclude Include="EnemySpawner.h" />

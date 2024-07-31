@@ -1,6 +1,7 @@
 #pragma once
 #include "GameplayState.h"
 #include "EndWaveState.h"
+#include "GameOverState.h"
 #include "PowerUpManager.h"
 #include "Global.h"
 
