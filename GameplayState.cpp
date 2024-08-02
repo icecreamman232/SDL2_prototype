@@ -84,8 +84,8 @@ void GameplayState::InitializeUI()
 	m_hpTxtValue = std::to_string(m_player->GetHealth().GetCurrentHealth())
 		+ "/"
 		+ std::to_string(m_player->GetHealth().GetMaxHealth());
-	m_hpText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 115, 22);
-	m_hpText.SetSpacing(8);
+	m_hpText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, m_hpTxtValue, Render::Pivot::CENTER, 115, 35);
+	m_hpText.SetSpacing(3);
 	m_hpText.SetSize(16);
 	m_hpText.SetActive(false);
 
@@ -97,21 +97,21 @@ void GameplayState::InitializeUI()
 
 	//Exp text inside exp bar
 	m_levelTxtValue = "Lv " + std::to_string(m_player->XPController().GetCurrentLv());
-	m_levelText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, m_levelTxtValue, Render::Pivot::CENTER, 120, 52);
-	m_levelText.SetSpacing(8);
+	m_levelText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, m_levelTxtValue, Render::Pivot::CENTER, 115, 65);
+	m_levelText.SetSpacing(3);
 	m_levelText.SetSize(16);
 	m_levelText.SetActive(false);
 
 	//Wave title text
-	auto title = "WAVE " + std::to_string(m_manager->GetCurrentWaveIndex());
-	m_waveTitle.Initialize(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f, 10);
-	m_waveTitle.SetSpacing(20);
-	m_waveTitle.SetSize(32);
+	auto title = "WAVE  " + std::to_string(m_manager->GetCurrentWaveIndex());
+	m_waveTitle.Initialize(TEXTURE_ID::BM_FONT_PIXEL, title, Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f, 50);
+	m_waveTitle.SetSpacing(5);
+	m_waveTitle.SetSize(40);
 	m_waveTitle.SetActive(false);
 
 	//Wave timer text
-	m_waveTimerText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, GetFormatedTime(), Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f + 15, 50);
-	m_waveTimerText.SetSpacing(16);
+	m_waveTimerText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, GetFormatedTime(), Render::Pivot::CENTER, g_WindowSettings.Width / 2.0f, 80);
+	m_waveTimerText.SetSpacing(8);
 	m_waveTimerText.SetSize(24);
 	m_waveTimerText.SetActive(false);
 
@@ -125,14 +125,14 @@ void GameplayState::InitializeUI()
 	m_fullScreenFadeBG->FillColor({ 0,0,0,255 });
 
 	//Number coin text
-	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 70, 90);
-	m_coinText.SetSpacing(14);
+	m_coinText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, std::to_string(m_coinAmount), Render::Pivot::CENTER, 75, 108);
+	m_coinText.SetSpacing(3);
 	m_coinText.SetSize(24);
 	m_coinText.SetActive(false);
 
 	//Level up text show at player position once they got level up
 	m_levelUpText.Initialize(TEXTURE_ID::BM_FONT_PIXEL, "Level Up!", Render::Pivot::CENTER, 0, 0);
-	m_levelUpText.SetSpacing(14);
+	m_levelUpText.SetSpacing(3);
 	m_levelUpText.SetSize(24);
 	m_levelUpText.SetActive(false);
 
