@@ -56,8 +56,8 @@ private:
 	int m_numEnemyKilled; //Testing
 
 	//===== WAVE====//
-	Uint8 m_minute;
-	Uint8 m_seconds;
+	int m_minute;
+	int m_seconds;
 	float m_secondsCounter;
 
 	//===== UI =====//
@@ -83,6 +83,6 @@ private:
 	//===CONSTANT===//
 	const float m_prevStateTweenDuration = 1.5f;
 	const float m_hudFadeInDuration = 0.3f;
-	const int m_firstWaveDuration = 50;
+	const int m_firstWaveDuration = 5;
 };
 

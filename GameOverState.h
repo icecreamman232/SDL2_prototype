@@ -17,7 +17,8 @@ private:
 	void OnBackToMainMenu();
 	void OnStartNewGame();
 
-
+	bool m_shouldExitNextFrame;
+	GameStateManager* m_manager;
 	BMTextRenderer m_gameoverTitleTxt;
 
 	MenuButton m_backToMainMenuBtn;
